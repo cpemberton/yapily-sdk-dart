@@ -230,7 +230,7 @@ class ApiClient {
     if (obj == null) {
       serialized = '';
     } else {
-      serialized = CONVERTER.jsonDecode(obj);
+      serialized = CONVERTER.jsonEncode(obj);
     }
     return serialized;
   }
