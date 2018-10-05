@@ -74,6 +74,10 @@ class ApiClient {
           return new ATMSite.fromJson(value);
         case 'Account':
           return new Account.fromJson(value);
+        case 'AccountAuthorisationRequest':
+          return new AccountAuthorisationRequest.fromJson(value);
+        case 'AccountRequest':
+          return new AccountRequest.fromJson(value);
         case 'AgeEligibility':
           return new AgeEligibility.fromJson(value);
         case 'ApiListResponseOfAccount':
@@ -86,6 +90,10 @@ class ApiClient {
           return new ApiListResponseOfTransaction.fromJson(value);
         case 'ApiResponseOfAccount':
           return new ApiResponseOfAccount.fromJson(value);
+        case 'ApiResponseOfAuthorisationRequestResponse':
+          return new ApiResponseOfAuthorisationRequestResponse.fromJson(value);
+        case 'ApiResponseOfConsent':
+          return new ApiResponseOfConsent.fromJson(value);
         case 'ApiResponseOfIdentity':
           return new ApiResponseOfIdentity.fromJson(value);
         case 'ApiResponseOfListOfATMOpenDataResponse':
@@ -100,14 +108,16 @@ class ApiClient {
           return new Application.fromJson(value);
         case 'ApplicationUser':
           return new ApplicationUser.fromJson(value);
+        case 'AuthorisationRequestResponse':
+          return new AuthorisationRequestResponse.fromJson(value);
         case 'Consent':
           return new Consent.fromJson(value);
         case 'CoreProduct':
           return new CoreProduct.fromJson(value);
         case 'Country':
           return new Country.fromJson(value);
-        case 'CreateConsentApiKey':
-          return new CreateConsentApiKey.fromJson(value);
+        case 'CreateConsentAccessToken':
+          return new CreateConsentAccessToken.fromJson(value);
         case 'CreditCheck':
           return new CreditCheck.fromJson(value);
         case 'CreditInterest':
@@ -184,8 +194,12 @@ class ApiClient {
           return new PersonalCurrentAccountPCAMarketingState.fromJson(value);
         case 'ResidencyEligibility':
           return new ResidencyEligibility.fromJson(value);
+        case 'ResponseListMeta':
+          return new ResponseListMeta.fromJson(value);
         case 'ResponseMeta':
           return new ResponseMeta.fromJson(value);
+        case 'SortCodePaymentAuthRequest':
+          return new SortCodePaymentAuthRequest.fromJson(value);
         case 'SortCodePaymentRequest':
           return new SortCodePaymentRequest.fromJson(value);
         case 'Transaction':

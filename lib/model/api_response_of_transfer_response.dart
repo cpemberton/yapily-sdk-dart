@@ -2,17 +2,25 @@ part of yapily_sdk.api;
 
 class ApiResponseOfTransferResponse {
   
+  ResponseMeta meta = null;
+  
+
   TransferResponse data = null;
   
   ApiResponseOfTransferResponse();
 
   @override
   String toString() {
-    return 'ApiResponseOfTransferResponse[data=$data, ]';
+    return 'ApiResponseOfTransferResponse[meta=$meta, data=$data, ]';
   }
 
   ApiResponseOfTransferResponse.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    meta =
+      
+      
+      new ResponseMeta.fromJson(json['meta'])
+;
     data =
       
       
@@ -22,6 +30,7 @@ class ApiResponseOfTransferResponse {
 
   Map<String, dynamic> toJson() {
     return {
+      'meta': meta,
       'data': data
      };
   }

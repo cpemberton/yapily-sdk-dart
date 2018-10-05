@@ -2,7 +2,16 @@ part of yapily_sdk.api;
 
 class Identity {
   
-  List<IdentityAddress> addresses = [];
+  String id = null;
+  
+
+  String firstName = null;
+  
+
+  String lastName = null;
+  
+
+  String gender = null;
   
 
   String birthdate = null;
@@ -11,65 +20,56 @@ class Identity {
   String email = null;
   
 
-  String firstName = null;
-  
-
-  String gender = null;
-  
-
-  String id = null;
-  
-
-  String lastName = null;
-  
-
   String phone = null;
+  
+
+  List<IdentityAddress> addresses = [];
   
   Identity();
 
   @override
   String toString() {
-    return 'Identity[addresses=$addresses, birthdate=$birthdate, email=$email, firstName=$firstName, gender=$gender, id=$id, lastName=$lastName, phone=$phone, ]';
+    return 'Identity[id=$id, firstName=$firstName, lastName=$lastName, gender=$gender, birthdate=$birthdate, email=$email, phone=$phone, addresses=$addresses, ]';
   }
 
   Identity.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    addresses =
-      IdentityAddress.listFromJson(json['addresses'])
-;
+    id =
+        json['id']
+    ;
+    firstName =
+        json['firstName']
+    ;
+    lastName =
+        json['lastName']
+    ;
+    gender =
+        json['gender']
+    ;
     birthdate =
         json['birthdate']
     ;
     email =
         json['email']
     ;
-    firstName =
-        json['firstName']
-    ;
-    gender =
-        json['gender']
-    ;
-    id =
-        json['id']
-    ;
-    lastName =
-        json['lastName']
-    ;
     phone =
         json['phone']
     ;
+    addresses =
+      IdentityAddress.listFromJson(json['addresses'])
+;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'addresses': addresses,
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'gender': gender,
       'birthdate': birthdate,
       'email': email,
-      'firstName': firstName,
-      'gender': gender,
-      'id': id,
-      'lastName': lastName,
-      'phone': phone
+      'phone': phone,
+      'addresses': addresses
      };
   }
 

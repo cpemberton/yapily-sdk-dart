@@ -11,13 +11,13 @@ class PersonalCurrentAccountPCAMarketingState {
   Eligibility eligibility = null;
   
 
-  String firstMarketedDate = null;
+  DateTime firstMarketedDate = null;
   
 
   String identification = null;
   
 
-  String lastMarketedDate = null;
+  DateTime lastMarketedDate = null;
   
 
   String marketingState = null;
@@ -61,19 +61,11 @@ class PersonalCurrentAccountPCAMarketingState {
       
       new Eligibility.fromJson(json['eligibility'])
 ;
-    firstMarketedDate =
-
-
-      CONVERTER.jsonDecode(json['firstMarketedDate'])
-;
+    firstMarketedDate = json['firstMarketedDate'] == null ? null : DateTime.parse(json['firstMarketedDate']);
     identification =
         json['identification']
     ;
-    lastMarketedDate =
-
-
-        CONVERTER.jsonDecode(json['lastMarketedDate'])
-;
+    lastMarketedDate = json['lastMarketedDate'] == null ? null : DateTime.parse(json['lastMarketedDate']);
     marketingState =
         json['marketingState']
     ;
@@ -101,9 +93,9 @@ class PersonalCurrentAccountPCAMarketingState {
       'coreProduct': coreProduct,
       'creditInterest': creditInterest,
       'eligibility': eligibility,
-      'firstMarketedDate': firstMarketedDate,
+      'firstMarketedDate': firstMarketedDate == null ? '' : firstMarketedDate.toUtc().toIso8601String(),
       'identification': identification,
-      'lastMarketedDate': lastMarketedDate,
+      'lastMarketedDate': lastMarketedDate == null ? '' : lastMarketedDate.toUtc().toIso8601String(),
       'marketingState': marketingState,
       'notes': notes,
       'overdraft': overdraft,

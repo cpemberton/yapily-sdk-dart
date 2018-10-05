@@ -2,7 +2,7 @@ part of yapily_sdk.api;
 
 class ApiListResponseOfTransaction {
   
-  ResponseMeta meta = null;
+  ResponseListMeta meta = null;
   
 
   List<Transaction> data = [];
@@ -19,7 +19,7 @@ class ApiListResponseOfTransaction {
     meta =
       
       
-      new ResponseMeta.fromJson(json['meta'])
+      new ResponseListMeta.fromJson(json['meta'])
 ;
     data =
       Transaction.listFromJson(json['data'])

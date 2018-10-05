@@ -1,14 +1,17 @@
 part of yapily_sdk.api;
 
 class Application {
+  /* Application UUID */
+  String uuid = null;
   
+
+  String name = null;
+  
+
   bool active = null;
   
 
   List<String> authCallbacks = [];
-  
-
-  DateTime created = null;
   
 
   List<Institution> institutions = [];
@@ -17,55 +20,52 @@ class Application {
   List<Media> media = [];
   
 
-  String name = null;
+  DateTime created = null;
   
 
   DateTime updated = null;
-  
-/* Application UUID */
-  String uuid = null;
   
   Application();
 
   @override
   String toString() {
-    return 'Application[active=$active, authCallbacks=$authCallbacks, created=$created, institutions=$institutions, media=$media, name=$name, updated=$updated, uuid=$uuid, ]';
+    return 'Application[uuid=$uuid, name=$name, active=$active, authCallbacks=$authCallbacks, institutions=$institutions, media=$media, created=$created, updated=$updated, ]';
   }
 
   Application.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    uuid =
+        json['uuid']
+    ;
+    name =
+        json['name']
+    ;
     active =
         json['active']
     ;
     authCallbacks =
         (json['authCallbacks'] as List).map((item) => item as String).toList()
     ;
-    created = json['created'] == null ? null : DateTime.parse(json['created']);
     institutions =
       Institution.listFromJson(json['institutions'])
 ;
     media =
       Media.listFromJson(json['media'])
 ;
-    name =
-        json['name']
-    ;
+    created = json['created'] == null ? null : DateTime.parse(json['created']);
     updated = json['updated'] == null ? null : DateTime.parse(json['updated']);
-    uuid =
-        json['uuid']
-    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'uuid': uuid,
+      'name': name,
       'active': active,
       'authCallbacks': authCallbacks,
-      'created': created == null ? '' : created.toUtc().toIso8601String(),
       'institutions': institutions,
       'media': media,
-      'name': name,
-      'updated': updated == null ? '' : updated.toUtc().toIso8601String(),
-      'uuid': uuid
+      'created': created == null ? '' : created.toUtc().toIso8601String(),
+      'updated': updated == null ? '' : updated.toUtc().toIso8601String()
      };
   }
 

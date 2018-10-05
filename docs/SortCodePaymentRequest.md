@@ -8,15 +8,14 @@ import 'package:yapily_sdk/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**senderAccountId** | **String** |  | [optional] [default to null]
-**name** | **String** |  | [optional] [default to null]
-**amount** | **num** |  | [optional] [default to null]
-**currency** | **String** |  | [optional] [default to null]
-**reference** | **String** |  | [optional] [default to null]
-**country** | **String** |  | [optional] [default to null]
-**paymentReferenceId** | **String** |  | [optional] [default to null]
-**accountNumber** | **String** |  | [optional] [default to null]
-**sortCode** | **String** |  | [optional] [default to null]
+**senderAccountId** | **String** |  | [default to null]
+**name** | **String** |  | [default to null]
+**amount** | **num** |  | [default to null]
+**currency** | **String** |  | [default to null]
+**reference** | **String** |  | [default to null]
+**country** | **String** |  | [default to null]
+**accountNumber** | **String** |  | [default to null]
+**sortCode** | **String** |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,15 +10,15 @@ class ConsentsApi {
   /// Post consent
   ///
   /// 
-  Future<Consent> addConsentUsingPOST(String userUuid, CreateConsentApiKey createConsentApiKey) async {
-    Object postBody = createConsentApiKey;
+  Future<Consent> addConsentUsingPOST(String userUuid, CreateConsentAccessToken createConsentAccessToken) async {
+    Object postBody = createConsentAccessToken;
 
     // verify required params are set
     if(userUuid == null) {
      throw new ApiException(400, "Missing required param: userUuid");
     }
-    if(createConsentApiKey == null) {
-     throw new ApiException(400, "Missing required param: createConsentApiKey");
+    if(createConsentAccessToken == null) {
+     throw new ApiException(400, "Missing required param: createConsentAccessToken");
     }
 
     // create path and map variables
@@ -65,19 +65,16 @@ class ConsentsApi {
   /// Delete consent
   ///
   /// 
-  Future<Object> deleteUsingDELETE(String userUuid, String consentToken) async {
+  Future<Object> deleteUsingDELETE(String consentId) async {
     Object postBody = null;
 
     // verify required params are set
-    if(userUuid == null) {
-     throw new ApiException(400, "Missing required param: userUuid");
-    }
-    if(consentToken == null) {
-     throw new ApiException(400, "Missing required param: consentToken");
+    if(consentId == null) {
+     throw new ApiException(400, "Missing required param: consentId");
     }
 
     // create path and map variables
-    String path = "/users/{userUuid}/consents/{consentToken}".replaceAll("{format}","json").replaceAll("{" + "userUuid" + "}", userUuid.toString()).replaceAll("{" + "consentToken" + "}", consentToken.toString());
+    String path = "/consents/{consentId}".replaceAll("{format}","json").replaceAll("{" + "consentId" + "}", consentId.toString());
 
     // query params
     List<QueryParam> queryParams = [];
@@ -113,6 +110,58 @@ class ConsentsApi {
     } else if(response.body != null) {
       return 
           apiClient.deserialize(response.body, 'Object') as Object ;
+    } else {
+      return null;
+    }
+  }
+  /// Get consent
+  ///
+  /// 
+  Future<ApiResponseOfConsent> getConsentByIdUsingGET(String consentId) async {
+    Object postBody = null;
+
+    // verify required params are set
+    if(consentId == null) {
+     throw new ApiException(400, "Missing required param: consentId");
+    }
+
+    // create path and map variables
+    String path = "/consents/{consentId}".replaceAll("{format}","json").replaceAll("{" + "consentId" + "}", consentId.toString());
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = ["application/json"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = ["basicAuth"];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return 
+          apiClient.deserialize(response.body, 'ApiResponseOfConsent') as ApiResponseOfConsent ;
     } else {
       return null;
     }

@@ -6,7 +6,7 @@ class PaymentResponse {
   
 
   String status = null;
-  //enum statusEnum {  PENDING,  FAILED,  DECLINED,  COMPLETED,  UNKNOWN,  };
+  //enum statusEnum {  PENDING,  FAILED,  DECLINED,  COMPLETED,  EXPIRED,  UNKNOWN,  };
 
   DateTime createdAt = null;
   
@@ -19,14 +19,11 @@ class PaymentResponse {
 
   String currency = null;
   
-
-  String authUrl = null;
-  
   PaymentResponse();
 
   @override
   String toString() {
-    return 'PaymentResponse[id=$id, status=$status, createdAt=$createdAt, reference=$reference, amount=$amount, currency=$currency, authUrl=$authUrl, ]';
+    return 'PaymentResponse[id=$id, status=$status, createdAt=$createdAt, reference=$reference, amount=$amount, currency=$currency, ]';
   }
 
   PaymentResponse.fromJson(Map<String, dynamic> json) {
@@ -47,9 +44,6 @@ class PaymentResponse {
     currency =
         json['currency']
     ;
-    authUrl =
-        json['authUrl']
-    ;
   }
 
   Map<String, dynamic> toJson() {
@@ -59,8 +53,7 @@ class PaymentResponse {
       'createdAt': createdAt == null ? '' : createdAt.toUtc().toIso8601String(),
       'reference': reference,
       'amount': amount,
-      'currency': currency,
-      'authUrl': authUrl
+      'currency': currency
      };
   }
 

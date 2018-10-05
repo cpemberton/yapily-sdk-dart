@@ -2,53 +2,53 @@ part of yapily_sdk.api;
 
 class Account {
   
-  num balance = null;
-  
-
-  String currency = null;
-  
-
-  String description = null;
-  
-
   String id = null;
   
 
   String type = null;
   
+
+  String description = null;
+  
+
+  num balance = null;
+  
+
+  String currency = null;
+  
   Account();
 
   @override
   String toString() {
-    return 'Account[balance=$balance, currency=$currency, description=$description, id=$id, type=$type, ]';
+    return 'Account[id=$id, type=$type, description=$description, balance=$balance, currency=$currency, ]';
   }
 
   Account.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    balance =
-        json['balance']
-    ;
-    currency =
-        json['currency']
-    ;
-    description =
-        json['description']
-    ;
     id =
         json['id']
     ;
     type =
         json['type']
     ;
+    description =
+        json['description']
+    ;
+    balance =
+        json['balance']
+    ;
+    currency =
+        json['currency']
+    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'balance': balance,
-      'currency': currency,
-      'description': description,
       'id': id,
-      'type': type
+      'type': type,
+      'description': description,
+      'balance': balance,
+      'currency': currency
      };
   }
 

@@ -2,17 +2,25 @@ part of yapily_sdk.api;
 
 class ApiResponseOfListOfATMOpenDataResponse {
   
+  ResponseMeta meta = null;
+  
+
   List<ATMOpenDataResponse> data = [];
   
   ApiResponseOfListOfATMOpenDataResponse();
 
   @override
   String toString() {
-    return 'ApiResponseOfListOfATMOpenDataResponse[data=$data, ]';
+    return 'ApiResponseOfListOfATMOpenDataResponse[meta=$meta, data=$data, ]';
   }
 
   ApiResponseOfListOfATMOpenDataResponse.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    meta =
+      
+      
+      new ResponseMeta.fromJson(json['meta'])
+;
     data =
       ATMOpenDataResponse.listFromJson(json['data'])
 ;
@@ -20,6 +28,7 @@ class ApiResponseOfListOfATMOpenDataResponse {
 
   Map<String, dynamic> toJson() {
     return {
+      'meta': meta,
       'data': data
      };
   }

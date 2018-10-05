@@ -2,74 +2,74 @@ part of yapily_sdk.api;
 
 class Institution {
   
-  List<Country> countries = [];
-  
-
-  String credentialsType = null;
-  //enum credentialsTypeEnum {  OAUTH1,  OAUTH2,  OAUTH2_NOSECRET,  OPEN_BANKING,  OPEN_BANKING_SANDBOX,  OPEN_BANKING_IBM,  OPEN_BANKING_KEY_SECRET_SANDBOX,  API_KEY,  };
-
-  String environmentType = null;
-  //enum environmentTypeEnum {  SANDBOX,  MOCK,  LIVE,  };
-
-  List<String> features = [];
-  //enum featuresEnum {  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
-
-  String fullName = null;
-  
-
   String id = null;
-  
-
-  List<Media> media = [];
   
 
   String name = null;
   
+
+  String fullName = null;
+  
+
+  List<Country> countries = [];
+  
+
+  String environmentType = null;
+  //enum environmentTypeEnum {  SANDBOX,  MOCK,  LIVE,  };
+
+  String credentialsType = null;
+  //enum credentialsTypeEnum {  OAUTH1,  OAUTH2,  OAUTH2_NOSECRET,  OPEN_BANKING,  OPEN_BANKING_SANDBOX,  OPEN_BANKING_IBM,  OPEN_BANKING_KEY_SECRET_SANDBOX,  API_KEY,  };
+
+  List<Media> media = [];
+  
+
+  List<String> features = [];
+  //enum featuresEnum {  INITIATE_ACCOUNT_REQUEST,  ACCOUNT_REQUEST_DETAILS,  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
   Institution();
 
   @override
   String toString() {
-    return 'Institution[countries=$countries, credentialsType=$credentialsType, environmentType=$environmentType, features=$features, fullName=$fullName, id=$id, media=$media, name=$name, ]';
+    return 'Institution[id=$id, name=$name, fullName=$fullName, countries=$countries, environmentType=$environmentType, credentialsType=$credentialsType, media=$media, features=$features, ]';
   }
 
   Institution.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    countries =
-      Country.listFromJson(json['countries'])
-;
-    credentialsType =
-        json['credentialsType']
+    id =
+        json['id']
     ;
-    environmentType =
-        json['environmentType']
-    ;
-    features =
-        (json['features'] as List).map((item) => item as String).toList()
+    name =
+        json['name']
     ;
     fullName =
         json['fullName']
     ;
-    id =
-        json['id']
+    countries =
+      Country.listFromJson(json['countries'])
+;
+    environmentType =
+        json['environmentType']
+    ;
+    credentialsType =
+        json['credentialsType']
     ;
     media =
       Media.listFromJson(json['media'])
 ;
-    name =
-        json['name']
+    features =
+        (json['features'] as List).map((item) => item as String).toList()
     ;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'countries': countries,
-      'credentialsType': credentialsType,
-      'environmentType': environmentType,
-      'features': features,
-      'fullName': fullName,
       'id': id,
+      'name': name,
+      'fullName': fullName,
+      'countries': countries,
+      'environmentType': environmentType,
+      'credentialsType': credentialsType,
       'media': media,
-      'name': name
+      'features': features
      };
   }
 

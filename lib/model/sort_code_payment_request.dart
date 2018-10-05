@@ -20,9 +20,6 @@ class SortCodePaymentRequest {
   String country = null;
   
 
-  String paymentReferenceId = null;
-  
-
   String accountNumber = null;
   
 
@@ -32,7 +29,7 @@ class SortCodePaymentRequest {
 
   @override
   String toString() {
-    return 'SortCodePaymentRequest[senderAccountId=$senderAccountId, name=$name, amount=$amount, currency=$currency, reference=$reference, country=$country, paymentReferenceId=$paymentReferenceId, accountNumber=$accountNumber, sortCode=$sortCode, ]';
+    return 'SortCodePaymentRequest[senderAccountId=$senderAccountId, name=$name, amount=$amount, currency=$currency, reference=$reference, country=$country, accountNumber=$accountNumber, sortCode=$sortCode, ]';
   }
 
   SortCodePaymentRequest.fromJson(Map<String, dynamic> json) {
@@ -55,9 +52,6 @@ class SortCodePaymentRequest {
     country =
         json['country']
     ;
-    paymentReferenceId =
-        json['paymentReferenceId']
-    ;
     accountNumber =
         json['accountNumber']
     ;
@@ -74,7 +68,6 @@ class SortCodePaymentRequest {
       'currency': currency,
       'reference': reference,
       'country': country,
-      'paymentReferenceId': paymentReferenceId,
       'accountNumber': accountNumber,
       'sortCode': sortCode
      };

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getAccountUsingGET**](AccountsApi.md#getAccountUsingGET) | **GET** /accounts/{accountId} | Get account
 [**getAccountsUsingGET**](AccountsApi.md#getAccountsUsingGET) | **GET** /accounts | Get accounts
+[**initiateAccountRequestUsingPOST**](AccountsApi.md#initiateAccountRequestUsingPOST) | **POST** /account-auth-requests | Initiate a new account request for user to authorize
 
 
 # **getAccountUsingGET**
@@ -91,6 +92,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiListResponseOfAccount**](ApiListResponseOfAccount.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initiateAccountRequestUsingPOST**
+> ApiResponseOfAuthorisationRequestResponse initiateAccountRequestUsingPOST(accountAuthRequest)
+
+Initiate a new account request for user to authorize
+
+### Example 
+```dart
+import 'package:yapily_sdk/api.dart';
+// TODO Configure HTTP basic authorization: basicAuth
+//yapily_sdk.api.Configuration.username = 'YOUR_USERNAME';
+//yapily_sdk.api.Configuration.password = 'YOUR_PASSWORD';
+
+var api_instance = new AccountsApi();
+var accountAuthRequest = new AccountAuthorisationRequest(); // AccountAuthorisationRequest | accountAuthRequest
+
+try { 
+    var result = api_instance.initiateAccountRequestUsingPOST(accountAuthRequest);
+    print(result);
+} catch (e) {
+    print("Exception when calling AccountsApi->initiateAccountRequestUsingPOST: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountAuthRequest** | [**AccountAuthorisationRequest**](AccountAuthorisationRequest.md)| accountAuthRequest | 
+
+### Return type
+
+[**ApiResponseOfAuthorisationRequestResponse**](ApiResponseOfAuthorisationRequestResponse.md)
 
 ### Authorization
 

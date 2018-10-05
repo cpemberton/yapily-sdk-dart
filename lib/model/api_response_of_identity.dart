@@ -2,17 +2,25 @@ part of yapily_sdk.api;
 
 class ApiResponseOfIdentity {
   
+  ResponseMeta meta = null;
+  
+
   Identity data = null;
   
   ApiResponseOfIdentity();
 
   @override
   String toString() {
-    return 'ApiResponseOfIdentity[data=$data, ]';
+    return 'ApiResponseOfIdentity[meta=$meta, data=$data, ]';
   }
 
   ApiResponseOfIdentity.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    meta =
+      
+      
+      new ResponseMeta.fromJson(json['meta'])
+;
     data =
       
       
@@ -22,6 +30,7 @@ class ApiResponseOfIdentity {
 
   Map<String, dynamic> toJson() {
     return {
+      'meta': meta,
       'data': data
      };
   }

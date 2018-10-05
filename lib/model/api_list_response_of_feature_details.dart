@@ -2,7 +2,7 @@ part of yapily_sdk.api;
 
 class ApiListResponseOfFeatureDetails {
   
-  ResponseMeta meta = null;
+  ResponseListMeta meta = null;
   
 
   List<FeatureDetails> data = [];
@@ -19,7 +19,7 @@ class ApiListResponseOfFeatureDetails {
     meta =
       
       
-      new ResponseMeta.fromJson(json['meta'])
+      new ResponseListMeta.fromJson(json['meta'])
 ;
     data =
       FeatureDetails.listFromJson(json['data'])

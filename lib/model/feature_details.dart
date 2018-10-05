@@ -2,39 +2,39 @@ part of yapily_sdk.api;
 
 class FeatureDetails {
   
-  String documentationUrl = null;
-  
+  String feature = null;
+  //enum featureEnum {  INITIATE_ACCOUNT_REQUEST,  ACCOUNT_REQUEST_DETAILS,  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
 
   String endpoint = null;
   
 
-  String feature = null;
-  //enum featureEnum {  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
+  String documentationUrl = null;
+  
   FeatureDetails();
 
   @override
   String toString() {
-    return 'FeatureDetails[documentationUrl=$documentationUrl, endpoint=$endpoint, feature=$feature, ]';
+    return 'FeatureDetails[feature=$feature, endpoint=$endpoint, documentationUrl=$documentationUrl, ]';
   }
 
   FeatureDetails.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    documentationUrl =
-        json['documentationUrl']
+    feature =
+        json['feature']
     ;
     endpoint =
         json['endpoint']
     ;
-    feature =
-        json['feature']
+    documentationUrl =
+        json['documentationUrl']
     ;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'documentationUrl': documentationUrl,
+      'feature': feature,
       'endpoint': endpoint,
-      'feature': feature
+      'documentationUrl': documentationUrl
      };
   }
 

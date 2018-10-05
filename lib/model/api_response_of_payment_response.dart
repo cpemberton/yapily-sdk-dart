@@ -2,17 +2,25 @@ part of yapily_sdk.api;
 
 class ApiResponseOfPaymentResponse {
   
+  ResponseMeta meta = null;
+  
+
   PaymentResponse data = null;
   
   ApiResponseOfPaymentResponse();
 
   @override
   String toString() {
-    return 'ApiResponseOfPaymentResponse[data=$data, ]';
+    return 'ApiResponseOfPaymentResponse[meta=$meta, data=$data, ]';
   }
 
   ApiResponseOfPaymentResponse.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    meta =
+      
+      
+      new ResponseMeta.fromJson(json['meta'])
+;
     data =
       
       
@@ -22,6 +30,7 @@ class ApiResponseOfPaymentResponse {
 
   Map<String, dynamic> toJson() {
     return {
+      'meta': meta,
       'data': data
      };
   }

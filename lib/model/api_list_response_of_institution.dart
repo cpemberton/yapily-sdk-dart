@@ -2,7 +2,7 @@ part of yapily_sdk.api;
 
 class ApiListResponseOfInstitution {
   
-  ResponseMeta meta = null;
+  ResponseListMeta meta = null;
   
 
   List<Institution> data = [];
@@ -19,7 +19,7 @@ class ApiListResponseOfInstitution {
     meta =
       
       
-      new ResponseMeta.fromJson(json['meta'])
+      new ResponseListMeta.fromJson(json['meta'])
 ;
     data =
       Institution.listFromJson(json['data'])

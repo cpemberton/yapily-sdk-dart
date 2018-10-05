@@ -1,47 +1,47 @@
 part of yapily_sdk.api;
 
 class ApplicationUser {
-  
-  String applicationUuid = null;
+  /* User UUID */
+  String uuid = null;
   
 
-  List<InstitutionConsent> institutionConsents = [];
+  String applicationUuid = null;
   
 
   String referenceId = null;
   
-/* User UUID */
-  String uuid = null;
+
+  List<InstitutionConsent> institutionConsents = [];
   
   ApplicationUser();
 
   @override
   String toString() {
-    return 'ApplicationUser[applicationUuid=$applicationUuid, institutionConsents=$institutionConsents, referenceId=$referenceId, uuid=$uuid, ]';
+    return 'ApplicationUser[uuid=$uuid, applicationUuid=$applicationUuid, referenceId=$referenceId, institutionConsents=$institutionConsents, ]';
   }
 
   ApplicationUser.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    uuid =
+        json['uuid']
+    ;
     applicationUuid =
         json['applicationUuid']
+    ;
+    referenceId =
+        json['referenceId']
     ;
     institutionConsents =
       InstitutionConsent.listFromJson(json['institutionConsents'])
 ;
-    referenceId =
-        json['referenceId']
-    ;
-    uuid =
-        json['uuid']
-    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'uuid': uuid,
       'applicationUuid': applicationUuid,
-      'institutionConsents': institutionConsents,
       'referenceId': referenceId,
-      'uuid': uuid
+      'institutionConsents': institutionConsents
      };
   }
 

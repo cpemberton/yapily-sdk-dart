@@ -2,25 +2,25 @@ part of yapily_sdk.api;
 
 class ResponseMeta {
   
-  int count = null;
+  String tracingId = null;
   
   ResponseMeta();
 
   @override
   String toString() {
-    return 'ResponseMeta[count=$count, ]';
+    return 'ResponseMeta[tracingId=$tracingId, ]';
   }
 
   ResponseMeta.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    count =
-        json['count']
+    tracingId =
+        json['tracingId']
     ;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'count': count
+      'tracingId': tracingId
      };
   }
 

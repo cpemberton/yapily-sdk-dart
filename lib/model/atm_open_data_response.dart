@@ -4,14 +4,11 @@ class ATMOpenDataResponse {
   
   List<ATMOpenData> data = [];
   
-
-  String meta = null;
-  
   ATMOpenDataResponse();
 
   @override
   String toString() {
-    return 'ATMOpenDataResponse[data=$data, meta=$meta, ]';
+    return 'ATMOpenDataResponse[data=$data, ]';
   }
 
   ATMOpenDataResponse.fromJson(Map<String, dynamic> json) {
@@ -19,17 +16,11 @@ class ATMOpenDataResponse {
     data =
       ATMOpenData.listFromJson(json['data'])
 ;
-    meta =
-      
-      
-      CONVERTER.jsonDecode(json['meta'])
-;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'data': data,
-      'meta': meta
+      'data': data
      };
   }
 

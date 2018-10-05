@@ -2,17 +2,25 @@ part of yapily_sdk.api;
 
 class ApiResponseOfListOfPersonalCurrentAccountData {
   
+  ResponseMeta meta = null;
+  
+
   List<PersonalCurrentAccountData> data = [];
   
   ApiResponseOfListOfPersonalCurrentAccountData();
 
   @override
   String toString() {
-    return 'ApiResponseOfListOfPersonalCurrentAccountData[data=$data, ]';
+    return 'ApiResponseOfListOfPersonalCurrentAccountData[meta=$meta, data=$data, ]';
   }
 
   ApiResponseOfListOfPersonalCurrentAccountData.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
+    meta =
+      
+      
+      new ResponseMeta.fromJson(json['meta'])
+;
     data =
       PersonalCurrentAccountData.listFromJson(json['data'])
 ;
@@ -20,6 +28,7 @@ class ApiResponseOfListOfPersonalCurrentAccountData {
 
   Map<String, dynamic> toJson() {
     return {
+      'meta': meta,
       'data': data
      };
   }
