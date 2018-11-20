@@ -7,11 +7,14 @@ class ApiListResponseOfInstitution {
 
   List<Institution> data = [];
   
+
+  Map<String, String> links = {};
+  
   ApiListResponseOfInstitution();
 
   @override
   String toString() {
-    return 'ApiListResponseOfInstitution[meta=$meta, data=$data, ]';
+    return 'ApiListResponseOfInstitution[meta=$meta, data=$data, links=$links, ]';
   }
 
   ApiListResponseOfInstitution.fromJson(Map<String, dynamic> json) {
@@ -24,12 +27,16 @@ class ApiListResponseOfInstitution {
     data =
       Institution.listFromJson(json['data'])
 ;
+    links =
+        json['links']
+    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'meta': meta,
-      'data': data
+      'data': data,
+      'links': links
      };
   }
 

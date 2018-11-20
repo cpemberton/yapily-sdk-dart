@@ -10,7 +10,7 @@ class TransactionsApi {
   /// Get account transactions
   ///
   /// 
-  Future<ApiListResponseOfTransaction> getTransactionsUsingGET(String consent, String accountId, { List<String> with_ }) async {
+  Future<ApiListResponseOfTransaction> getTransactionsUsingGET(String consent, String accountId, { List<String> with_, String from, String before, int limit, String sort }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -30,6 +30,18 @@ class TransactionsApi {
     Map<String, String> formParams = {};
     if(with_ != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("multi", "with", with_));
+    }
+    if(from != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "from", from));
+    }
+    if(before != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "before", before));
+    }
+    if(limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "limit", limit));
+    }
+    if(sort != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "sort", sort));
     }
     headerParams["consent"] = consent;
 

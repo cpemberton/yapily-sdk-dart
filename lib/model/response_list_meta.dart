@@ -7,11 +7,14 @@ class ResponseListMeta {
 
   int count = null;
   
+
+  Pagination pagination = null;
+  
   ResponseListMeta();
 
   @override
   String toString() {
-    return 'ResponseListMeta[tracingId=$tracingId, count=$count, ]';
+    return 'ResponseListMeta[tracingId=$tracingId, count=$count, pagination=$pagination, ]';
   }
 
   ResponseListMeta.fromJson(Map<String, dynamic> json) {
@@ -22,12 +25,18 @@ class ResponseListMeta {
     count =
         json['count']
     ;
+    pagination =
+      
+      
+      new Pagination.fromJson(json['pagination'])
+;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'tracingId': tracingId,
-      'count': count
+      'count': count,
+      'pagination': pagination
      };
   }
 

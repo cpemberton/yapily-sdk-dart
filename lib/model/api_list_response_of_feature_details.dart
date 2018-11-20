@@ -7,11 +7,14 @@ class ApiListResponseOfFeatureDetails {
 
   List<FeatureDetails> data = [];
   
+
+  Map<String, String> links = {};
+  
   ApiListResponseOfFeatureDetails();
 
   @override
   String toString() {
-    return 'ApiListResponseOfFeatureDetails[meta=$meta, data=$data, ]';
+    return 'ApiListResponseOfFeatureDetails[meta=$meta, data=$data, links=$links, ]';
   }
 
   ApiListResponseOfFeatureDetails.fromJson(Map<String, dynamic> json) {
@@ -24,12 +27,16 @@ class ApiListResponseOfFeatureDetails {
     data =
       FeatureDetails.listFromJson(json['data'])
 ;
+    links =
+        json['links']
+    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'meta': meta,
-      'data': data
+      'data': data,
+      'links': links
      };
   }
 

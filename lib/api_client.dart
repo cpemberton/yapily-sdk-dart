@@ -78,6 +78,8 @@ class ApiClient {
           return new AccountAuthorisationRequest.fromJson(value);
         case 'AccountRequest':
           return new AccountRequest.fromJson(value);
+        case 'Address':
+          return new Address.fromJson(value);
         case 'AgeEligibility':
           return new AgeEligibility.fromJson(value);
         case 'ApiListResponseOfAccount':
@@ -134,6 +136,8 @@ class ApiClient {
           return new EligibilityOtherEligibility.fromJson(value);
         case 'FeatureDetails':
           return new FeatureDetails.fromJson(value);
+        case 'FilterAndSort':
+          return new FilterAndSort.fromJson(value);
         case 'IDVerificationCheck':
           return new IDVerificationCheck.fromJson(value);
         case 'Identity':
@@ -148,8 +152,12 @@ class ApiClient {
           return new Media.fromJson(value);
         case 'Merchant':
           return new Merchant.fromJson(value);
+        case 'MerchantInfo':
+          return new MerchantInfo.fromJson(value);
         case 'NewApplicationUser':
           return new NewApplicationUser.fromJson(value);
+        case 'Next':
+          return new Next.fromJson(value);
         case 'OtherApplicationFrequency':
           return new OtherApplicationFrequency.fromJson(value);
         case 'OtherBankInterestType':
@@ -182,6 +190,8 @@ class ApiClient {
           return new OverdraftOverdraftTierBand.fromJson(value);
         case 'OverdraftOverdraftTierBandSet':
           return new OverdraftOverdraftTierBandSet.fromJson(value);
+        case 'Pagination':
+          return new Pagination.fromJson(value);
         case 'PaymentResponse':
           return new PaymentResponse.fromJson(value);
         case 'PersonalCurrentAccountBrand':

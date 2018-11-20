@@ -7,11 +7,14 @@ class ApiListResponseOfTransaction {
 
   List<Transaction> data = [];
   
+
+  Map<String, String> links = {};
+  
   ApiListResponseOfTransaction();
 
   @override
   String toString() {
-    return 'ApiListResponseOfTransaction[meta=$meta, data=$data, ]';
+    return 'ApiListResponseOfTransaction[meta=$meta, data=$data, links=$links, ]';
   }
 
   ApiListResponseOfTransaction.fromJson(Map<String, dynamic> json) {
@@ -24,12 +27,16 @@ class ApiListResponseOfTransaction {
     data =
       Transaction.listFromJson(json['data'])
 ;
+    links =
+        json['links']
+    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'meta': meta,
-      'data': data
+      'data': data,
+      'links': links
      };
   }
 

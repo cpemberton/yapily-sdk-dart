@@ -7,11 +7,14 @@ class ApiListResponseOfAccount {
 
   List<Account> data = [];
   
+
+  Map<String, String> links = {};
+  
   ApiListResponseOfAccount();
 
   @override
   String toString() {
-    return 'ApiListResponseOfAccount[meta=$meta, data=$data, ]';
+    return 'ApiListResponseOfAccount[meta=$meta, data=$data, links=$links, ]';
   }
 
   ApiListResponseOfAccount.fromJson(Map<String, dynamic> json) {
@@ -24,12 +27,16 @@ class ApiListResponseOfAccount {
     data =
       Account.listFromJson(json['data'])
 ;
+    links =
+        json['links']
+    ;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'meta': meta,
-      'data': data
+      'data': data,
+      'links': links
      };
   }
 

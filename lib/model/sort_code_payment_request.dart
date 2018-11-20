@@ -20,16 +20,22 @@ class SortCodePaymentRequest {
   String country = null;
   
 
+  String type = null;
+  //enum typeEnum {  BILL,  GOODS,  SERVICES,  OTHER,  PERSON_TO_PERSON,  };
+
   String accountNumber = null;
   
 
   String sortCode = null;
   
+
+  MerchantInfo merchantInfo = null;
+  
   SortCodePaymentRequest();
 
   @override
   String toString() {
-    return 'SortCodePaymentRequest[senderAccountId=$senderAccountId, name=$name, amount=$amount, currency=$currency, reference=$reference, country=$country, accountNumber=$accountNumber, sortCode=$sortCode, ]';
+    return 'SortCodePaymentRequest[senderAccountId=$senderAccountId, name=$name, amount=$amount, currency=$currency, reference=$reference, country=$country, type=$type, accountNumber=$accountNumber, sortCode=$sortCode, merchantInfo=$merchantInfo, ]';
   }
 
   SortCodePaymentRequest.fromJson(Map<String, dynamic> json) {
@@ -52,12 +58,20 @@ class SortCodePaymentRequest {
     country =
         json['country']
     ;
+    type =
+        json['type']
+    ;
     accountNumber =
         json['accountNumber']
     ;
     sortCode =
         json['sortCode']
     ;
+    merchantInfo =
+      
+      
+      new MerchantInfo.fromJson(json['merchantInfo'])
+;
   }
 
   Map<String, dynamic> toJson() {
@@ -68,8 +82,10 @@ class SortCodePaymentRequest {
       'currency': currency,
       'reference': reference,
       'country': country,
+      'type': type,
       'accountNumber': accountNumber,
-      'sortCode': sortCode
+      'sortCode': sortCode,
+      'merchantInfo': merchantInfo
      };
   }
 
