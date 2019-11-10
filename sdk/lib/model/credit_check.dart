@@ -1,46 +1,37 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'credit_check.jser.dart';
 
 class CreditCheck {
   
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
-
-  String scoringType = null;
+  @Alias('ScoringType', isNullable: false,
+          
+  )
+  final String scoringType;
   //enum scoringTypeEnum {  Hard,  Soft,  };
-  CreditCheck();
+
+  CreditCheck(
+      
+
+{
+     this.notes = const [],  
+     this.scoringType = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CreditCheck[notes=$notes, scoringType=$scoringType, ]';
   }
+}
 
-  CreditCheck.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    scoringType =
-        json['scoringType']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CreditCheckSerializer extends Serializer<CreditCheck> with _$CreditCheckSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'notes': notes,
-      'scoringType': scoringType
-     };
-  }
-
-  static List<CreditCheck> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreditCheck>() : json.map((value) => new CreditCheck.fromJson(value)).toList();
-  }
-
-  static Map<String, CreditCheck> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreditCheck>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreditCheck.fromJson(value));
-    }
-    return map;
-  }
 }
 

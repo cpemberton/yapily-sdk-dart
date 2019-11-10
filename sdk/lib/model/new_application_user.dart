@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'new_application_user.jser.dart';
 
 class NewApplicationUser {
   
-  String applicationUserId = null;
+  @Alias('applicationUserId', isNullable: false,  )
+  final String applicationUserId;
+  
+  @Alias('referenceId', isNullable: false,  )
+  final String referenceId;
   
 
-  String referenceId = null;
-  
-  NewApplicationUser();
+  NewApplicationUser(
+      
+
+{
+     this.applicationUserId = null,  
+     this.referenceId = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'NewApplicationUser[applicationUserId=$applicationUserId, referenceId=$referenceId, ]';
   }
+}
 
-  NewApplicationUser.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    applicationUserId =
-        json['applicationUserId']
-    ;
-    referenceId =
-        json['referenceId']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class NewApplicationUserSerializer extends Serializer<NewApplicationUser> with _$NewApplicationUserSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'applicationUserId': applicationUserId,
-      'referenceId': referenceId
-     };
-  }
-
-  static List<NewApplicationUser> listFromJson(List<dynamic> json) {
-    return json == null ? new List<NewApplicationUser>() : json.map((value) => new NewApplicationUser.fromJson(value)).toList();
-  }
-
-  static Map<String, NewApplicationUser> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, NewApplicationUser>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new NewApplicationUser.fromJson(value));
-    }
-    return map;
-  }
 }
 

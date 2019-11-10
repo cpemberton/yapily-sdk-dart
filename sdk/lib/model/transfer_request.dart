@@ -1,67 +1,47 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'transfer_request.jser.dart';
 
 class TransferRequest {
   
-  String accountId = null;
+  @Alias('accountId', isNullable: false,  )
+  final String accountId;
+  
+  @Alias('amount', isNullable: false,  )
+  final num amount;
+  
+  @Alias('currency', isNullable: false,  )
+  final String currency;
+  
+  @Alias('reference', isNullable: false,  )
+  final String reference;
+  
+  @Alias('transferReferenceId', isNullable: false,  )
+  final String transferReferenceId;
   
 
-  num amount = null;
-  
+  TransferRequest(
+      
 
-  String currency = null;
-  
-
-  String reference = null;
-  
-
-  String transferReferenceId = null;
-  
-  TransferRequest();
+{
+     this.accountId = null,  
+     this.amount = null,  
+     this.currency = null,  
+     this.reference = null,  
+     this.transferReferenceId = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'TransferRequest[accountId=$accountId, amount=$amount, currency=$currency, reference=$reference, transferReferenceId=$transferReferenceId, ]';
   }
+}
 
-  TransferRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    accountId =
-        json['accountId']
-    ;
-    amount =
-        json['amount']
-    ;
-    currency =
-        json['currency']
-    ;
-    reference =
-        json['reference']
-    ;
-    transferReferenceId =
-        json['transferReferenceId']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class TransferRequestSerializer extends Serializer<TransferRequest> with _$TransferRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'accountId': accountId,
-      'amount': amount,
-      'currency': currency,
-      'reference': reference,
-      'transferReferenceId': transferReferenceId
-     };
-  }
-
-  static List<TransferRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<TransferRequest>() : json.map((value) => new TransferRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, TransferRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, TransferRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new TransferRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

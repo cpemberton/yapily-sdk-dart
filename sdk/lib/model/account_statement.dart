@@ -1,54 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'account_statement.jser.dart';
 
 class AccountStatement {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
+  
+  @Alias('startDateTime', isNullable: false,  )
+  final DateTime startDateTime;
+  
+  @Alias('endDateTime', isNullable: false,  )
+  final DateTime endDateTime;
+  
+  @Alias('creationDateTime', isNullable: false,  )
+  final DateTime creationDateTime;
   
 
-  DateTime startDateTime = null;
-  
+  AccountStatement(
+      
 
-  DateTime endDateTime = null;
-  
-
-  DateTime creationDateTime = null;
-  
-  AccountStatement();
+{
+     this.id = null,  
+     this.startDateTime = null,  
+     this.endDateTime = null,  
+     this.creationDateTime = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'AccountStatement[id=$id, startDateTime=$startDateTime, endDateTime=$endDateTime, creationDateTime=$creationDateTime, ]';
   }
+}
 
-  AccountStatement.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    startDateTime = json['startDateTime'] == null ? null : DateTime.parse(json['startDateTime']);
-    endDateTime = json['endDateTime'] == null ? null : DateTime.parse(json['endDateTime']);
-    creationDateTime = json['creationDateTime'] == null ? null : DateTime.parse(json['creationDateTime']);
-  }
+@GenSerializer(nullableFields: true)
+class AccountStatementSerializer extends Serializer<AccountStatement> with _$AccountStatementSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'startDateTime': startDateTime == null ? '' : startDateTime.toUtc().toIso8601String(),
-      'endDateTime': endDateTime == null ? '' : endDateTime.toUtc().toIso8601String(),
-      'creationDateTime': creationDateTime == null ? '' : creationDateTime.toUtc().toIso8601String()
-     };
-  }
-
-  static List<AccountStatement> listFromJson(List<dynamic> json) {
-    return json == null ? new List<AccountStatement>() : json.map((value) => new AccountStatement.fromJson(value)).toList();
-  }
-
-  static Map<String, AccountStatement> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, AccountStatement>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new AccountStatement.fromJson(value));
-    }
-    return map;
-  }
 }
 

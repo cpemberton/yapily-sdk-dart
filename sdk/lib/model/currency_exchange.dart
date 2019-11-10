@@ -1,60 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'currency_exchange.jser.dart';
 
 class CurrencyExchange {
-  /* ISO 4217 currency code denoting the currency of the creditor */
-  String sourceCurrency = null;
+   /* ISO 4217 currency code denoting the currency of the creditor */
+  @Alias('sourceCurrency', isNullable: false,  )
+  final String sourceCurrency;
+   /* ISO 4217 currency code denoting the currency of the debtor */
+  @Alias('targetCurrency', isNullable: false,  )
+  final String targetCurrency;
+   /* ISO 4217 currency code denoting the currency used to set the exchange rate (GBP is the unit currency in the conversion of 1 GBP = x CUR) */
+  @Alias('unitCurrency', isNullable: false,  )
+  final String unitCurrency;
+   /* Currency exchange rate */
+  @Alias('exchangeRate', isNullable: false,  )
+  final num exchangeRate;
   
-/* ISO 4217 currency code denoting the currency of the debtor */
-  String targetCurrency = null;
-  
-/* ISO 4217 currency code denoting the currency used to set the exchange rate (GBP is the unit currency in the conversion of 1 GBP = x CUR) */
-  String unitCurrency = null;
-  
-/* Currency exchange rate */
-  num exchangeRate = null;
-  
-  CurrencyExchange();
+
+  CurrencyExchange(
+      
+
+{
+     this.sourceCurrency = null,  
+     this.targetCurrency = null,  
+     this.unitCurrency = null,  
+     this.exchangeRate = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CurrencyExchange[sourceCurrency=$sourceCurrency, targetCurrency=$targetCurrency, unitCurrency=$unitCurrency, exchangeRate=$exchangeRate, ]';
   }
+}
 
-  CurrencyExchange.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    sourceCurrency =
-        json['sourceCurrency']
-    ;
-    targetCurrency =
-        json['targetCurrency']
-    ;
-    unitCurrency =
-        json['unitCurrency']
-    ;
-    exchangeRate =
-        json['exchangeRate']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CurrencyExchangeSerializer extends Serializer<CurrencyExchange> with _$CurrencyExchangeSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'sourceCurrency': sourceCurrency,
-      'targetCurrency': targetCurrency,
-      'unitCurrency': unitCurrency,
-      'exchangeRate': exchangeRate
-     };
-  }
-
-  static List<CurrencyExchange> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CurrencyExchange>() : json.map((value) => new CurrencyExchange.fromJson(value)).toList();
-  }
-
-  static Map<String, CurrencyExchange> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CurrencyExchange>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CurrencyExchange.fromJson(value));
-    }
-    return map;
-  }
 }
 

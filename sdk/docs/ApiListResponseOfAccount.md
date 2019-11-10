@@ -9,8 +9,8 @@ import 'package:yapily_sdk/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**ResponseListMeta**](ResponseListMeta.md) |  | [optional] [default to null]
-**data** | [**List&lt;Account&gt;**](Account.md) |  | [optional] [default to []]
-**links** | **Map&lt;String, String&gt;** |  | [optional] [default to {}]
+**data** | [**List&lt;Account&gt;**](Account.md) |  | [optional] [default to const []]
+**links** | **Map&lt;String, String&gt;** |  | [optional] [default to const {}]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

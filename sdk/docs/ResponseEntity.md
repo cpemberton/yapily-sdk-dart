@@ -8,7 +8,7 @@ import 'package:yapily_sdk/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | [**Object**](Object.md) |  | [optional] [default to null]
+**body** | [**Object**](.md) |  | [optional] [default to null]
 **statusCode** | **String** |  | [optional] [default to null]
 **statusCodeValue** | **int** |  | [optional] [default to null]
 

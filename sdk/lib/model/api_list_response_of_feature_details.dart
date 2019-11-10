@@ -1,55 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/feature_details.dart';
+
+import 'package:yapily_sdk/model/response_list_meta.dart';
+
+part 'api_list_response_of_feature_details.jser.dart';
 
 class ApiListResponseOfFeatureDetails {
   
-  ResponseListMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseListMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final List<FeatureDetails> data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  List<FeatureDetails> data = [];
-  
+  ApiListResponseOfFeatureDetails(
+      
 
-  Map<String, String> links = {};
-  
-  ApiListResponseOfFeatureDetails();
+{
+     this.meta = null,  
+     this.data = const [],  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiListResponseOfFeatureDetails[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiListResponseOfFeatureDetails.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseListMeta.fromJson(json['meta'])
-;
-    data =
-      FeatureDetails.listFromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiListResponseOfFeatureDetailsSerializer extends Serializer<ApiListResponseOfFeatureDetails> with _$ApiListResponseOfFeatureDetailsSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiListResponseOfFeatureDetails> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiListResponseOfFeatureDetails>() : json.map((value) => new ApiListResponseOfFeatureDetails.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiListResponseOfFeatureDetails> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiListResponseOfFeatureDetails>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiListResponseOfFeatureDetails.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -1,160 +1,57 @@
-part of yapily_sdk.api;
+import 'package:jaguar_retrofit/annotations/annotations.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
+import 'dart:async';
 
+import 'package:yapily_sdk/model/institution.dart';
+import 'package:yapily_sdk/model/api_list_response_of_institution.dart';
+import 'package:yapily_sdk/model/api_list_response_of_feature_details.dart';
 
+part 'institutions_api.jretro.dart';
 
-class InstitutionsApi {
-  final ApiClient apiClient;
+@GenApiClient()
+class InstitutionsApi extends ApiClient with _$InstitutionsApiClient {
+    final Route base;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-  InstitutionsApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+    InstitutionsApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
-  /// Retrieve details for Yapily&#39;s institution features
-  ///
-  /// 
-  Future<ApiListResponseOfFeatureDetails> getFeatureDetailsUsingGET() async {
-    Object postBody = null;
+    /// Retrieve details for Yapily&#39;s institution features
+    ///
+    /// 
+    @GetReq(path: "/features", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiListResponseOfFeatureDetails> getFeatureDetailsUsingGET(
+        ) {
+        return super.getFeatureDetailsUsingGET(
 
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/features".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiListResponseOfFeatureDetails') as ApiListResponseOfFeatureDetails ;
-    } else {
-      return null;
-    }
-  }
-  /// Retrieves details of a specific institution available in Yapily
-  ///
-  /// 
-  Future<Institution> getInstitutionUsingGET(String institutionId) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(institutionId == null) {
-     throw new ApiException(400, "Missing required param: institutionId");
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/institutions/{institutionId}".replaceAll("{format}","json").replaceAll("{" + "institutionId" + "}", institutionId.toString());
+    /// Retrieves details of a specific institution available in Yapily
+    ///
+    /// 
+    @GetReq(path: "/institutions/:institutionId", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<Institution> getInstitutionUsingGET(
+            @PathParam("institutionId") String institutionId
+        ) {
+        return super.getInstitutionUsingGET(
+        institutionId
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
+        ).timeout(timeout);
     }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    /// Retrieves the list of institutions available in Yapily
+    ///
+    /// 
+    @GetReq(path: "/institutions", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiListResponseOfInstitution> getInstitutionsUsingGET(
+        ) {
+        return super.getInstitutionsUsingGET(
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'Institution') as Institution ;
-    } else {
-      return null;
+        ).timeout(timeout);
     }
-  }
-  /// Retrieves the list of institutions available in Yapily
-  ///
-  /// 
-  Future<ApiListResponseOfInstitution> getInstitutionsUsingGET() async {
-    Object postBody = null;
 
-    // verify required params are set
 
-    // create path and map variables
-    String path = "/institutions".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiListResponseOfInstitution') as ApiListResponseOfInstitution ;
-    } else {
-      return null;
-    }
-  }
 }

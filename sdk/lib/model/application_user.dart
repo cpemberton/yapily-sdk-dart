@@ -1,67 +1,49 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/institution_consent.dart';
+
+part 'application_user.jser.dart';
 
 class ApplicationUser {
-  /* User UUID */
-  String uuid = null;
+   /* User UUID */
+  @Alias('uuid', isNullable: false,  )
+  final String uuid;
+  
+  @Alias('applicationUuid', isNullable: false,  )
+  final String applicationUuid;
+  
+  @Alias('applicationUserId', isNullable: false,  )
+  final String applicationUserId;
+  
+  @Alias('referenceId', isNullable: false,  )
+  final String referenceId;
+  
+  @Alias('institutionConsents', isNullable: false,  )
+  final List<InstitutionConsent> institutionConsents;
   
 
-  String applicationUuid = null;
-  
+  ApplicationUser(
+      
 
-  String applicationUserId = null;
-  
-
-  String referenceId = null;
-  
-
-  List<InstitutionConsent> institutionConsents = [];
-  
-  ApplicationUser();
+{
+     this.uuid = null,  
+     this.applicationUuid = null,  
+     this.applicationUserId = null,  
+     this.referenceId = null,  
+     this.institutionConsents = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApplicationUser[uuid=$uuid, applicationUuid=$applicationUuid, applicationUserId=$applicationUserId, referenceId=$referenceId, institutionConsents=$institutionConsents, ]';
   }
+}
 
-  ApplicationUser.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    uuid =
-        json['uuid']
-    ;
-    applicationUuid =
-        json['applicationUuid']
-    ;
-    applicationUserId =
-        json['applicationUserId']
-    ;
-    referenceId =
-        json['referenceId']
-    ;
-    institutionConsents =
-      InstitutionConsent.listFromJson(json['institutionConsents'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class ApplicationUserSerializer extends Serializer<ApplicationUser> with _$ApplicationUserSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'uuid': uuid,
-      'applicationUuid': applicationUuid,
-      'applicationUserId': applicationUserId,
-      'referenceId': referenceId,
-      'institutionConsents': institutionConsents
-     };
-  }
-
-  static List<ApplicationUser> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApplicationUser>() : json.map((value) => new ApplicationUser.fromJson(value)).toList();
-  }
-
-  static Map<String, ApplicationUser> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApplicationUser>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApplicationUser.fromJson(value));
-    }
-    return map;
-  }
 }
 

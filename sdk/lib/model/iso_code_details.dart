@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'iso_code_details.jser.dart';
 
 class IsoCodeDetails {
   
-  String code = null;
+  @Alias('code', isNullable: false,  )
+  final String code;
+  
+  @Alias('name', isNullable: false,  )
+  final String name;
   
 
-  String name = null;
-  
-  IsoCodeDetails();
+  IsoCodeDetails(
+      
+
+{
+     this.code = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'IsoCodeDetails[code=$code, name=$name, ]';
   }
+}
 
-  IsoCodeDetails.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class IsoCodeDetailsSerializer extends Serializer<IsoCodeDetails> with _$IsoCodeDetailsSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'name': name
-     };
-  }
-
-  static List<IsoCodeDetails> listFromJson(List<dynamic> json) {
-    return json == null ? new List<IsoCodeDetails>() : json.map((value) => new IsoCodeDetails.fromJson(value)).toList();
-  }
-
-  static Map<String, IsoCodeDetails> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, IsoCodeDetails>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new IsoCodeDetails.fromJson(value));
-    }
-    return map;
-  }
 }
 

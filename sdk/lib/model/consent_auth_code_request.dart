@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'consent_auth_code_request.jser.dart';
 
 class ConsentAuthCodeRequest {
   
-  String authCode = null;
+  @Alias('authCode', isNullable: false,  )
+  final String authCode;
+  
+  @Alias('authState', isNullable: false,  )
+  final String authState;
   
 
-  String authState = null;
-  
-  ConsentAuthCodeRequest();
+  ConsentAuthCodeRequest(
+      
+
+{
+    
+     this.authCode = null,  
+     this.authState = null 
+    }
+  );
 
   @override
   String toString() {
     return 'ConsentAuthCodeRequest[authCode=$authCode, authState=$authState, ]';
   }
+}
 
-  ConsentAuthCodeRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    authCode =
-        json['authCode']
-    ;
-    authState =
-        json['authState']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ConsentAuthCodeRequestSerializer extends Serializer<ConsentAuthCodeRequest> with _$ConsentAuthCodeRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'authCode': authCode,
-      'authState': authState
-     };
-  }
-
-  static List<ConsentAuthCodeRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ConsentAuthCodeRequest>() : json.map((value) => new ConsentAuthCodeRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, ConsentAuthCodeRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ConsentAuthCodeRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ConsentAuthCodeRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

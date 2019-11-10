@@ -5,11 +5,11 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**transferUsingPUT**](TransfersApi.md#transferUsingPUT) | **PUT** /accounts/{accountId}/transfer | Transfer money from one account to another account accessible with the same consent
+[**transferUsingPUT**](TransfersApi.md#transferUsingPUT) | **Put** /accounts/:accountId/transfer | Transfer money from one account to another account accessible with the same consent
 
 
 # **transferUsingPUT**
@@ -43,8 +43,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
- **accountId** | **String**| accountId | 
+ **consent** | **String**| Consent Token | [default to null]
+ **accountId** | **String**| accountId | [default to null]
  **transferRequest** | [**TransferRequest**](TransferRequest.md)| transferRequest | [optional] 
 
 ### Return type

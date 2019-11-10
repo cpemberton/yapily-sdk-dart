@@ -1,60 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'identity_address.jser.dart';
 
 class IdentityAddress {
   
-  List<String> addressLines = [];
+  @Alias('addressLines', isNullable: false,  )
+  final List<String> addressLines;
+  
+  @Alias('city', isNullable: false,  )
+  final String city;
+  
+  @Alias('country', isNullable: false,  )
+  final String country;
+  
+  @Alias('postalCode', isNullable: false,  )
+  final String postalCode;
   
 
-  String city = null;
-  
+  IdentityAddress(
+      
 
-  String country = null;
-  
-
-  String postalCode = null;
-  
-  IdentityAddress();
+{
+     this.addressLines = const [],  
+     this.city = null,  
+     this.country = null,  
+     this.postalCode = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'IdentityAddress[addressLines=$addressLines, city=$city, country=$country, postalCode=$postalCode, ]';
   }
+}
 
-  IdentityAddress.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    addressLines =
-        (json['addressLines'] as List).map((item) => item as String).toList()
-    ;
-    city =
-        json['city']
-    ;
-    country =
-        json['country']
-    ;
-    postalCode =
-        json['postalCode']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class IdentityAddressSerializer extends Serializer<IdentityAddress> with _$IdentityAddressSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'addressLines': addressLines,
-      'city': city,
-      'country': country,
-      'postalCode': postalCode
-     };
-  }
-
-  static List<IdentityAddress> listFromJson(List<dynamic> json) {
-    return json == null ? new List<IdentityAddress>() : json.map((value) => new IdentityAddress.fromJson(value)).toList();
-  }
-
-  static Map<String, IdentityAddress> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, IdentityAddress>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new IdentityAddress.fromJson(value));
-    }
-    return map;
-  }
 }
 

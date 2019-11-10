@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'id_verification_check.jser.dart';
 
 class IDVerificationCheck {
   
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
+  
+  @Alias('URL', isNullable: false,  )
+  final String URL;
   
 
-  String URL = null;
-  
-  IDVerificationCheck();
+  IDVerificationCheck(
+      
+
+{
+     this.notes = const [],  
+     this.URL = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'IDVerificationCheck[notes=$notes, URL=$URL, ]';
   }
+}
 
-  IDVerificationCheck.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    URL =
-        json['URL']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class IDVerificationCheckSerializer extends Serializer<IDVerificationCheck> with _$IDVerificationCheckSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'notes': notes,
-      'URL': URL
-     };
-  }
-
-  static List<IDVerificationCheck> listFromJson(List<dynamic> json) {
-    return json == null ? new List<IDVerificationCheck>() : json.map((value) => new IDVerificationCheck.fromJson(value)).toList();
-  }
-
-  static Map<String, IDVerificationCheck> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, IDVerificationCheck>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new IDVerificationCheck.fromJson(value));
-    }
-    return map;
-  }
 }
 

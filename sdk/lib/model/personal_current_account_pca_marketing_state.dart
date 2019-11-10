@@ -1,120 +1,83 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/core_product.dart';
+
+import 'package:yapily_sdk/model/overdraft.dart';
+
+import 'package:yapily_sdk/model/eligibility.dart';
+
+import 'package:yapily_sdk/model/credit_interest.dart';
+
+part 'personal_current_account_pca_marketing_state.jser.dart';
 
 class PersonalCurrentAccountPCAMarketingState {
   
-  CoreProduct coreProduct = null;
+  @Alias('CoreProduct', isNullable: false,  )
+  final CoreProduct coreProduct;
+  
+  @Alias('CreditInterest', isNullable: false,  )
+  final CreditInterest creditInterest;
+  
+  @Alias('Eligibility', isNullable: false,  )
+  final Eligibility eligibility;
+  
+  @Alias('FirstMarketedDate', isNullable: false,  )
+  final DateTime firstMarketedDate;
+  
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
+  
+  @Alias('LastMarketedDate', isNullable: false,  )
+  final DateTime lastMarketedDate;
+  
+  @Alias('MarketingState', isNullable: false,  )
+  final String marketingState;
+  
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
+  
+  @Alias('Overdraft', isNullable: false,  )
+  final Overdraft overdraft;
+  
+  @Alias('PredecessorID', isNullable: false,  )
+  final String predecessorID;
+  
+  @Alias('StateTenureLength', isNullable: false,  )
+  final double stateTenureLength;
+  
+  @Alias('StateTenurePeriod', isNullable: false,  )
+  final String stateTenurePeriod;
   
 
-  CreditInterest creditInterest = null;
-  
+  PersonalCurrentAccountPCAMarketingState(
+      
 
-  Eligibility eligibility = null;
-  
-
-  DateTime firstMarketedDate = null;
-  
-
-  String identification = null;
-  
-
-  DateTime lastMarketedDate = null;
-  
-
-  String marketingState = null;
-  
-
-  List<String> notes = [];
-  
-
-  Overdraft overdraft = null;
-  
-
-  String predecessorID = null;
-  
-
-  double stateTenureLength = null;
-  
-
-  String stateTenurePeriod = null;
-  
-  PersonalCurrentAccountPCAMarketingState();
+{
+     this.coreProduct = null,  
+     this.creditInterest = null,  
+     this.eligibility = null,  
+     this.firstMarketedDate = null,  
+     this.identification = null,  
+     this.lastMarketedDate = null,  
+     this.marketingState = null,  
+     this.notes = const [],  
+     this.overdraft = null,  
+     this.predecessorID = null,  
+     this.stateTenureLength = null,  
+     this.stateTenurePeriod = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PersonalCurrentAccountPCAMarketingState[coreProduct=$coreProduct, creditInterest=$creditInterest, eligibility=$eligibility, firstMarketedDate=$firstMarketedDate, identification=$identification, lastMarketedDate=$lastMarketedDate, marketingState=$marketingState, notes=$notes, overdraft=$overdraft, predecessorID=$predecessorID, stateTenureLength=$stateTenureLength, stateTenurePeriod=$stateTenurePeriod, ]';
   }
+}
 
-  PersonalCurrentAccountPCAMarketingState.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    coreProduct =
-      
-      
-      new CoreProduct.fromJson(json['coreProduct'])
-;
-    creditInterest =
-      
-      
-      new CreditInterest.fromJson(json['creditInterest'])
-;
-    eligibility =
-      
-      
-      new Eligibility.fromJson(json['eligibility'])
-;
-    firstMarketedDate = json['firstMarketedDate'] == null ? null : DateTime.parse(json['firstMarketedDate']);
-    identification =
-        json['identification']
-    ;
-    lastMarketedDate = json['lastMarketedDate'] == null ? null : DateTime.parse(json['lastMarketedDate']);
-    marketingState =
-        json['marketingState']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    overdraft =
-      
-      
-      new Overdraft.fromJson(json['overdraft'])
-;
-    predecessorID =
-        json['predecessorID']
-    ;
-    stateTenureLength =
-        json['stateTenureLength']
-    ;
-    stateTenurePeriod =
-        json['stateTenurePeriod']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class PersonalCurrentAccountPCAMarketingStateSerializer extends Serializer<PersonalCurrentAccountPCAMarketingState> with _$PersonalCurrentAccountPCAMarketingStateSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'coreProduct': coreProduct,
-      'creditInterest': creditInterest,
-      'eligibility': eligibility,
-      'firstMarketedDate': firstMarketedDate == null ? '' : firstMarketedDate.toUtc().toIso8601String(),
-      'identification': identification,
-      'lastMarketedDate': lastMarketedDate == null ? '' : lastMarketedDate.toUtc().toIso8601String(),
-      'marketingState': marketingState,
-      'notes': notes,
-      'overdraft': overdraft,
-      'predecessorID': predecessorID,
-      'stateTenureLength': stateTenureLength,
-      'stateTenurePeriod': stateTenurePeriod
-     };
-  }
-
-  static List<PersonalCurrentAccountPCAMarketingState> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PersonalCurrentAccountPCAMarketingState>() : json.map((value) => new PersonalCurrentAccountPCAMarketingState.fromJson(value)).toList();
-  }
-
-  static Map<String, PersonalCurrentAccountPCAMarketingState> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PersonalCurrentAccountPCAMarketingState>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PersonalCurrentAccountPCAMarketingState.fromJson(value));
-    }
-    return map;
-  }
 }
 

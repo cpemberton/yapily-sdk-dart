@@ -1,75 +1,57 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/residency_eligibility.dart';
+
+import 'package:yapily_sdk/model/eligibility_other_eligibility.dart';
+
+import 'package:yapily_sdk/model/age_eligibility.dart';
+
+import 'package:yapily_sdk/model/credit_check.dart';
+
+import 'package:yapily_sdk/model/id_verification_check.dart';
+
+part 'eligibility.jser.dart';
 
 class Eligibility {
   
-  AgeEligibility ageEligibility = null;
+  @Alias('AgeEligibility', isNullable: false,  )
+  final AgeEligibility ageEligibility;
+  
+  @Alias('CreditCheck', isNullable: false,  )
+  final CreditCheck creditCheck;
+  
+  @Alias('IDVerificationCheck', isNullable: false,  )
+  final IDVerificationCheck iDVerificationCheck;
+  
+  @Alias('OtherEligibility', isNullable: false,  )
+  final List<EligibilityOtherEligibility> otherEligibility;
+  
+  @Alias('ResidencyEligibility', isNullable: false,  )
+  final ResidencyEligibility residencyEligibility;
   
 
-  CreditCheck creditCheck = null;
-  
+  Eligibility(
+      
 
-  IDVerificationCheck iDVerificationCheck = null;
-  
-
-  List<EligibilityOtherEligibility> otherEligibility = [];
-  
-
-  ResidencyEligibility residencyEligibility = null;
-  
-  Eligibility();
+{
+     this.ageEligibility = null,  
+     this.creditCheck = null,  
+     this.iDVerificationCheck = null,  
+     this.otherEligibility = const [],  
+     this.residencyEligibility = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Eligibility[ageEligibility=$ageEligibility, creditCheck=$creditCheck, iDVerificationCheck=$iDVerificationCheck, otherEligibility=$otherEligibility, residencyEligibility=$residencyEligibility, ]';
   }
+}
 
-  Eligibility.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    ageEligibility =
-      
-      
-      new AgeEligibility.fromJson(json['ageEligibility'])
-;
-    creditCheck =
-      
-      
-      new CreditCheck.fromJson(json['creditCheck'])
-;
-    iDVerificationCheck =
-      
-      
-      new IDVerificationCheck.fromJson(json['iDVerificationCheck'])
-;
-    otherEligibility =
-      EligibilityOtherEligibility.listFromJson(json['otherEligibility'])
-;
-    residencyEligibility =
-      
-      
-      new ResidencyEligibility.fromJson(json['residencyEligibility'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class EligibilitySerializer extends Serializer<Eligibility> with _$EligibilitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'ageEligibility': ageEligibility,
-      'creditCheck': creditCheck,
-      'iDVerificationCheck': iDVerificationCheck,
-      'otherEligibility': otherEligibility,
-      'residencyEligibility': residencyEligibility
-     };
-  }
-
-  static List<Eligibility> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Eligibility>() : json.map((value) => new Eligibility.fromJson(value)).toList();
-  }
-
-  static Map<String, Eligibility> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Eligibility>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Eligibility.fromJson(value));
-    }
-    return map;
-  }
 }
 

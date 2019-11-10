@@ -1,41 +1,33 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/geographic_coordinates1.dart';
+
+part 'geo_location1.jser.dart';
 
 class GeoLocation1 {
   
-  GeographicCoordinates1 geographicCoordinates = null;
+  @Alias('GeographicCoordinates', isNullable: false,  )
+  final GeographicCoordinates1 geographicCoordinates;
   
-  GeoLocation1();
+
+  GeoLocation1(
+      
+
+{
+     this.geographicCoordinates = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'GeoLocation1[geographicCoordinates=$geographicCoordinates, ]';
   }
+}
 
-  GeoLocation1.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    geographicCoordinates =
-      
-      
-      new GeographicCoordinates1.fromJson(json['geographicCoordinates'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class GeoLocation1Serializer extends Serializer<GeoLocation1> with _$GeoLocation1Serializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'geographicCoordinates': geographicCoordinates
-     };
-  }
-
-  static List<GeoLocation1> listFromJson(List<dynamic> json) {
-    return json == null ? new List<GeoLocation1>() : json.map((value) => new GeoLocation1.fromJson(value)).toList();
-  }
-
-  static Map<String, GeoLocation1> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, GeoLocation1>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new GeoLocation1.fromJson(value));
-    }
-    return map;
-  }
 }
 

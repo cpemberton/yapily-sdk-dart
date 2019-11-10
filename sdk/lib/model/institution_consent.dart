@@ -1,39 +1,31 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'institution_consent.jser.dart';
 
 class InstitutionConsent {
   
-  String institutionId = null;
+  @Alias('institutionId', isNullable: false,  )
+  final String institutionId;
   
-  InstitutionConsent();
+
+  InstitutionConsent(
+      
+
+{
+     this.institutionId = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'InstitutionConsent[institutionId=$institutionId, ]';
   }
+}
 
-  InstitutionConsent.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    institutionId =
-        json['institutionId']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class InstitutionConsentSerializer extends Serializer<InstitutionConsent> with _$InstitutionConsentSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'institutionId': institutionId
-     };
-  }
-
-  static List<InstitutionConsent> listFromJson(List<dynamic> json) {
-    return json == null ? new List<InstitutionConsent>() : json.map((value) => new InstitutionConsent.fromJson(value)).toList();
-  }
-
-  static Map<String, InstitutionConsent> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, InstitutionConsent>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new InstitutionConsent.fromJson(value));
-    }
-    return map;
-  }
 }
 

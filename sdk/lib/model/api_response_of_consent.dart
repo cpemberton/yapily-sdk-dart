@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/consent.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_consent.jser.dart';
 
 class ApiResponseOfConsent {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final Consent data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  Consent data = null;
-  
+  ApiResponseOfConsent(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfConsent();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfConsent[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfConsent.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new Consent.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfConsentSerializer extends Serializer<ApiResponseOfConsent> with _$ApiResponseOfConsentSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfConsent> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfConsent>() : json.map((value) => new ApiResponseOfConsent.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfConsent> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfConsent>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfConsent.fromJson(value));
-    }
-    return map;
-  }
 }
 

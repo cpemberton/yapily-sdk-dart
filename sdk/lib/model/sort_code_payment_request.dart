@@ -1,104 +1,71 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/merchant_info.dart';
+
+part 'sort_code_payment_request.jser.dart';
 
 class SortCodePaymentRequest {
   
-  String senderAccountId = null;
+  @Alias('senderAccountId', isNullable: false,  )
+  final String senderAccountId;
   
-
-  String name = null;
+  @Alias('name', isNullable: false,  )
+  final String name;
   
-
-  num amount = null;
+  @Alias('amount', isNullable: false,  )
+  final num amount;
   
-
-  String currency = null;
+  @Alias('currency', isNullable: false,  )
+  final String currency;
   
-
-  String reference = null;
+  @Alias('reference', isNullable: false,  )
+  final String reference;
   
-
-  String country = null;
+  @Alias('country', isNullable: false,  )
+  final String country;
   
-
-  String type = null;
+  @Alias('type', isNullable: false,
+          
+  )
+  final String type;
   //enum typeEnum {  BILL,  GOODS,  SERVICES,  OTHER,  PERSON_TO_PERSON,  };
-
-  String accountNumber = null;
+  @Alias('accountNumber', isNullable: false,  )
+  final String accountNumber;
+  
+  @Alias('sortCode', isNullable: false,  )
+  final String sortCode;
+  
+  @Alias('merchantInfo', isNullable: false,  )
+  final MerchantInfo merchantInfo;
   
 
-  String sortCode = null;
-  
+  SortCodePaymentRequest(
+      
 
-  MerchantInfo merchantInfo = null;
-  
-  SortCodePaymentRequest();
+{
+     this.senderAccountId = null,  
+    
+     this.name = null,  
+     this.amount = null,  
+     this.currency = null,  
+     this.reference = null,  
+     this.country = null,   this.type = null,  
+    
+     this.accountNumber = null,  
+     this.sortCode = null,   this.merchantInfo = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'SortCodePaymentRequest[senderAccountId=$senderAccountId, name=$name, amount=$amount, currency=$currency, reference=$reference, country=$country, type=$type, accountNumber=$accountNumber, sortCode=$sortCode, merchantInfo=$merchantInfo, ]';
   }
+}
 
-  SortCodePaymentRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    senderAccountId =
-        json['senderAccountId']
-    ;
-    name =
-        json['name']
-    ;
-    amount =
-        json['amount']
-    ;
-    currency =
-        json['currency']
-    ;
-    reference =
-        json['reference']
-    ;
-    country =
-        json['country']
-    ;
-    type =
-        json['type']
-    ;
-    accountNumber =
-        json['accountNumber']
-    ;
-    sortCode =
-        json['sortCode']
-    ;
-    merchantInfo =
-      
-      
-      new MerchantInfo.fromJson(json['merchantInfo'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class SortCodePaymentRequestSerializer extends Serializer<SortCodePaymentRequest> with _$SortCodePaymentRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'senderAccountId': senderAccountId,
-      'name': name,
-      'amount': amount,
-      'currency': currency,
-      'reference': reference,
-      'country': country,
-      'type': type,
-      'accountNumber': accountNumber,
-      'sortCode': sortCode,
-      'merchantInfo': merchantInfo
-     };
-  }
-
-  static List<SortCodePaymentRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<SortCodePaymentRequest>() : json.map((value) => new SortCodePaymentRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, SortCodePaymentRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, SortCodePaymentRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new SortCodePaymentRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

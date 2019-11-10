@@ -1,39 +1,31 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'one_time_token_request.jser.dart';
 
 class OneTimeTokenRequest {
   
-  String oneTimeToken = null;
+  @Alias('oneTimeToken', isNullable: false,  )
+  final String oneTimeToken;
   
-  OneTimeTokenRequest();
+
+  OneTimeTokenRequest(
+      
+
+{
+    
+     this.oneTimeToken = null 
+    }
+  );
 
   @override
   String toString() {
     return 'OneTimeTokenRequest[oneTimeToken=$oneTimeToken, ]';
   }
+}
 
-  OneTimeTokenRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    oneTimeToken =
-        json['oneTimeToken']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OneTimeTokenRequestSerializer extends Serializer<OneTimeTokenRequest> with _$OneTimeTokenRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'oneTimeToken': oneTimeToken
-     };
-  }
-
-  static List<OneTimeTokenRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OneTimeTokenRequest>() : json.map((value) => new OneTimeTokenRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, OneTimeTokenRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OneTimeTokenRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OneTimeTokenRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

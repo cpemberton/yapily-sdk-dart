@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **identification** | **String** |  | [optional] [default to null]
 **lastMarketedDate** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **marketingState** | **String** |  | [optional] [default to null]
-**notes** | **List&lt;String&gt;** |  | [optional] [default to []]
+**notes** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **overdraft** | [**Overdraft**](Overdraft.md) |  | [optional] [default to null]
 **predecessorID** | **String** |  | [optional] [default to null]
 **stateTenureLength** | **double** |  | [optional] [default to null]

@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'site.jser.dart';
 
 class Site {
   
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String name = null;
-  
-  Site();
+  Site(
+      
+
+{
+     this.identification = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Site[identification=$identification, name=$name, ]';
   }
+}
 
-  Site.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    identification =
-        json['identification']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class SiteSerializer extends Serializer<Site> with _$SiteSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'identification': identification,
-      'name': name
-     };
-  }
-
-  static List<Site> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Site>() : json.map((value) => new Site.fromJson(value)).toList();
-  }
-
-  static Map<String, Site> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Site>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Site.fromJson(value));
-    }
-    return map;
-  }
 }
 

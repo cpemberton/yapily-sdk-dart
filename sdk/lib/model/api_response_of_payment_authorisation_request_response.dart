@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/payment_authorisation_request_response.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_payment_authorisation_request_response.jser.dart';
 
 class ApiResponseOfPaymentAuthorisationRequestResponse {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final PaymentAuthorisationRequestResponse data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  PaymentAuthorisationRequestResponse data = null;
-  
+  ApiResponseOfPaymentAuthorisationRequestResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfPaymentAuthorisationRequestResponse();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfPaymentAuthorisationRequestResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfPaymentAuthorisationRequestResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new PaymentAuthorisationRequestResponse.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfPaymentAuthorisationRequestResponseSerializer extends Serializer<ApiResponseOfPaymentAuthorisationRequestResponse> with _$ApiResponseOfPaymentAuthorisationRequestResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfPaymentAuthorisationRequestResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfPaymentAuthorisationRequestResponse>() : json.map((value) => new ApiResponseOfPaymentAuthorisationRequestResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfPaymentAuthorisationRequestResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfPaymentAuthorisationRequestResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfPaymentAuthorisationRequestResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

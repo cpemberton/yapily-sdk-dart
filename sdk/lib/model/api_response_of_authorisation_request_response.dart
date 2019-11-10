@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/authorisation_request_response.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_authorisation_request_response.jser.dart';
 
 class ApiResponseOfAuthorisationRequestResponse {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final AuthorisationRequestResponse data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  AuthorisationRequestResponse data = null;
-  
+  ApiResponseOfAuthorisationRequestResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfAuthorisationRequestResponse();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfAuthorisationRequestResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfAuthorisationRequestResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new AuthorisationRequestResponse.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfAuthorisationRequestResponseSerializer extends Serializer<ApiResponseOfAuthorisationRequestResponse> with _$ApiResponseOfAuthorisationRequestResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfAuthorisationRequestResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfAuthorisationRequestResponse>() : json.map((value) => new ApiResponseOfAuthorisationRequestResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfAuthorisationRequestResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfAuthorisationRequestResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfAuthorisationRequestResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

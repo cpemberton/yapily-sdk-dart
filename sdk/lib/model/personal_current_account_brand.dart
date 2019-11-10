@@ -1,46 +1,37 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/personal_current_account_pca.dart';
+
+part 'personal_current_account_brand.jser.dart';
 
 class PersonalCurrentAccountBrand {
   
-  String brandName = null;
+  @Alias('BrandName', isNullable: false,  )
+  final String brandName;
+  
+  @Alias('PCA', isNullable: false,  )
+  final List<PersonalCurrentAccountPCA> PCA;
   
 
-  List<PersonalCurrentAccountPCA> PCA = [];
-  
-  PersonalCurrentAccountBrand();
+  PersonalCurrentAccountBrand(
+      
+
+{
+     this.brandName = null,  
+     this.PCA = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PersonalCurrentAccountBrand[brandName=$brandName, PCA=$PCA, ]';
   }
+}
 
-  PersonalCurrentAccountBrand.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    brandName =
-        json['brandName']
-    ;
-    PCA =
-      PersonalCurrentAccountPCA.listFromJson(json['PCA'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class PersonalCurrentAccountBrandSerializer extends Serializer<PersonalCurrentAccountBrand> with _$PersonalCurrentAccountBrandSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'brandName': brandName,
-      'PCA': PCA
-     };
-  }
-
-  static List<PersonalCurrentAccountBrand> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PersonalCurrentAccountBrand>() : json.map((value) => new PersonalCurrentAccountBrand.fromJson(value)).toList();
-  }
-
-  static Map<String, PersonalCurrentAccountBrand> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PersonalCurrentAccountBrand>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PersonalCurrentAccountBrand.fromJson(value));
-    }
-    return map;
-  }
 }
 

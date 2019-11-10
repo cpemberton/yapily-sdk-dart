@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'other_calculation_frequency.jser.dart';
 
 class OtherCalculationFrequency {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  OtherCalculationFrequency(
+      
 
-  String name = null;
-  
-  OtherCalculationFrequency();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OtherCalculationFrequency[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  OtherCalculationFrequency.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OtherCalculationFrequencySerializer extends Serializer<OtherCalculationFrequency> with _$OtherCalculationFrequencySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<OtherCalculationFrequency> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OtherCalculationFrequency>() : json.map((value) => new OtherCalculationFrequency.fromJson(value)).toList();
-  }
-
-  static Map<String, OtherCalculationFrequency> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OtherCalculationFrequency>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OtherCalculationFrequency.fromJson(value));
-    }
-    return map;
-  }
 }
 

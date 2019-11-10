@@ -8,10 +8,10 @@ import 'package:yapily_sdk/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**addressLine** | **List&lt;String&gt;** |  | [optional] [default to []]
+**addressLine** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **buildingNumber** | **String** |  | [optional] [default to null]
 **country** | **String** |  | [optional] [default to null]
-**countrySubDivision** | **List&lt;String&gt;** |  | [optional] [default to []]
+**countrySubDivision** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **geoLocation** | [**GeoLocation1**](GeoLocation1.md) |  | [optional] [default to null]
 **postCode** | **String** |  | [optional] [default to null]
 **streetName** | **String** |  | [optional] [default to null]

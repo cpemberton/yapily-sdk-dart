@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'media.jser.dart';
 
 class Media {
   
-  String source = null;
+  @Alias('source', isNullable: false,  )
+  final String source;
+  
+  @Alias('type', isNullable: false,  )
+  final String type;
   
 
-  String type = null;
-  
-  Media();
+  Media(
+      
+
+{
+     this.source = null,  
+     this.type = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Media[source=$source, type=$type, ]';
   }
+}
 
-  Media.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    source =
-        json['source']
-    ;
-    type =
-        json['type']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class MediaSerializer extends Serializer<Media> with _$MediaSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'source': source,
-      'type': type
-     };
-  }
-
-  static List<Media> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Media>() : json.map((value) => new Media.fromJson(value)).toList();
-  }
-
-  static Map<String, Media> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Media>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Media.fromJson(value));
-    }
-    return map;
-  }
 }
 

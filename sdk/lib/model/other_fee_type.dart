@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'other_fee_type.jser.dart';
 
 class OtherFeeType {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  OtherFeeType(
+      
 
-  String name = null;
-  
-  OtherFeeType();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OtherFeeType[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  OtherFeeType.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OtherFeeTypeSerializer extends Serializer<OtherFeeType> with _$OtherFeeTypeSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<OtherFeeType> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OtherFeeType>() : json.map((value) => new OtherFeeType.fromJson(value)).toList();
-  }
-
-  static Map<String, OtherFeeType> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OtherFeeType>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OtherFeeType.fromJson(value));
-    }
-    return map;
-  }
 }
 

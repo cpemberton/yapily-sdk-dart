@@ -8,8 +8,8 @@ import 'package:yapily_sdk/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**locationCategory** | **List&lt;String&gt;** |  | [optional] [default to []]
-**otherLocationCategory** | [**List&lt;LocationOtherLocationCategory&gt;**](LocationOtherLocationCategory.md) |  | [optional] [default to []]
+**locationCategory** | **List&lt;String&gt;** |  | [optional] [default to const []]
+**otherLocationCategory** | [**List&lt;LocationOtherLocationCategory&gt;**](LocationOtherLocationCategory.md) |  | [optional] [default to const []]
 **postalAddress** | [**PostalAddress1**](PostalAddress1.md) |  | [optional] [default to null]
 **site** | [**Site**](Site.md) |  | [optional] [default to null]
 **mapServiceLinks** | [**ATMMapServiceLinks**](ATMMapServiceLinks.md) |  | [optional] [default to null]

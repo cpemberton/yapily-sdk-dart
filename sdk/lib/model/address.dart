@@ -1,102 +1,69 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'address.jser.dart';
 
 class Address {
   
-  List<String> addressLines = [];
+  @Alias('addressLines', isNullable: false,  )
+  final List<String> addressLines;
   
-
-  String streetName = null;
+  @Alias('streetName', isNullable: false,  )
+  final String streetName;
   
-
-  String buildingNumber = null;
+  @Alias('buildingNumber', isNullable: false,  )
+  final String buildingNumber;
   
-
-  String postCode = null;
+  @Alias('postCode', isNullable: false,  )
+  final String postCode;
   
-
-  String townName = null;
+  @Alias('townName', isNullable: false,  )
+  final String townName;
   
-
-  List<String> county = [];
+  @Alias('county', isNullable: false,  )
+  final List<String> county;
   
-
-  String addressType = null;
+  @Alias('addressType', isNullable: false,
+          
+  )
+  final String addressType;
   //enum addressTypeEnum {  BUSINESS,  CORRESPONDENCE,  DELIVERY_TO,  MAIL_TO,  PO_BOX,  POSTAL,  RESIDENTIAL,  STATEMENT,  UNKNOWN,  };
-
-  String country = null;
+  @Alias('country', isNullable: false,  )
+  final String country;
+  
+  @Alias('department', isNullable: false,  )
+  final String department;
+  
+  @Alias('subDepartment', isNullable: false,  )
+  final String subDepartment;
   
 
-  String department = null;
-  
+  Address(
+      
 
-  String subDepartment = null;
-  
-  Address();
+{
+     this.addressLines = const [],  
+     this.streetName = null,  
+     this.buildingNumber = null,  
+     this.postCode = null,  
+     this.townName = null,  
+     this.county = const [],  
+     this.addressType = null,  
+     this.country = null,  
+     this.department = null,  
+     this.subDepartment = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Address[addressLines=$addressLines, streetName=$streetName, buildingNumber=$buildingNumber, postCode=$postCode, townName=$townName, county=$county, addressType=$addressType, country=$country, department=$department, subDepartment=$subDepartment, ]';
   }
+}
 
-  Address.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    addressLines =
-        (json['addressLines'] as List).map((item) => item as String).toList()
-    ;
-    streetName =
-        json['streetName']
-    ;
-    buildingNumber =
-        json['buildingNumber']
-    ;
-    postCode =
-        json['postCode']
-    ;
-    townName =
-        json['townName']
-    ;
-    county =
-        (json['county'] as List).map((item) => item as String).toList()
-    ;
-    addressType =
-        json['addressType']
-    ;
-    country =
-        json['country']
-    ;
-    department =
-        json['department']
-    ;
-    subDepartment =
-        json['subDepartment']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class AddressSerializer extends Serializer<Address> with _$AddressSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'addressLines': addressLines,
-      'streetName': streetName,
-      'buildingNumber': buildingNumber,
-      'postCode': postCode,
-      'townName': townName,
-      'county': county,
-      'addressType': addressType,
-      'country': country,
-      'department': department,
-      'subDepartment': subDepartment
-     };
-  }
-
-  static List<Address> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Address>() : json.map((value) => new Address.fromJson(value)).toList();
-  }
-
-  static Map<String, Address> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Address>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Address.fromJson(value));
-    }
-    return map;
-  }
 }
 

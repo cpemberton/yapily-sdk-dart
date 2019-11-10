@@ -1,27 +1,33 @@
-part of yapily_sdk.api;
+import 'dart:async';
+import 'package:yapily_sdk/auth/auth.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
 
-class ApiKeyAuth implements Authentication {
+class ApiKeyAuthInterceptor extends AuthInterceptor {
+    Map<String, String> apiKeys = {};
 
-  final String location;
-  final String paramName;
-  String apiKey;
-  String apiKeyPrefix;
-
-  ApiKeyAuth(this.location, this.paramName);
-
-  @override
-  void applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams) {
-    String value;
-    if (apiKeyPrefix != null) {
-      value = '$apiKeyPrefix $apiKey';
-    } else {
-      value = apiKey;
+    @override
+    FutureOr<void> before(RouteBase route) {
+        final authInfo = getAuthInfo(route, "apiKey");
+        for (var info in authInfo) {
+            final authName = info["name"];
+            final authKeyName = info["keyName"];
+            final authWhere = info["where"];
+            final apiKey = apiKeys[authName];
+            if(apiKey != null) {
+                if(authWhere == 'query'){
+                    route.query(authKeyName, apiKey);
+                }
+            else {
+                    route.header(authKeyName, apiKey);
+                }
+                break;
+            }
+        }
+        return super.before(route);
     }
 
-    if (location == 'query' && value != null) {
-      queryParams.add(new QueryParam(paramName, value));
-    } else if (location == 'header' && value != null) {
-      headerParams[paramName] = value;
+    @override
+    FutureOr after(StringResponse response) {
+        return Future.value(response);
     }
-  }
 }

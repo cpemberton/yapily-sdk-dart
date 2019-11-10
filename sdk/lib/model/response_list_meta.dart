@@ -1,55 +1,41 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/pagination.dart';
+
+part 'response_list_meta.jser.dart';
 
 class ResponseListMeta {
   
-  String tracingId = null;
+  @Alias('tracingId', isNullable: false,  )
+  final String tracingId;
+  
+  @Alias('count', isNullable: false,  )
+  final int count;
+  
+  @Alias('pagination', isNullable: false,  )
+  final Pagination pagination;
   
 
-  int count = null;
-  
+  ResponseListMeta(
+      
 
-  Pagination pagination = null;
-  
-  ResponseListMeta();
+{
+     this.tracingId = null,  
+     this.count = null,  
+     this.pagination = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ResponseListMeta[tracingId=$tracingId, count=$count, pagination=$pagination, ]';
   }
+}
 
-  ResponseListMeta.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    tracingId =
-        json['tracingId']
-    ;
-    count =
-        json['count']
-    ;
-    pagination =
-      
-      
-      new Pagination.fromJson(json['pagination'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class ResponseListMetaSerializer extends Serializer<ResponseListMeta> with _$ResponseListMetaSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'tracingId': tracingId,
-      'count': count,
-      'pagination': pagination
-     };
-  }
-
-  static List<ResponseListMeta> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ResponseListMeta>() : json.map((value) => new ResponseListMeta.fromJson(value)).toList();
-  }
-
-  static Map<String, ResponseListMeta> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ResponseListMeta>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ResponseListMeta.fromJson(value));
-    }
-    return map;
-  }
 }
 

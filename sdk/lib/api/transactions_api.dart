@@ -1,84 +1,61 @@
-part of yapily_sdk.api;
+import 'package:jaguar_retrofit/annotations/annotations.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
+import 'dart:async';
 
+import 'package:yapily_sdk/model/api_list_response_of_transaction.dart';
 
+part 'transactions_api.jretro.dart';
 
-class TransactionsApi {
-  final ApiClient apiClient;
+@GenApiClient()
+class TransactionsApi extends ApiClient with _$TransactionsApiClient {
+    final Route base;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-  TransactionsApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+    TransactionsApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
-  /// Get account transactions
-  ///
-  /// 
-  Future<ApiListResponseOfTransaction> getTransactionsUsingGET(String consent, String accountId, { List<String> with_, String from, String before, int limit, String sort, int offset }) async {
-    Object postBody = null;
+    /// Get account transactions
+    ///
+    /// 
+    @GetReq(path: "/accounts/:accountId/transactions", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiListResponseOfTransaction> getTransactionsUsingGET(
+            @PathParam("accountId") String accountId
+        ,
+            @Header("consent") String consent
+        ,
+            @QueryParam("with") List<String> with_, 
+        
+            @QueryParam("from") String from, 
+        
+            @QueryParam("before") String before, 
+        
+            @QueryParam("limit") int limit, 
+        
+            @QueryParam("sort") String sort, 
+        
+            @QueryParam("offset") int offset
+        ) {
+        return super.getTransactionsUsingGET(
+        accountId
+        ,
+        consent
+        ,
+        with_, 
+        
+        from, 
+        
+        before, 
+        
+        limit, 
+        
+        sort, 
+        
+        offset
 
-    // verify required params are set
-    if(consent == null) {
-     throw new ApiException(400, "Missing required param: consent");
+        ).timeout(timeout);
     }
-    if(accountId == null) {
-     throw new ApiException(400, "Missing required param: accountId");
-    }
 
-    // create path and map variables
-    String path = "/accounts/{accountId}/transactions".replaceAll("{format}","json").replaceAll("{" + "accountId" + "}", accountId.toString());
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    if(with_ != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("multi", "with", with_));
-    }
-    if(from != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "from", from));
-    }
-    if(before != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "before", before));
-    }
-    if(limit != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "limit", limit));
-    }
-    if(sort != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "sort", sort));
-    }
-    if(offset != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "offset", offset));
-    }
-    headerParams["consent"] = consent;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiListResponseOfTransaction') as ApiListResponseOfTransaction ;
-    } else {
-      return null;
-    }
-  }
 }

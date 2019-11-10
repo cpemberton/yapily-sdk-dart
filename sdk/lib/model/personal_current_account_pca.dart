@@ -1,60 +1,45 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/personal_current_account_pca_marketing_state.dart';
+
+part 'personal_current_account_pca.jser.dart';
 
 class PersonalCurrentAccountPCA {
   
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
+  
+  @Alias('PCAMarketingState', isNullable: false,  )
+  final List<PersonalCurrentAccountPCAMarketingState> pCAMarketingState;
+  
+  @Alias('Segment', isNullable: false,  )
+  final List<String> segment;
   
 
-  String name = null;
-  
+  PersonalCurrentAccountPCA(
+      
 
-  List<PersonalCurrentAccountPCAMarketingState> pCAMarketingState = [];
-  
-
-  List<String> segment = [];
-  
-  PersonalCurrentAccountPCA();
+{
+     this.identification = null,  
+     this.name = null,  
+     this.pCAMarketingState = const [],  
+     this.segment = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PersonalCurrentAccountPCA[identification=$identification, name=$name, pCAMarketingState=$pCAMarketingState, segment=$segment, ]';
   }
+}
 
-  PersonalCurrentAccountPCA.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    identification =
-        json['identification']
-    ;
-    name =
-        json['name']
-    ;
-    pCAMarketingState =
-      PersonalCurrentAccountPCAMarketingState.listFromJson(json['pCAMarketingState'])
-;
-    segment =
-        (json['segment'] as List).map((item) => item as String).toList()
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class PersonalCurrentAccountPCASerializer extends Serializer<PersonalCurrentAccountPCA> with _$PersonalCurrentAccountPCASerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'identification': identification,
-      'name': name,
-      'pCAMarketingState': pCAMarketingState,
-      'segment': segment
-     };
-  }
-
-  static List<PersonalCurrentAccountPCA> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PersonalCurrentAccountPCA>() : json.map((value) => new PersonalCurrentAccountPCA.fromJson(value)).toList();
-  }
-
-  static Map<String, PersonalCurrentAccountPCA> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PersonalCurrentAccountPCA>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PersonalCurrentAccountPCA.fromJson(value));
-    }
-    return map;
-  }
 }
 

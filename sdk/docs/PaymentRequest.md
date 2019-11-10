@@ -9,7 +9,7 @@ import 'package:yapily_sdk/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **paymentIdempotencyId** | **String** |  | [default to null]
-**payerAccountIdentifications** | [**List&lt;AccountIdentification&gt;**](AccountIdentification.md) |  | [optional] [default to []]
+**payerAccountIdentifications** | [**List&lt;AccountIdentification&gt;**](AccountIdentification.md) |  | [optional] [default to const []]
 **amount** | [**Amount**](Amount.md) |  | [optional] [default to null]
 **reference** | **String** |  | [optional] [default to null]
 **contextType** | **String** |  | [optional] [default to null]

@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/consent_delete_response.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_consent_delete_response.jser.dart';
 
 class ApiResponseOfConsentDeleteResponse {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final ConsentDeleteResponse data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  ConsentDeleteResponse data = null;
-  
+  ApiResponseOfConsentDeleteResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfConsentDeleteResponse();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfConsentDeleteResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfConsentDeleteResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new ConsentDeleteResponse.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfConsentDeleteResponseSerializer extends Serializer<ApiResponseOfConsentDeleteResponse> with _$ApiResponseOfConsentDeleteResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfConsentDeleteResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfConsentDeleteResponse>() : json.map((value) => new ApiResponseOfConsentDeleteResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfConsentDeleteResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfConsentDeleteResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfConsentDeleteResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

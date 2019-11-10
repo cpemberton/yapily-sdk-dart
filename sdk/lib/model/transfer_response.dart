@@ -1,79 +1,57 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'transfer_response.jser.dart';
 
 class TransferResponse {
   
-  String fromAccountId = null;
+  @Alias('fromAccountId', isNullable: false,  )
+  final String fromAccountId;
   
-
-  String toAccountId = null;
+  @Alias('toAccountId', isNullable: false,  )
+  final String toAccountId;
   
-
-  String status = null;
+  @Alias('status', isNullable: false,
+          
+  )
+  final String status;
   //enum statusEnum {  PENDING,  FAILED,  DECLINED,  COMPLETED,  UNKNOWN,  };
-
-  DateTime createdAt = null;
+  @Alias('createdAt', isNullable: false,  )
+  final DateTime createdAt;
+  
+  @Alias('reference', isNullable: false,  )
+  final String reference;
+  
+  @Alias('balance', isNullable: false,  )
+  final num balance;
+  
+  @Alias('currency', isNullable: false,  )
+  final String currency;
   
 
-  String reference = null;
-  
+  TransferResponse(
+      
 
-  num balance = null;
-  
-
-  String currency = null;
-  
-  TransferResponse();
+{
+     this.fromAccountId = null,  
+     this.toAccountId = null,  
+     this.status = null,  
+     this.createdAt = null,  
+     this.reference = null,  
+     this.balance = null,  
+     this.currency = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'TransferResponse[fromAccountId=$fromAccountId, toAccountId=$toAccountId, status=$status, createdAt=$createdAt, reference=$reference, balance=$balance, currency=$currency, ]';
   }
+}
 
-  TransferResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    fromAccountId =
-        json['fromAccountId']
-    ;
-    toAccountId =
-        json['toAccountId']
-    ;
-    status =
-        json['status']
-    ;
-    createdAt = json['createdAt'] == null ? null : DateTime.parse(json['createdAt']);
-    reference =
-        json['reference']
-    ;
-    balance =
-        json['balance']
-    ;
-    currency =
-        json['currency']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class TransferResponseSerializer extends Serializer<TransferResponse> with _$TransferResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'fromAccountId': fromAccountId,
-      'toAccountId': toAccountId,
-      'status': status,
-      'createdAt': createdAt == null ? '' : createdAt.toUtc().toIso8601String(),
-      'reference': reference,
-      'balance': balance,
-      'currency': currency
-     };
-  }
-
-  static List<TransferResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<TransferResponse>() : json.map((value) => new TransferResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, TransferResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, TransferResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new TransferResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

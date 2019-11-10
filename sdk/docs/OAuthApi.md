@@ -5,11 +5,11 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**oauthToken**](OAuthApi.md#oauthToken) | **POST** /oauth/token | Retrieve Access Token
+[**oauthToken**](OAuthApi.md#oauthToken) | **Post** /oauth/token | Retrieve Access Token
 
 
 # **oauthToken**
@@ -39,7 +39,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grantType** | **String**| Grant type | [default to client_credentials]
+ **grantType** | **String**| Grant type | [default to &quot;client_credentials&quot;]
 
 ### Return type
 

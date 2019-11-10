@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'country.jser.dart';
 
 class Country {
   
-  String countryCode2 = null;
+  @Alias('countryCode2', isNullable: false,  )
+  final String countryCode2;
+  
+  @Alias('displayName', isNullable: false,  )
+  final String displayName;
   
 
-  String displayName = null;
-  
-  Country();
+  Country(
+      
+
+{
+     this.countryCode2 = null,  
+     this.displayName = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Country[countryCode2=$countryCode2, displayName=$displayName, ]';
   }
+}
 
-  Country.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    countryCode2 =
-        json['countryCode2']
-    ;
-    displayName =
-        json['displayName']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CountrySerializer extends Serializer<Country> with _$CountrySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'countryCode2': countryCode2,
-      'displayName': displayName
-     };
-  }
-
-  static List<Country> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Country>() : json.map((value) => new Country.fromJson(value)).toList();
-  }
-
-  static Map<String, Country> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Country>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Country.fromJson(value));
-    }
-    return map;
-  }
 }
 

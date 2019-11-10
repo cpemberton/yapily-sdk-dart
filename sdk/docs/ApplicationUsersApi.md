@@ -5,17 +5,17 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addUserUsingPOST**](ApplicationUsersApi.md#addUserUsingPOST) | **POST** /users | Add an application user
-[**deleteUserUsingDELETE**](ApplicationUsersApi.md#deleteUserUsingDELETE) | **DELETE** /users/{userUuid} | Delete an application user and sub-resources (including consent resources on institution APIs if they exist)
-[**getDeleteUsersJobUsingGET**](ApplicationUsersApi.md#getDeleteUsersJobUsingGET) | **GET** /delete-users/{job-id} | Get details of a user deletion job
-[**getDeleteUsersJobsUsingGET**](ApplicationUsersApi.md#getDeleteUsersJobsUsingGET) | **GET** /delete-users | Get details of all user deletion jobs
-[**getUserUsingGET**](ApplicationUsersApi.md#getUserUsingGET) | **GET** /users/{userUuid} | Get an application user
-[**getUsersUsingGET**](ApplicationUsersApi.md#getUsersUsingGET) | **GET** /users | Get application users
-[**startDeleteUsersJobUsingPOST**](ApplicationUsersApi.md#startDeleteUsersJobUsingPOST) | **POST** /delete-users | Start a job to delete application users by specifying their identifiers
+[**addUserUsingPOST**](ApplicationUsersApi.md#addUserUsingPOST) | **Post** /users | Add an application user
+[**deleteUserUsingDELETE**](ApplicationUsersApi.md#deleteUserUsingDELETE) | **Delete** /users/:userUuid | Delete an application user and sub-resources (including consent resources on institution APIs if they exist)
+[**getDeleteUsersJobUsingGET**](ApplicationUsersApi.md#getDeleteUsersJobUsingGET) | **Get** /delete-users/:job-id | Get details of a user deletion job
+[**getDeleteUsersJobsUsingGET**](ApplicationUsersApi.md#getDeleteUsersJobsUsingGET) | **Get** /delete-users | Get details of all user deletion jobs
+[**getUserUsingGET**](ApplicationUsersApi.md#getUserUsingGET) | **Get** /users/:userUuid | Get an application user
+[**getUsersUsingGET**](ApplicationUsersApi.md#getUsersUsingGET) | **Get** /users | Get application users
+[**startDeleteUsersJobUsingPOST**](ApplicationUsersApi.md#startDeleteUsersJobUsingPOST) | **Post** /delete-users | Start a job to delete application users by specifying their identifiers
 
 
 # **addUserUsingPOST**
@@ -93,7 +93,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userUuid** | **String**| userUuid | 
+ **userUuid** | **String**| userUuid | [default to null]
 
 ### Return type
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -139,7 +139,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **jobId** | **String**| job-id | 
+ **jobId** | **String**| job-id | [default to null]
 
 ### Return type
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -193,7 +193,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -227,7 +227,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userUuid** | **String**| userUuid | 
+ **userUuid** | **String**| userUuid | [default to null]
 
 ### Return type
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -281,7 +281,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

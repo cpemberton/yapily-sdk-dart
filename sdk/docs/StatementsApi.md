@@ -5,13 +5,13 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getStatementFileUsingGET**](StatementsApi.md#getStatementFileUsingGET) | **GET** /accounts/{accountId}/statements/{statementId}/file | Get account statement file
-[**getStatementUsingGET**](StatementsApi.md#getStatementUsingGET) | **GET** /accounts/{accountId}/statements/{statementId} | Get account statement
-[**getStatementsUsingGET**](StatementsApi.md#getStatementsUsingGET) | **GET** /accounts/{accountId}/statements | Get account statements
+[**getStatementFileUsingGET**](StatementsApi.md#getStatementFileUsingGET) | **Get** /accounts/:accountId/statements/:statementId/file | Get account statement file
+[**getStatementUsingGET**](StatementsApi.md#getStatementUsingGET) | **Get** /accounts/:accountId/statements/:statementId | Get account statement
+[**getStatementsUsingGET**](StatementsApi.md#getStatementsUsingGET) | **Get** /accounts/:accountId/statements | Get account statements
 
 
 # **getStatementFileUsingGET**
@@ -45,9 +45,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
- **accountId** | **String**| accountId | 
- **statementId** | **String**| statementId | 
+ **consent** | **String**| Consent Token | [default to null]
+ **accountId** | **String**| accountId | [default to null]
+ **statementId** | **String**| statementId | [default to null]
 
 ### Return type
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -95,9 +95,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
- **accountId** | **String**| accountId | 
- **statementId** | **String**| statementId | 
+ **consent** | **String**| Consent Token | [default to null]
+ **accountId** | **String**| accountId | [default to null]
+ **statementId** | **String**| statementId | [default to null]
 
 ### Return type
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -149,13 +149,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
- **accountId** | **String**| accountId | 
- **from** | **String**| from | [optional] 
- **before** | **String**| before | [optional] 
- **limit** | **int**| limit | [optional] 
- **sort** | **String**| sort | [optional] 
- **offset** | **int**| offset | [optional] 
+ **consent** | **String**| Consent Token | [default to null]
+ **accountId** | **String**| accountId | [default to null]
+ **from** | **String**| from | [optional] [default to null]
+ **before** | **String**| before | [optional] [default to null]
+ **limit** | **int**| limit | [optional] [default to null]
+ **sort** | **String**| sort | [optional] [default to null]
+ **offset** | **int**| offset | [optional] [default to null]
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

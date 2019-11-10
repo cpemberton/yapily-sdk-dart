@@ -1,99 +1,75 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/payee.dart';
+
+import 'package:yapily_sdk/model/amount.dart';
+
+import 'package:yapily_sdk/model/account_identification.dart';
+
+import 'package:yapily_sdk/model/periodic_payment_request.dart';
+
+part 'payment_request.jser.dart';
 
 class PaymentRequest {
   
-  String paymentIdempotencyId = null;
+  @Alias('paymentIdempotencyId', isNullable: false,  )
+  final String paymentIdempotencyId;
   
-
-  List<AccountIdentification> payerAccountIdentifications = [];
+  @Alias('payerAccountIdentifications', isNullable: false,  )
+  final List<AccountIdentification> payerAccountIdentifications;
   
-
-  Amount amount = null;
+  @Alias('amount', isNullable: false,  )
+  final Amount amount;
   
-
-  String reference = null;
+  @Alias('reference', isNullable: false,  )
+  final String reference;
   
-
-  String contextType = null;
+  @Alias('contextType', isNullable: false,
+          
+  )
+  final String contextType;
   //enum contextTypeEnum {  BILL,  GOODS,  SERVICES,  OTHER,  PERSON_TO_PERSON,  };
-
-  String type = null;
+  @Alias('type', isNullable: false,
+          
+  )
+  final String type;
   //enum typeEnum {  DOMESTIC_PAYMENT,  DOMESTIC_VARIABLE_RECURRING_PAYMENT,  DOMESTIC_SCHEDULED_PAYMENT,  DOMESTIC_PERIODIC_PAYMENT,  };
-
-  DateTime paymentDateTime = null;
+  @Alias('paymentDateTime', isNullable: false,  )
+  final DateTime paymentDateTime;
+  
+  @Alias('payee', isNullable: false,  )
+  final Payee payee;
+  
+  @Alias('periodicPayments', isNullable: false,  )
+  final PeriodicPaymentRequest periodicPayments;
   
 
-  Payee payee = null;
-  
+  PaymentRequest(
+      
 
-  PeriodicPaymentRequest periodicPayments = null;
-  
-  PaymentRequest();
+{
+    
+     this.paymentIdempotencyId = null,   this.payerAccountIdentifications = const [],  
+     this.amount = null,  
+     this.reference = null,  
+     this.contextType = null,  
+     this.type = null,  
+     this.paymentDateTime = null,  
+    
+     this.payee = null,   this.periodicPayments = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PaymentRequest[paymentIdempotencyId=$paymentIdempotencyId, payerAccountIdentifications=$payerAccountIdentifications, amount=$amount, reference=$reference, contextType=$contextType, type=$type, paymentDateTime=$paymentDateTime, payee=$payee, periodicPayments=$periodicPayments, ]';
   }
+}
 
-  PaymentRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    paymentIdempotencyId =
-        json['paymentIdempotencyId']
-    ;
-    payerAccountIdentifications =
-      AccountIdentification.listFromJson(json['payerAccountIdentifications'])
-;
-    amount =
-      
-      
-      new Amount.fromJson(json['amount'])
-;
-    reference =
-        json['reference']
-    ;
-    contextType =
-        json['contextType']
-    ;
-    type =
-        json['type']
-    ;
-    paymentDateTime = json['paymentDateTime'] == null ? null : DateTime.parse(json['paymentDateTime']);
-    payee =
-      
-      
-      new Payee.fromJson(json['payee'])
-;
-    periodicPayments =
-      
-      
-      new PeriodicPaymentRequest.fromJson(json['periodicPayments'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class PaymentRequestSerializer extends Serializer<PaymentRequest> with _$PaymentRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'paymentIdempotencyId': paymentIdempotencyId,
-      'payerAccountIdentifications': payerAccountIdentifications,
-      'amount': amount,
-      'reference': reference,
-      'contextType': contextType,
-      'type': type,
-      'paymentDateTime': paymentDateTime == null ? '' : paymentDateTime.toUtc().toIso8601String(),
-      'payee': payee,
-      'periodicPayments': periodicPayments
-     };
-  }
-
-  static List<PaymentRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PaymentRequest>() : json.map((value) => new PaymentRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, PaymentRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PaymentRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PaymentRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -1,39 +1,33 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/credit_interest_tier_band_set.dart';
+
+part 'credit_interest.jser.dart';
 
 class CreditInterest {
   
-  List<CreditInterestTierBandSet> tierBandSet = [];
+  @Alias('TierBandSet', isNullable: false,  )
+  final List<CreditInterestTierBandSet> tierBandSet;
   
-  CreditInterest();
+
+  CreditInterest(
+      
+
+{
+     this.tierBandSet = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CreditInterest[tierBandSet=$tierBandSet, ]';
   }
+}
 
-  CreditInterest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    tierBandSet =
-      CreditInterestTierBandSet.listFromJson(json['tierBandSet'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class CreditInterestSerializer extends Serializer<CreditInterest> with _$CreditInterestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'tierBandSet': tierBandSet
-     };
-  }
-
-  static List<CreditInterest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreditInterest>() : json.map((value) => new CreditInterest.fromJson(value)).toList();
-  }
-
-  static Map<String, CreditInterest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreditInterest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreditInterest.fromJson(value));
-    }
-    return map;
-  }
 }
 

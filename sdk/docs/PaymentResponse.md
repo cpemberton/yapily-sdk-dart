@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **previousPaymentAmount** | [**Amount**](Amount.md) |  | [optional] [default to null]
 **previousPaymentDateTime** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
-**chargeDetails** | [**List&lt;ChargeDetails&gt;**](ChargeDetails.md) |  | [optional] [default to []]
+**chargeDetails** | [**List&lt;ChargeDetails&gt;**](ChargeDetails.md) |  | [optional] [default to const []]
 **scheduledPaymentType** | **String** |  | [optional] [default to null]
 **scheduledPaymentDateTime** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **frequency** | [**FrequencyResponse**](FrequencyResponse.md) |  | [optional] [default to null]

@@ -1,74 +1,59 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'core_product.jser.dart';
 
 class CoreProduct {
   
-  String monthlyMaximumCharge = null;
+  @Alias('MonthlyMaximumCharge', isNullable: false,  )
+  final String monthlyMaximumCharge;
   
-
-  String productDescription = null;
+  @Alias('ProductDescription', isNullable: false,  )
+  final String productDescription;
   
-
-  String productURL = null;
+  @Alias('ProductURL', isNullable: false,  )
+  final String productURL;
   
-
-  List<String> salesAccessChannels = [];
+  @Alias('SalesAccessChannels', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> salesAccessChannels;
   //enum salesAccessChannelsEnum {  Branch,  CallCentre,  Post,  Online,  RelationshipManager,  };
-
-  List<String> servicingAccessChannels = [];
+  @Alias('ServicingAccessChannels', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> servicingAccessChannels;
   //enum servicingAccessChannelsEnum {  ATM,  Branch,  CallCentre,  Post,  MobileBankingApp,  Online,  PostOffice,  RelationshipManager,  Text,  };
-
-  String tcsAndCsURL = null;
+  @Alias('TcsAndCsURL', isNullable: false,  )
+  final String tcsAndCsURL;
   
-  CoreProduct();
+
+  CoreProduct(
+      
+
+{
+     this.monthlyMaximumCharge = null,  
+     this.productDescription = null,  
+     this.productURL = null,  
+     this.salesAccessChannels = const [],  
+     this.servicingAccessChannels = const [],  
+     this.tcsAndCsURL = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CoreProduct[monthlyMaximumCharge=$monthlyMaximumCharge, productDescription=$productDescription, productURL=$productURL, salesAccessChannels=$salesAccessChannels, servicingAccessChannels=$servicingAccessChannels, tcsAndCsURL=$tcsAndCsURL, ]';
   }
+}
 
-  CoreProduct.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    monthlyMaximumCharge =
-        json['monthlyMaximumCharge']
-    ;
-    productDescription =
-        json['productDescription']
-    ;
-    productURL =
-        json['productURL']
-    ;
-    salesAccessChannels =
-        (json['salesAccessChannels'] as List).map((item) => item as String).toList()
-    ;
-    servicingAccessChannels =
-        (json['servicingAccessChannels'] as List).map((item) => item as String).toList()
-    ;
-    tcsAndCsURL =
-        json['tcsAndCsURL']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CoreProductSerializer extends Serializer<CoreProduct> with _$CoreProductSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'monthlyMaximumCharge': monthlyMaximumCharge,
-      'productDescription': productDescription,
-      'productURL': productURL,
-      'salesAccessChannels': salesAccessChannels,
-      'servicingAccessChannels': servicingAccessChannels,
-      'tcsAndCsURL': tcsAndCsURL
-     };
-  }
-
-  static List<CoreProduct> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CoreProduct>() : json.map((value) => new CoreProduct.fromJson(value)).toList();
-  }
-
-  static Map<String, CoreProduct> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CoreProduct>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CoreProduct.fromJson(value));
-    }
-    return map;
-  }
 }
 

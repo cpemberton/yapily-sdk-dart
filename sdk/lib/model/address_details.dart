@@ -1,39 +1,31 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'address_details.jser.dart';
 
 class AddressDetails {
   
-  String addressLine = null;
+  @Alias('addressLine', isNullable: false,  )
+  final String addressLine;
   
-  AddressDetails();
+
+  AddressDetails(
+      
+
+{
+     this.addressLine = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'AddressDetails[addressLine=$addressLine, ]';
   }
+}
 
-  AddressDetails.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    addressLine =
-        json['addressLine']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class AddressDetailsSerializer extends Serializer<AddressDetails> with _$AddressDetailsSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'addressLine': addressLine
-     };
-  }
-
-  static List<AddressDetails> listFromJson(List<dynamic> json) {
-    return json == null ? new List<AddressDetails>() : json.map((value) => new AddressDetails.fromJson(value)).toList();
-  }
-
-  static Map<String, AddressDetails> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, AddressDetails>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new AddressDetails.fromJson(value));
-    }
-    return map;
-  }
 }
 

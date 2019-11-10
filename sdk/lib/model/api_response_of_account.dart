@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+import 'package:yapily_sdk/model/account.dart';
+
+part 'api_response_of_account.jser.dart';
 
 class ApiResponseOfAccount {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final Account data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  Account data = null;
-  
+  ApiResponseOfAccount(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfAccount();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfAccount[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfAccount.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new Account.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfAccountSerializer extends Serializer<ApiResponseOfAccount> with _$ApiResponseOfAccountSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfAccount> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfAccount>() : json.map((value) => new ApiResponseOfAccount.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfAccount> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfAccount>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfAccount.fromJson(value));
-    }
-    return map;
-  }
 }
 

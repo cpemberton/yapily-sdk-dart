@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **expiresAt** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **timeToExpireInMillis** | **int** | Deprecated. Use &#x60;timeToExpire&#x60; instead. | [optional] [default to null]
 **timeToExpire** | **String** | ISO 8601 duration | [optional] [default to null]
-**featureScope** | **List&lt;String&gt;** |  | [optional] [default to []]
+**featureScope** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **startsAt** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **totalMaxAmount** | **num** |  | [optional] [default to null]
 **maxAmountPerRequest** | **num** |  | [optional] [default to null]

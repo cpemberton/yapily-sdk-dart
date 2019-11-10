@@ -1,95 +1,71 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/overdraft_overdraft_tier_band.dart';
+
+import 'package:yapily_sdk/model/overdraft_overdraft_fees_charges1.dart';
+
+part 'overdraft_overdraft_tier_band_set.jser.dart';
 
 class OverdraftOverdraftTierBandSet {
   
-  bool authorisedIndicator = null;
+  @Alias('AuthorisedIndicator', isNullable: false,  )
+  final bool authorisedIndicator;
   
-
-  String bufferAmount = null;
+  @Alias('BufferAmount', isNullable: false,  )
+  final String bufferAmount;
   
-
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
   
-
-  String minimumArrangedOverdraftAmount = null;
+  @Alias('MinimumArrangedOverdraftAmount', isNullable: false,  )
+  final String minimumArrangedOverdraftAmount;
   
-
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
-
-  List<OverdraftOverdraftFeesCharges1> overdraftFeesCharges = [];
+  @Alias('OverdraftFeesCharges', isNullable: false,  )
+  final List<OverdraftOverdraftFeesCharges1> overdraftFeesCharges;
   
-
-  List<OverdraftOverdraftTierBand> overdraftTierBand = [];
+  @Alias('OverdraftTierBand', isNullable: false,  )
+  final List<OverdraftOverdraftTierBand> overdraftTierBand;
   
-
-  String overdraftType = null;
+  @Alias('OverdraftType', isNullable: false,
+          
+  )
+  final String overdraftType;
   //enum overdraftTypeEnum {  Committed,  OnDemand,  Other,  };
-
-  String tierBandMethod = null;
+  @Alias('TierBandMethod', isNullable: false,
+          
+  )
+  final String tierBandMethod;
   //enum tierBandMethodEnum {  Tiered,  Whole,  };
-  OverdraftOverdraftTierBandSet();
+
+  OverdraftOverdraftTierBandSet(
+      
+
+{
+     this.authorisedIndicator = null,  
+     this.bufferAmount = null,  
+     this.identification = null,  
+     this.minimumArrangedOverdraftAmount = null,  
+     this.notes = const [],  
+     this.overdraftFeesCharges = const [],  
+     this.overdraftTierBand = const [],  
+     this.overdraftType = null,  
+     this.tierBandMethod = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OverdraftOverdraftTierBandSet[authorisedIndicator=$authorisedIndicator, bufferAmount=$bufferAmount, identification=$identification, minimumArrangedOverdraftAmount=$minimumArrangedOverdraftAmount, notes=$notes, overdraftFeesCharges=$overdraftFeesCharges, overdraftTierBand=$overdraftTierBand, overdraftType=$overdraftType, tierBandMethod=$tierBandMethod, ]';
   }
+}
 
-  OverdraftOverdraftTierBandSet.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    authorisedIndicator =
-        json['authorisedIndicator']
-    ;
-    bufferAmount =
-        json['bufferAmount']
-    ;
-    identification =
-        json['identification']
-    ;
-    minimumArrangedOverdraftAmount =
-        json['minimumArrangedOverdraftAmount']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    overdraftFeesCharges =
-      OverdraftOverdraftFeesCharges1.listFromJson(json['overdraftFeesCharges'])
-;
-    overdraftTierBand =
-      OverdraftOverdraftTierBand.listFromJson(json['overdraftTierBand'])
-;
-    overdraftType =
-        json['overdraftType']
-    ;
-    tierBandMethod =
-        json['tierBandMethod']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OverdraftOverdraftTierBandSetSerializer extends Serializer<OverdraftOverdraftTierBandSet> with _$OverdraftOverdraftTierBandSetSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'authorisedIndicator': authorisedIndicator,
-      'bufferAmount': bufferAmount,
-      'identification': identification,
-      'minimumArrangedOverdraftAmount': minimumArrangedOverdraftAmount,
-      'notes': notes,
-      'overdraftFeesCharges': overdraftFeesCharges,
-      'overdraftTierBand': overdraftTierBand,
-      'overdraftType': overdraftType,
-      'tierBandMethod': tierBandMethod
-     };
-  }
-
-  static List<OverdraftOverdraftTierBandSet> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OverdraftOverdraftTierBandSet>() : json.map((value) => new OverdraftOverdraftTierBandSet.fromJson(value)).toList();
-  }
-
-  static Map<String, OverdraftOverdraftTierBandSet> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OverdraftOverdraftTierBandSet>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OverdraftOverdraftTierBandSet.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -5,13 +5,13 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getApplicationMeUsingGET**](ApplicationsApi.md#getApplicationMeUsingGET) | **GET** /me | Returns the details of the application that owns the request credentials
-[**getJwksUsingGET**](ApplicationsApi.md#getJwksUsingGET) | **GET** /jwks | JSON Web Key Set (JWKS) for authenticated application
-[**revokeTokensUsingPOST**](ApplicationsApi.md#revokeTokensUsingPOST) | **POST** /revoke-tokens | Revoke existing access tokens for application, which will also generate a new public key discoverable via /jwks
+[**getApplicationMeUsingGET**](ApplicationsApi.md#getApplicationMeUsingGET) | **Get** /me | Returns the details of the application that owns the request credentials
+[**getJwksUsingGET**](ApplicationsApi.md#getJwksUsingGET) | **Get** /jwks | JSON Web Key Set (JWKS) for authenticated application
+[**revokeTokensUsingPOST**](ApplicationsApi.md#revokeTokensUsingPOST) | **Post** /revoke-tokens | Revoke existing access tokens for application, which will also generate a new public key discoverable via /jwks
 
 
 # **getApplicationMeUsingGET**
@@ -51,7 +51,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -93,7 +93,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -135,7 +135,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

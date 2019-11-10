@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | [default to null]
 **address** | [**Address**](Address.md) |  | [optional] [default to null]
-**accountIdentifications** | [**List&lt;AccountIdentification&gt;**](AccountIdentification.md) |  | [default to []]
+**accountIdentifications** | [**List&lt;AccountIdentification&gt;**](AccountIdentification.md) |  | [default to const []]
 **merchantCategoryCode** | **String** |  | [optional] [default to null]
 **merchantId** | **String** |  | [optional] [default to null]
 

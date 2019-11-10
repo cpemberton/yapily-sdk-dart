@@ -1,48 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/amount.dart';
+
+part 'credit_line.jser.dart';
 
 class CreditLine {
   
-  String type = null;
+  @Alias('type', isNullable: false,
+          
+  )
+  final String type;
   //enum typeEnum {  AVAILABLE,  CREDIT,  EMERGENCY,  PRE_AGREED,  TEMPORARY,  OTHER,  UNKNOWN,  };
-
-  Amount creditLineAmount = null;
+  @Alias('creditLineAmount', isNullable: false,  )
+  final Amount creditLineAmount;
   
-  CreditLine();
+
+  CreditLine(
+      
+
+{
+     this.type = null,  
+     this.creditLineAmount = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CreditLine[type=$type, creditLineAmount=$creditLineAmount, ]';
   }
+}
 
-  CreditLine.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    type =
-        json['type']
-    ;
-    creditLineAmount =
-      
-      
-      new Amount.fromJson(json['creditLineAmount'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class CreditLineSerializer extends Serializer<CreditLine> with _$CreditLineSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'creditLineAmount': creditLineAmount
-     };
-  }
-
-  static List<CreditLine> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreditLine>() : json.map((value) => new CreditLine.fromJson(value)).toList();
-  }
-
-  static Map<String, CreditLine> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreditLine>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreditLine.fromJson(value));
-    }
-    return map;
-  }
 }
 

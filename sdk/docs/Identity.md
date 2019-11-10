@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **birthdate** | **String** |  | [optional] [default to null]
 **email** | **String** |  | [optional] [default to null]
 **phone** | **String** |  | [optional] [default to null]
-**addresses** | [**List&lt;IdentityAddress&gt;**](IdentityAddress.md) |  | [optional] [default to []]
+**addresses** | [**List&lt;IdentityAddress&gt;**](IdentityAddress.md) |  | [optional] [default to const []]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

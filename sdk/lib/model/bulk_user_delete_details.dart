@@ -1,79 +1,59 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/user_delete_response.dart';
+
+part 'bulk_user_delete_details.jser.dart';
 
 class BulkUserDeleteDetails {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
   
-
-  List<String> invalidApplicationUserIds = [];
+  @Alias('invalidApplicationUserIds', isNullable: false,  )
+  final List<String> invalidApplicationUserIds;
   
-
-  List<String> invalidUserUuids = [];
+  @Alias('invalidUserUuids', isNullable: false,  )
+  final List<String> invalidUserUuids;
   
-
-  String status = null;
+  @Alias('status', isNullable: false,
+          
+  )
+  final String status;
   //enum statusEnum {  IN_PROGRESS,  COMPLETED,  FAILED,  };
-
-  DateTime startedAt = null;
+  @Alias('startedAt', isNullable: false,  )
+  final DateTime startedAt;
+  
+  @Alias('users', isNullable: false,  )
+  final List<UserDeleteResponse> users;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  List<UserDeleteResponse> users = [];
-  
+  BulkUserDeleteDetails(
+      
 
-  Map<String, String> links = {};
-  
-  BulkUserDeleteDetails();
+{
+     this.id = null,  
+     this.invalidApplicationUserIds = const [],  
+     this.invalidUserUuids = const [],  
+     this.status = null,  
+     this.startedAt = null,  
+     this.users = const [],  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'BulkUserDeleteDetails[id=$id, invalidApplicationUserIds=$invalidApplicationUserIds, invalidUserUuids=$invalidUserUuids, status=$status, startedAt=$startedAt, users=$users, links=$links, ]';
   }
+}
 
-  BulkUserDeleteDetails.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    invalidApplicationUserIds =
-        (json['invalidApplicationUserIds'] as List).map((item) => item as String).toList()
-    ;
-    invalidUserUuids =
-        (json['invalidUserUuids'] as List).map((item) => item as String).toList()
-    ;
-    status =
-        json['status']
-    ;
-    startedAt = json['startedAt'] == null ? null : DateTime.parse(json['startedAt']);
-    users =
-      UserDeleteResponse.listFromJson(json['users'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class BulkUserDeleteDetailsSerializer extends Serializer<BulkUserDeleteDetails> with _$BulkUserDeleteDetailsSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'invalidApplicationUserIds': invalidApplicationUserIds,
-      'invalidUserUuids': invalidUserUuids,
-      'status': status,
-      'startedAt': startedAt == null ? '' : startedAt.toUtc().toIso8601String(),
-      'users': users,
-      'links': links
-     };
-  }
-
-  static List<BulkUserDeleteDetails> listFromJson(List<dynamic> json) {
-    return json == null ? new List<BulkUserDeleteDetails>() : json.map((value) => new BulkUserDeleteDetails.fromJson(value)).toList();
-  }
-
-  static Map<String, BulkUserDeleteDetails> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, BulkUserDeleteDetails>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new BulkUserDeleteDetails.fromJson(value));
-    }
-    return map;
-  }
 }
 

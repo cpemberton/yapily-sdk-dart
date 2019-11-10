@@ -1,55 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/payment_response.dart';
+
+import 'package:yapily_sdk/model/response_list_meta.dart';
+
+part 'api_list_response_of_payment_response.jser.dart';
 
 class ApiListResponseOfPaymentResponse {
   
-  ResponseListMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseListMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final List<PaymentResponse> data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  List<PaymentResponse> data = [];
-  
+  ApiListResponseOfPaymentResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiListResponseOfPaymentResponse();
+{
+     this.meta = null,  
+     this.data = const [],  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiListResponseOfPaymentResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiListResponseOfPaymentResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseListMeta.fromJson(json['meta'])
-;
-    data =
-      PaymentResponse.listFromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiListResponseOfPaymentResponseSerializer extends Serializer<ApiListResponseOfPaymentResponse> with _$ApiListResponseOfPaymentResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiListResponseOfPaymentResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiListResponseOfPaymentResponse>() : json.map((value) => new ApiListResponseOfPaymentResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiListResponseOfPaymentResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiListResponseOfPaymentResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiListResponseOfPaymentResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

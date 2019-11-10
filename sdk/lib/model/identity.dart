@@ -1,88 +1,61 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/identity_address.dart';
+
+part 'identity.jser.dart';
 
 class Identity {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
+  
+  @Alias('firstName', isNullable: false,  )
+  final String firstName;
+  
+  @Alias('lastName', isNullable: false,  )
+  final String lastName;
+  
+  @Alias('gender', isNullable: false,  )
+  final String gender;
+  
+  @Alias('birthdate', isNullable: false,  )
+  final String birthdate;
+  
+  @Alias('email', isNullable: false,  )
+  final String email;
+  
+  @Alias('phone', isNullable: false,  )
+  final String phone;
+  
+  @Alias('addresses', isNullable: false,  )
+  final List<IdentityAddress> addresses;
   
 
-  String firstName = null;
-  
+  Identity(
+      
 
-  String lastName = null;
-  
-
-  String gender = null;
-  
-
-  String birthdate = null;
-  
-
-  String email = null;
-  
-
-  String phone = null;
-  
-
-  List<IdentityAddress> addresses = [];
-  
-  Identity();
+{
+     this.id = null,  
+     this.firstName = null,  
+     this.lastName = null,  
+     this.gender = null,  
+     this.birthdate = null,  
+     this.email = null,  
+     this.phone = null,  
+     this.addresses = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Identity[id=$id, firstName=$firstName, lastName=$lastName, gender=$gender, birthdate=$birthdate, email=$email, phone=$phone, addresses=$addresses, ]';
   }
+}
 
-  Identity.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    firstName =
-        json['firstName']
-    ;
-    lastName =
-        json['lastName']
-    ;
-    gender =
-        json['gender']
-    ;
-    birthdate =
-        json['birthdate']
-    ;
-    email =
-        json['email']
-    ;
-    phone =
-        json['phone']
-    ;
-    addresses =
-      IdentityAddress.listFromJson(json['addresses'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class IdentitySerializer extends Serializer<Identity> with _$IdentitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'gender': gender,
-      'birthdate': birthdate,
-      'email': email,
-      'phone': phone,
-      'addresses': addresses
-     };
-  }
-
-  static List<Identity> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Identity>() : json.map((value) => new Identity.fromJson(value)).toList();
-  }
-
-  static Map<String, Identity> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Identity>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Identity.fromJson(value));
-    }
-    return map;
-  }
 }
 

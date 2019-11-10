@@ -1,58 +1,47 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/consent_delete_response.dart';
+
+part 'user_delete_response.jser.dart';
 
 class UserDeleteResponse {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
   
-
-  String deleteStatus = null;
+  @Alias('deleteStatus', isNullable: false,
+          
+  )
+  final String deleteStatus;
   //enum deleteStatusEnum {  SUCCESS,  FAILED,  };
-
-  DateTime creationDate = null;
+  @Alias('creationDate', isNullable: false,  )
+  final DateTime creationDate;
+  
+  @Alias('userConsents', isNullable: false,  )
+  final List<ConsentDeleteResponse> userConsents;
   
 
-  List<ConsentDeleteResponse> userConsents = [];
-  
-  UserDeleteResponse();
+  UserDeleteResponse(
+      
+
+{
+     this.id = null,  
+     this.deleteStatus = null,  
+     this.creationDate = null,  
+     this.userConsents = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'UserDeleteResponse[id=$id, deleteStatus=$deleteStatus, creationDate=$creationDate, userConsents=$userConsents, ]';
   }
+}
 
-  UserDeleteResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    deleteStatus =
-        json['deleteStatus']
-    ;
-    creationDate = json['creationDate'] == null ? null : DateTime.parse(json['creationDate']);
-    userConsents =
-      ConsentDeleteResponse.listFromJson(json['userConsents'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class UserDeleteResponseSerializer extends Serializer<UserDeleteResponse> with _$UserDeleteResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'deleteStatus': deleteStatus,
-      'creationDate': creationDate == null ? '' : creationDate.toUtc().toIso8601String(),
-      'userConsents': userConsents
-     };
-  }
-
-  static List<UserDeleteResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<UserDeleteResponse>() : json.map((value) => new UserDeleteResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, UserDeleteResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, UserDeleteResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new UserDeleteResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

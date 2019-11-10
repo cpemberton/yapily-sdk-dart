@@ -1,39 +1,31 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'statement_reference.jser.dart';
 
 class StatementReference {
   
-  String value = null;
+  @Alias('value', isNullable: false,  )
+  final String value;
   
-  StatementReference();
+
+  StatementReference(
+      
+
+{
+     this.value = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'StatementReference[value=$value, ]';
   }
+}
 
-  StatementReference.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    value =
-        json['value']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class StatementReferenceSerializer extends Serializer<StatementReference> with _$StatementReferenceSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value
-     };
-  }
-
-  static List<StatementReference> listFromJson(List<dynamic> json) {
-    return json == null ? new List<StatementReference>() : json.map((value) => new StatementReference.fromJson(value)).toList();
-  }
-
-  static Map<String, StatementReference> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, StatementReference>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new StatementReference.fromJson(value));
-    }
-    return map;
-  }
 }
 

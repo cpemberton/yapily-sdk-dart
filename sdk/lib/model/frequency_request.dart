@@ -1,60 +1,45 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'frequency_request.jser.dart';
 
 class FrequencyRequest {
   
-  String type = null;
+  @Alias('type', isNullable: false,
+          
+  )
+  final String type;
   //enum typeEnum {  DAILY,  EVERY_WORKING_DAY,  CALENDAR_DAY,  WEEKLY,  EVERY_TWO_WEEKS,  MONTHLY,  EVERY_TWO_MONTHS,  QUARTERLY,  SEMIANNUAL,  ANNUAL,  };
-
-  int intervalWeek = null;
+  @Alias('intervalWeek', isNullable: false,  )
+  final int intervalWeek;
+  
+  @Alias('intervalMonth', isNullable: false,  )
+  final int intervalMonth;
+  
+  @Alias('executionDay', isNullable: false,  )
+  final int executionDay;
   
 
-  int intervalMonth = null;
-  
+  FrequencyRequest(
+      
 
-  int executionDay = null;
-  
-  FrequencyRequest();
+{
+     this.type = null,  
+     this.intervalWeek = null,  
+     this.intervalMonth = null,  
+     this.executionDay = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'FrequencyRequest[type=$type, intervalWeek=$intervalWeek, intervalMonth=$intervalMonth, executionDay=$executionDay, ]';
   }
+}
 
-  FrequencyRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    type =
-        json['type']
-    ;
-    intervalWeek =
-        json['intervalWeek']
-    ;
-    intervalMonth =
-        json['intervalMonth']
-    ;
-    executionDay =
-        json['executionDay']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class FrequencyRequestSerializer extends Serializer<FrequencyRequest> with _$FrequencyRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'intervalWeek': intervalWeek,
-      'intervalMonth': intervalMonth,
-      'executionDay': executionDay
-     };
-  }
-
-  static List<FrequencyRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<FrequencyRequest>() : json.map((value) => new FrequencyRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, FrequencyRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, FrequencyRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new FrequencyRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

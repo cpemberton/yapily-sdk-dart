@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'merchant.jser.dart';
 
 class Merchant {
   
-  String merchantName = null;
+  @Alias('merchantName', isNullable: false,  )
+  final String merchantName;
+  
+  @Alias('merchantCategoryCode', isNullable: false,  )
+  final String merchantCategoryCode;
   
 
-  String merchantCategoryCode = null;
-  
-  Merchant();
+  Merchant(
+      
+
+{
+     this.merchantName = null,  
+     this.merchantCategoryCode = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Merchant[merchantName=$merchantName, merchantCategoryCode=$merchantCategoryCode, ]';
   }
+}
 
-  Merchant.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    merchantName =
-        json['merchantName']
-    ;
-    merchantCategoryCode =
-        json['merchantCategoryCode']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class MerchantSerializer extends Serializer<Merchant> with _$MerchantSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'merchantName': merchantName,
-      'merchantCategoryCode': merchantCategoryCode
-     };
-  }
-
-  static List<Merchant> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Merchant>() : json.map((value) => new Merchant.fromJson(value)).toList();
-  }
-
-  static Map<String, Merchant> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Merchant>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Merchant.fromJson(value));
-    }
-    return map;
-  }
 }
 

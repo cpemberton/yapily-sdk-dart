@@ -1,97 +1,69 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/other_type.dart';
+
+part 'eligibility_other_eligibility.jser.dart';
 
 class EligibilityOtherEligibility {
   
-  String amount = null;
+  @Alias('Amount', isNullable: false,  )
+  final String amount;
   
-
-  String description = null;
+  @Alias('Description', isNullable: false,  )
+  final String description;
   
-
-  bool indicator = null;
+  @Alias('Indicator', isNullable: false,  )
+  final bool indicator;
   
-
-  String name = null;
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
-
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
-
-  OtherType otherType = null;
+  @Alias('OtherType', isNullable: false,  )
+  final OtherType otherType;
   
-
-  String period = null;
+  @Alias('Period', isNullable: false,
+          
+  )
+  final String period;
   //enum periodEnum {  Day,  Half Year,  Month,  Quarter,  Week,  AcademicTerm,  Year,  };
-
-  String textual = null;
+  @Alias('Textual', isNullable: false,  )
+  final String textual;
   
-
-  String type = null;
+  @Alias('Type', isNullable: false,
+          
+  )
+  final String type;
   //enum typeEnum {  DirectDebits,  ExistingCustomers,  MinimumOperatingBalance,  MinimumDeposit,  NewCustomersOnly,  PreviousBankruptcyAllowed,  Other,  StudentsOnly,  SoleStudentAccount,  SoleUkAccount,  SwitchersOnly,  UCASFulltimeTwoYears,  };
-  EligibilityOtherEligibility();
+
+  EligibilityOtherEligibility(
+      
+
+{
+     this.amount = null,  
+     this.description = null,  
+     this.indicator = null,  
+     this.name = null,  
+     this.notes = const [],  
+     this.otherType = null,  
+     this.period = null,  
+     this.textual = null,  
+     this.type = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'EligibilityOtherEligibility[amount=$amount, description=$description, indicator=$indicator, name=$name, notes=$notes, otherType=$otherType, period=$period, textual=$textual, type=$type, ]';
   }
+}
 
-  EligibilityOtherEligibility.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    amount =
-        json['amount']
-    ;
-    description =
-        json['description']
-    ;
-    indicator =
-        json['indicator']
-    ;
-    name =
-        json['name']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    otherType =
-      
-      
-      new OtherType.fromJson(json['otherType'])
-;
-    period =
-        json['period']
-    ;
-    textual =
-        json['textual']
-    ;
-    type =
-        json['type']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class EligibilityOtherEligibilitySerializer extends Serializer<EligibilityOtherEligibility> with _$EligibilityOtherEligibilitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'amount': amount,
-      'description': description,
-      'indicator': indicator,
-      'name': name,
-      'notes': notes,
-      'otherType': otherType,
-      'period': period,
-      'textual': textual,
-      'type': type
-     };
-  }
-
-  static List<EligibilityOtherEligibility> listFromJson(List<dynamic> json) {
-    return json == null ? new List<EligibilityOtherEligibility>() : json.map((value) => new EligibilityOtherEligibility.fromJson(value)).toList();
-  }
-
-  static Map<String, EligibilityOtherEligibility> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, EligibilityOtherEligibility>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new EligibilityOtherEligibility.fromJson(value));
-    }
-    return map;
-  }
 }
 

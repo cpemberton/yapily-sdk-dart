@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] [default to null]
 **indicator** | **bool** |  | [optional] [default to null]
 **name** | **String** |  | [optional] [default to null]
-**notes** | **List&lt;String&gt;** |  | [optional] [default to []]
+**notes** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **otherType** | [**OtherType**](OtherType.md) |  | [optional] [default to null]
 **period** | **String** |  | [optional] [default to null]
 **textual** | **String** |  | [optional] [default to null]

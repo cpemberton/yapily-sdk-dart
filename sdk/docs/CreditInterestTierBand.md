@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **depositInterestAppliedCoverage** | **String** |  | [optional] [default to null]
 **fixedVariableInterestRateType** | **String** |  | [optional] [default to null]
 **identification** | **String** |  | [optional] [default to null]
-**notes** | **List&lt;String&gt;** |  | [optional] [default to []]
+**notes** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **otherApplicationFrequency** | [**OtherApplicationFrequency**](OtherApplicationFrequency.md) |  | [optional] [default to null]
 **otherBankInterestType** | [**OtherBankInterestType**](OtherBankInterestType.md) |  | [optional] [default to null]
 **otherCalculationFrequency** | [**OtherCalculationFrequency**](OtherCalculationFrequency.md) |  | [optional] [default to null]

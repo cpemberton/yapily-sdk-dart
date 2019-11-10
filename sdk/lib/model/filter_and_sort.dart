@@ -1,63 +1,49 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'filter_and_sort.jser.dart';
 
 class FilterAndSort {
   
-  DateTime before = null;
+  @Alias('before', isNullable: false,  )
+  final DateTime before;
   
-
-  DateTime from = null;
+  @Alias('from', isNullable: false,  )
+  final DateTime from;
   
-
-  int limit = null;
+  @Alias('limit', isNullable: false,  )
+  final int limit;
   
-
-  int offset = null;
+  @Alias('offset', isNullable: false,  )
+  final int offset;
   
-
-  String sort = null;
+  @Alias('sort', isNullable: false,
+          
+  )
+  final String sort;
   //enum sortEnum {  date,  -date,  };
-  FilterAndSort();
+
+  FilterAndSort(
+      
+
+{
+     this.before = null,  
+     this.from = null,  
+     this.limit = null,  
+     this.offset = null,  
+     this.sort = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'FilterAndSort[before=$before, from=$from, limit=$limit, offset=$offset, sort=$sort, ]';
   }
+}
 
-  FilterAndSort.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    before = json['before'] == null ? null : DateTime.parse(json['before']);
-    from = json['from'] == null ? null : DateTime.parse(json['from']);
-    limit =
-        json['limit']
-    ;
-    offset =
-        json['offset']
-    ;
-    sort =
-        json['sort']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class FilterAndSortSerializer extends Serializer<FilterAndSort> with _$FilterAndSortSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'before': before == null ? '' : before.toUtc().toIso8601String(),
-      'from': from == null ? '' : from.toUtc().toIso8601String(),
-      'limit': limit,
-      'offset': offset,
-      'sort': sort
-     };
-  }
-
-  static List<FilterAndSort> listFromJson(List<dynamic> json) {
-    return json == null ? new List<FilterAndSort>() : json.map((value) => new FilterAndSort.fromJson(value)).toList();
-  }
-
-  static Map<String, FilterAndSort> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, FilterAndSort>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new FilterAndSort.fromJson(value));
-    }
-    return map;
-  }
 }
 

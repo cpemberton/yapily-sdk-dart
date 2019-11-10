@@ -1,140 +1,101 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/other_fee_type.dart';
+
+import 'package:yapily_sdk/model/other_calculation_frequency.dart';
+
+import 'package:yapily_sdk/model/overdraft_overdraft_fee_charge_cap.dart';
+
+import 'package:yapily_sdk/model/other_fee_rate_type.dart';
+
+import 'package:yapily_sdk/model/other_application_frequency.dart';
+
+part 'overdraft_overdraft_fee_charge_detail.jser.dart';
 
 class OverdraftOverdraftFeeChargeDetail {
   
-  String applicationFrequency = null;
+  @Alias('ApplicationFrequency', isNullable: false,
+          
+  )
+  final String applicationFrequency;
   //enum applicationFrequencyEnum {  AccountClosing,  AccountOpening,  AcademicTerm,  ChargingPeriod,  Daily,  PerItem,  Monthly,  OnAccountAnniversary,  Other,  PerHour,  PerOccurrence,  PerSheet,  PerTransaction,  PerTransactionAmount,  PerTransactionPercentage,  Quarterly,  SixMonthly,  StatementMonthly,  Weekly,  Yearly,  };
-
-  String calculationFrequency = null;
+  @Alias('CalculationFrequency', isNullable: false,
+          
+  )
+  final String calculationFrequency;
   //enum calculationFrequencyEnum {  AccountClosing,  AccountOpening,  AcademicTerm,  ChargingPeriod,  Daily,  PerItem,  Monthly,  OnAccountAnniversary,  Other,  PerHour,  PerOccurrence,  PerSheet,  PerTransaction,  PerTransactionAmount,  PerTransactionPercentage,  Quarterly,  SixMonthly,  StatementMonthly,  Weekly,  Yearly,  };
-
-  String feeAmount = null;
+  @Alias('FeeAmount', isNullable: false,  )
+  final String feeAmount;
   
-
-  String feeRate = null;
+  @Alias('FeeRate', isNullable: false,  )
+  final String feeRate;
   
-
-  String feeRateType = null;
+  @Alias('FeeRateType', isNullable: false,
+          
+  )
+  final String feeRateType;
   //enum feeRateTypeEnum {  LinkedBaseRate,  Gross,  Net,  Other,  };
-
-  String feeType = null;
+  @Alias('FeeType', isNullable: false,
+          
+  )
+  final String feeType;
   //enum feeTypeEnum {  ArrangedOverdraft,  EmergencyBorrowing,  BorrowingItem,  OverdraftRenewal,  AnnualReview,  OverdraftSetup,  Surcharge,  TempOverdraft,  UnauthorisedBorrowing,  UnauthorisedPaidTrans,  Other,  UnauthorisedUnpaidTrans,  };
-
-  String incrementalBorrowingAmount = null;
+  @Alias('IncrementalBorrowingAmount', isNullable: false,  )
+  final String incrementalBorrowingAmount;
+  
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
+  
+  @Alias('OtherApplicationFrequency', isNullable: false,  )
+  final OtherApplicationFrequency otherApplicationFrequency;
+  
+  @Alias('OtherCalculationFrequency', isNullable: false,  )
+  final OtherCalculationFrequency otherCalculationFrequency;
+  
+  @Alias('OtherFeeRateType', isNullable: false,  )
+  final OtherFeeRateType otherFeeRateType;
+  
+  @Alias('OtherFeeType', isNullable: false,  )
+  final OtherFeeType otherFeeType;
+  
+  @Alias('OverdraftControlIndicator', isNullable: false,  )
+  final bool overdraftControlIndicator;
+  
+  @Alias('OverdraftFeeChargeCap', isNullable: false,  )
+  final OverdraftOverdraftFeeChargeCap overdraftFeeChargeCap;
   
 
-  List<String> notes = [];
-  
+  OverdraftOverdraftFeeChargeDetail(
+      
 
-  OtherApplicationFrequency otherApplicationFrequency = null;
-  
-
-  OtherCalculationFrequency otherCalculationFrequency = null;
-  
-
-  OtherFeeRateType otherFeeRateType = null;
-  
-
-  OtherFeeType otherFeeType = null;
-  
-
-  bool overdraftControlIndicator = null;
-  
-
-  OverdraftOverdraftFeeChargeCap overdraftFeeChargeCap = null;
-  
-  OverdraftOverdraftFeeChargeDetail();
+{
+     this.applicationFrequency = null,  
+     this.calculationFrequency = null,  
+     this.feeAmount = null,  
+     this.feeRate = null,  
+     this.feeRateType = null,  
+     this.feeType = null,  
+     this.incrementalBorrowingAmount = null,  
+     this.notes = const [],  
+     this.otherApplicationFrequency = null,  
+     this.otherCalculationFrequency = null,  
+     this.otherFeeRateType = null,  
+     this.otherFeeType = null,  
+     this.overdraftControlIndicator = null,  
+     this.overdraftFeeChargeCap = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OverdraftOverdraftFeeChargeDetail[applicationFrequency=$applicationFrequency, calculationFrequency=$calculationFrequency, feeAmount=$feeAmount, feeRate=$feeRate, feeRateType=$feeRateType, feeType=$feeType, incrementalBorrowingAmount=$incrementalBorrowingAmount, notes=$notes, otherApplicationFrequency=$otherApplicationFrequency, otherCalculationFrequency=$otherCalculationFrequency, otherFeeRateType=$otherFeeRateType, otherFeeType=$otherFeeType, overdraftControlIndicator=$overdraftControlIndicator, overdraftFeeChargeCap=$overdraftFeeChargeCap, ]';
   }
+}
 
-  OverdraftOverdraftFeeChargeDetail.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    applicationFrequency =
-        json['applicationFrequency']
-    ;
-    calculationFrequency =
-        json['calculationFrequency']
-    ;
-    feeAmount =
-        json['feeAmount']
-    ;
-    feeRate =
-        json['feeRate']
-    ;
-    feeRateType =
-        json['feeRateType']
-    ;
-    feeType =
-        json['feeType']
-    ;
-    incrementalBorrowingAmount =
-        json['incrementalBorrowingAmount']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    otherApplicationFrequency =
-      
-      
-      new OtherApplicationFrequency.fromJson(json['otherApplicationFrequency'])
-;
-    otherCalculationFrequency =
-      
-      
-      new OtherCalculationFrequency.fromJson(json['otherCalculationFrequency'])
-;
-    otherFeeRateType =
-      
-      
-      new OtherFeeRateType.fromJson(json['otherFeeRateType'])
-;
-    otherFeeType =
-      
-      
-      new OtherFeeType.fromJson(json['otherFeeType'])
-;
-    overdraftControlIndicator =
-        json['overdraftControlIndicator']
-    ;
-    overdraftFeeChargeCap =
-      
-      
-      new OverdraftOverdraftFeeChargeCap.fromJson(json['overdraftFeeChargeCap'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class OverdraftOverdraftFeeChargeDetailSerializer extends Serializer<OverdraftOverdraftFeeChargeDetail> with _$OverdraftOverdraftFeeChargeDetailSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'applicationFrequency': applicationFrequency,
-      'calculationFrequency': calculationFrequency,
-      'feeAmount': feeAmount,
-      'feeRate': feeRate,
-      'feeRateType': feeRateType,
-      'feeType': feeType,
-      'incrementalBorrowingAmount': incrementalBorrowingAmount,
-      'notes': notes,
-      'otherApplicationFrequency': otherApplicationFrequency,
-      'otherCalculationFrequency': otherCalculationFrequency,
-      'otherFeeRateType': otherFeeRateType,
-      'otherFeeType': otherFeeType,
-      'overdraftControlIndicator': overdraftControlIndicator,
-      'overdraftFeeChargeCap': overdraftFeeChargeCap
-     };
-  }
-
-  static List<OverdraftOverdraftFeeChargeDetail> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OverdraftOverdraftFeeChargeDetail>() : json.map((value) => new OverdraftOverdraftFeeChargeDetail.fromJson(value)).toList();
-  }
-
-  static Map<String, OverdraftOverdraftFeeChargeDetail> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OverdraftOverdraftFeeChargeDetail>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OverdraftOverdraftFeeChargeDetail.fromJson(value));
-    }
-    return map;
-  }
 }
 

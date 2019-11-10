@@ -1,114 +1,47 @@
-part of yapily_sdk.api;
+import 'package:jaguar_retrofit/annotations/annotations.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
+import 'dart:async';
 
+import 'package:yapily_sdk/model/api_response_of_list_of_atm_open_data_response.dart';
+import 'package:yapily_sdk/model/api_response_of_list_of_personal_current_account_data.dart';
 
+part 'institutions_open_data_api.jretro.dart';
 
-class InstitutionsOpenDataApi {
-  final ApiClient apiClient;
+@GenApiClient()
+class InstitutionsOpenDataApi extends ApiClient with _$InstitutionsOpenDataApiClient {
+    final Route base;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-  InstitutionsOpenDataApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+    InstitutionsOpenDataApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
-  /// Retrieves data about all ATMs of the selected institution
-  ///
-  /// 
-  Future<ApiResponseOfListOfATMOpenDataResponse> getATMDataUsingGET(String institutionId) async {
-    Object postBody = null;
+    /// Retrieves data about all ATMs of the selected institution
+    ///
+    /// 
+    @GetReq(path: "/institutions/:institutionId/atms", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfListOfATMOpenDataResponse> getATMDataUsingGET(
+            @PathParam("institutionId") String institutionId
+        ) {
+        return super.getATMDataUsingGET(
+        institutionId
 
-    // verify required params are set
-    if(institutionId == null) {
-     throw new ApiException(400, "Missing required param: institutionId");
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/institutions/{institutionId}/atms".replaceAll("{format}","json").replaceAll("{" + "institutionId" + "}", institutionId.toString());
+    /// Retrieves details of personal current accounts for an institution
+    ///
+    /// 
+    @GetReq(path: "/institutions/:institutionId/personal-current-accounts", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfListOfPersonalCurrentAccountData> getPersonalCurrentAccountsUsingGET(
+            @PathParam("institutionId") String institutionId
+        ) {
+        return super.getPersonalCurrentAccountsUsingGET(
+        institutionId
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfListOfATMOpenDataResponse') as ApiResponseOfListOfATMOpenDataResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Retrieves details of personal current accounts for an institution
-  ///
-  /// 
-  Future<ApiResponseOfListOfPersonalCurrentAccountData> getPersonalCurrentAccountsUsingGET(String institutionId) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(institutionId == null) {
-     throw new ApiException(400, "Missing required param: institutionId");
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/institutions/{institutionId}/personal-current-accounts".replaceAll("{format}","json").replaceAll("{" + "institutionId" + "}", institutionId.toString());
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfListOfPersonalCurrentAccountData') as ApiResponseOfListOfPersonalCurrentAccountData ;
-    } else {
-      return null;
-    }
-  }
 }

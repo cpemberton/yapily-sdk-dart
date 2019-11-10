@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'location_other_location_category.jser.dart';
 
 class LocationOtherLocationCategory {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  LocationOtherLocationCategory(
+      
 
-  String name = null;
-  
-  LocationOtherLocationCategory();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'LocationOtherLocationCategory[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  LocationOtherLocationCategory.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class LocationOtherLocationCategorySerializer extends Serializer<LocationOtherLocationCategory> with _$LocationOtherLocationCategorySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<LocationOtherLocationCategory> listFromJson(List<dynamic> json) {
-    return json == null ? new List<LocationOtherLocationCategory>() : json.map((value) => new LocationOtherLocationCategory.fromJson(value)).toList();
-  }
-
-  static Map<String, LocationOtherLocationCategory> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, LocationOtherLocationCategory>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new LocationOtherLocationCategory.fromJson(value));
-    }
-    return map;
-  }
 }
 

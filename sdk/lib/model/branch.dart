@@ -1,39 +1,31 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'branch.jser.dart';
 
 class Branch {
   
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
   
-  Branch();
+
+  Branch(
+      
+
+{
+     this.identification = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Branch[identification=$identification, ]';
   }
+}
 
-  Branch.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    identification =
-        json['identification']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class BranchSerializer extends Serializer<Branch> with _$BranchSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'identification': identification
-     };
-  }
-
-  static List<Branch> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Branch>() : json.map((value) => new Branch.fromJson(value)).toList();
-  }
-
-  static Map<String, Branch> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Branch>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Branch.fromJson(value));
-    }
-    return map;
-  }
 }
 

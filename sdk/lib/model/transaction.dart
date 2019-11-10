@@ -1,175 +1,123 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/currency_exchange.dart';
+
+import 'package:yapily_sdk/model/amount.dart';
+
+import 'package:yapily_sdk/model/balance.dart';
+
+import 'package:yapily_sdk/model/statement_reference.dart';
+
+import 'package:yapily_sdk/model/proprietary_bank_transaction_code.dart';
+
+import 'package:yapily_sdk/model/address_details.dart';
+
+import 'package:yapily_sdk/model/merchant.dart';
+
+import 'package:yapily_sdk/model/iso_bank_transaction_code.dart';
+
+import 'package:yapily_sdk/model/charge_details.dart';
+
+part 'transaction.jser.dart';
 
 class Transaction {
-  /* Transaction Id returned by the institution if present */
-  String id = null;
+   /* Transaction Id returned by the institution if present */
+  @Alias('id', isNullable: false,  )
+  final String id;
+   /* Transaction date as defined by the institution */
+  @Alias('date', isNullable: false,  )
+  final DateTime date;
+   /* Date and (if available) time that transaction is posted */
+  @Alias('bookingDateTime', isNullable: false,  )
+  final DateTime bookingDateTime;
+   /* The actual or expected date and time transaction is cleared */
+  @Alias('valueDateTime', isNullable: false,  )
+  final DateTime valueDateTime;
+   /* The status of the transaction */
+  @Alias('status', isNullable: false,
+          
+  )
+  final String status;
+  //enum statusEnum {  ACCOUNT_CHECK,  BOOKED,  DECLINED,  PENDING,  REFUNDED,  RETRYING,  REVERSED,  UPCOMING,  }; /* Deprecated. Use the amount value in `transactionAmount` instead */
+  @Alias('amount', isNullable: false,  )
+  final num amount;
+   /* Deprecated. Use the currency value in `transactionAmount` instead */
+  @Alias('currency', isNullable: false,  )
+  final String currency;
   
-/* Transaction date as defined by the institution */
-  DateTime date = null;
+  @Alias('transactionAmount', isNullable: false,  )
+  final Amount transactionAmount;
   
-/* Date and (if available) time that transaction is posted */
-  DateTime bookingDateTime = null;
+  @Alias('currencyExchange', isNullable: false,  )
+  final CurrencyExchange currencyExchange;
   
-/* The actual or expected date and time transaction is cleared */
-  DateTime valueDateTime = null;
+  @Alias('chargeDetails', isNullable: false,  )
+  final ChargeDetails chargeDetails;
+   /* Transaction reference */
+  @Alias('reference', isNullable: false,  )
+  final String reference;
   
-/* The status of the transaction */
-  String status = null;
-  //enum statusEnum {  ACCOUNT_CHECK,  BOOKED,  DECLINED,  PENDING,  REFUNDED,  RETRYING,  REVERSED,  UPCOMING,  };
-/* Deprecated. Use the amount value in `transactionAmount` instead */
-  num amount = null;
+  @Alias('statementReferences', isNullable: false,  )
+  final List<StatementReference> statementReferences;
+   /* Unstructured text containing details of the transaction. Usage varies according to the institution */
+  @Alias('description', isNullable: false,  )
+  final String description;
+   /* Further information related to the transaction. Usage varies according to the institution */
+  @Alias('transactionInformation', isNullable: false,  )
+  final List<String> transactionInformation;
   
-/* Deprecated. Use the currency value in `transactionAmount` instead */
-  String currency = null;
+  @Alias('addressDetails', isNullable: false,  )
+  final AddressDetails addressDetails;
+  
+  @Alias('isoBankTransactionCode', isNullable: false,  )
+  final IsoBankTransactionCode isoBankTransactionCode;
+  
+  @Alias('proprietaryBankTransactionCode', isNullable: false,  )
+  final ProprietaryBankTransactionCode proprietaryBankTransactionCode;
+  
+  @Alias('balance', isNullable: false,  )
+  final Balance balance;
+  
+  @Alias('merchant', isNullable: false,  )
+  final Merchant merchant;
   
 
-  Amount transactionAmount = null;
-  
+  Transaction(
+      
 
-  CurrencyExchange currencyExchange = null;
-  
-/* If present, contains details of any charges applied during this transaction */
-  ChargeDetails chargeDetails = null;
-  
-/* Transaction reference */
-  String reference = null;
-  
-
-  List<StatementReference> statementReferences = [];
-  
-/* Unstructured text containing details of the transaction. Usage varies according to the institution */
-  String description = null;
-  
-/* Further information related to the transaction. Usage varies according to the institution */
-  List<String> transactionInformation = [];
-  
-
-  AddressDetails addressDetails = null;
-  
-
-  IsoBankTransactionCode isoBankTransactionCode = null;
-  
-
-  ProprietaryBankTransactionCode proprietaryBankTransactionCode = null;
-  
-/* Running account balance after transaction has been applied */
-  Balance balance = null;
-  
-/* Merchant details */
-  Merchant merchant = null;
-  
-  Transaction();
+{
+     this.id = null,  
+     this.date = null,  
+     this.bookingDateTime = null,  
+     this.valueDateTime = null,  
+     this.status = null,  
+     this.amount = null,  
+     this.currency = null,  
+     this.transactionAmount = null,  
+     this.currencyExchange = null,  
+     this.chargeDetails = null,  
+     this.reference = null,  
+     this.statementReferences = const [],  
+     this.description = null,  
+     this.transactionInformation = const [],  
+     this.addressDetails = null,  
+     this.isoBankTransactionCode = null,  
+     this.proprietaryBankTransactionCode = null,  
+     this.balance = null,  
+     this.merchant = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Transaction[id=$id, date=$date, bookingDateTime=$bookingDateTime, valueDateTime=$valueDateTime, status=$status, amount=$amount, currency=$currency, transactionAmount=$transactionAmount, currencyExchange=$currencyExchange, chargeDetails=$chargeDetails, reference=$reference, statementReferences=$statementReferences, description=$description, transactionInformation=$transactionInformation, addressDetails=$addressDetails, isoBankTransactionCode=$isoBankTransactionCode, proprietaryBankTransactionCode=$proprietaryBankTransactionCode, balance=$balance, merchant=$merchant, ]';
   }
+}
 
-  Transaction.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    date = json['date'] == null ? null : DateTime.parse(json['date']);
-    bookingDateTime = json['bookingDateTime'] == null ? null : DateTime.parse(json['bookingDateTime']);
-    valueDateTime = json['valueDateTime'] == null ? null : DateTime.parse(json['valueDateTime']);
-    status =
-        json['status']
-    ;
-    amount =
-        json['amount']
-    ;
-    currency =
-        json['currency']
-    ;
-    transactionAmount =
-      
-      
-      new Amount.fromJson(json['transactionAmount'])
-;
-    currencyExchange =
-      
-      
-      new CurrencyExchange.fromJson(json['currencyExchange'])
-;
-    chargeDetails =
-      
-      
-      new ChargeDetails.fromJson(json['chargeDetails'])
-;
-    reference =
-        json['reference']
-    ;
-    statementReferences =
-      StatementReference.listFromJson(json['statementReferences'])
-;
-    description =
-        json['description']
-    ;
-    transactionInformation =
-        (json['transactionInformation'] as List).map((item) => item as String).toList()
-    ;
-    addressDetails =
-      
-      
-      new AddressDetails.fromJson(json['addressDetails'])
-;
-    isoBankTransactionCode =
-      
-      
-      new IsoBankTransactionCode.fromJson(json['isoBankTransactionCode'])
-;
-    proprietaryBankTransactionCode =
-      
-      
-      new ProprietaryBankTransactionCode.fromJson(json['proprietaryBankTransactionCode'])
-;
-    balance =
-      
-      
-      new Balance.fromJson(json['balance'])
-;
-    merchant =
-      
-      
-      new Merchant.fromJson(json['merchant'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class TransactionSerializer extends Serializer<Transaction> with _$TransactionSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'date': date == null ? '' : date.toUtc().toIso8601String(),
-      'bookingDateTime': bookingDateTime == null ? '' : bookingDateTime.toUtc().toIso8601String(),
-      'valueDateTime': valueDateTime == null ? '' : valueDateTime.toUtc().toIso8601String(),
-      'status': status,
-      'amount': amount,
-      'currency': currency,
-      'transactionAmount': transactionAmount,
-      'currencyExchange': currencyExchange,
-      'chargeDetails': chargeDetails,
-      'reference': reference,
-      'statementReferences': statementReferences,
-      'description': description,
-      'transactionInformation': transactionInformation,
-      'addressDetails': addressDetails,
-      'isoBankTransactionCode': isoBankTransactionCode,
-      'proprietaryBankTransactionCode': proprietaryBankTransactionCode,
-      'balance': balance,
-      'merchant': merchant
-     };
-  }
-
-  static List<Transaction> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Transaction>() : json.map((value) => new Transaction.fromJson(value)).toList();
-  }
-
-  static Map<String, Transaction> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Transaction>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Transaction.fromJson(value));
-    }
-    return map;
-  }
 }
 

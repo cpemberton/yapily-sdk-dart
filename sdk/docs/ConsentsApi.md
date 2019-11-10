@@ -5,17 +5,17 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addConsentUsingPOST**](ConsentsApi.md#addConsentUsingPOST) | **POST** /users/{userUuid}/consents | Post consent
-[**createConsentWithCodeUsingPOST**](ConsentsApi.md#createConsentWithCodeUsingPOST) | **POST** /consent-auth-code | Post auth-code and auth-state
-[**deleteUsingDELETE**](ConsentsApi.md#deleteUsingDELETE) | **DELETE** /consents/{consentId} | Delete consent
-[**getConsentByIdUsingGET**](ConsentsApi.md#getConsentByIdUsingGET) | **GET** /consents/{consentId} | Get consent
-[**getConsentBySingleAccessConsentUsingPOST**](ConsentsApi.md#getConsentBySingleAccessConsentUsingPOST) | **POST** /consent-one-time-token | Post one time token
-[**getConsentsUsingGET**](ConsentsApi.md#getConsentsUsingGET) | **GET** /consents | Get consents sorted by creation date
-[**getUserConsentsUsingGET**](ConsentsApi.md#getUserConsentsUsingGET) | **GET** /users/{userUuid}/consents | Get latest user consents
+[**addConsentUsingPOST**](ConsentsApi.md#addConsentUsingPOST) | **Post** /users/:userUuid/consents | Post consent
+[**createConsentWithCodeUsingPOST**](ConsentsApi.md#createConsentWithCodeUsingPOST) | **Post** /consent-auth-code | Post auth-code and auth-state
+[**deleteUsingDELETE**](ConsentsApi.md#deleteUsingDELETE) | **Delete** /consents/:consentId | Delete consent
+[**getConsentByIdUsingGET**](ConsentsApi.md#getConsentByIdUsingGET) | **Get** /consents/:consentId | Get consent
+[**getConsentBySingleAccessConsentUsingPOST**](ConsentsApi.md#getConsentBySingleAccessConsentUsingPOST) | **Post** /consent-one-time-token | Post one time token
+[**getConsentsUsingGET**](ConsentsApi.md#getConsentsUsingGET) | **Get** /consents | Get consents sorted by creation date
+[**getUserConsentsUsingGET**](ConsentsApi.md#getUserConsentsUsingGET) | **Get** /users/:userUuid/consents | Get latest user consents
 
 
 # **addConsentUsingPOST**
@@ -48,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userUuid** | **String**| userUuid | 
+ **userUuid** | **String**| userUuid | [default to null]
  **createConsentAccessToken** | [**CreateConsentAccessToken**](CreateConsentAccessToken.md)| createConsentAccessToken | 
 
 ### Return type
@@ -142,8 +142,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consentId** | **String**| consentId | 
- **forceDelete** | **bool**| forceDelete | [optional] 
+ **consentId** | **String**| consentId | [default to null]
+ **forceDelete** | **bool**| forceDelete | [optional] [default to null]
 
 ### Return type
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -189,7 +189,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consentId** | **String**| consentId | 
+ **consentId** | **String**| consentId | [default to null]
 
 ### Return type
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -288,13 +288,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter[applicationUserId]** | [**List&lt;String&gt;**](String.md)| Filter consents by your application user Id (applicationUserId) | [optional] 
- **filter[userUuid]** | [**List&lt;String&gt;**](String.md)| Filter consents by Yapily user Id (userUuid) | [optional] 
- **filter[institution]** | [**List&lt;String&gt;**](String.md)| Use this parameter to filter consent by institution, using the Yapily institution Id | [optional] 
- **filter[status]** | [**List&lt;String&gt;**](String.md)| Use this parameter to filter consent by status | [optional] 
- **from** | **String**| Use this parameter to filter consents created after the date specified | [optional] 
- **before** | **String**| Use this parameter to filter consents created before the date specified | [optional] 
- **limit** | **int**| Use this parameter to limit consent results, max limit is 20 | [optional] 
+ **filter[applicationUserId]** | [**List&lt;String&gt;**](String.md)| Filter consents by your application user Id (applicationUserId) | [optional] [default to const []]
+ **filter[userUuid]** | [**List&lt;String&gt;**](String.md)| Filter consents by Yapily user Id (userUuid) | [optional] [default to const []]
+ **filter[institution]** | [**List&lt;String&gt;**](String.md)| Use this parameter to filter consent by institution, using the Yapily institution Id | [optional] [default to const []]
+ **filter[status]** | [**List&lt;String&gt;**](String.md)| Use this parameter to filter consent by status | [optional] [default to const []]
+ **from** | **String**| Use this parameter to filter consents created after the date specified | [optional] [default to null]
+ **before** | **String**| Use this parameter to filter consents created before the date specified | [optional] [default to null]
+ **limit** | **int**| Use this parameter to limit consent results, max limit is 20 | [optional] [default to null]
  **offset** | **int**| Use this parameter to specify the offset of the results | [optional] [default to 0]
 
 ### Return type
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -343,9 +343,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userUuid** | **String**| userUuid | 
- **filter[institution]** | **String**| Use this parameter to filter consent by institution, using the Yapily institution Id. This replaces the deprecated &#x60;institutionId&#x60; query param. | [optional] 
- **limit** | **int**| Use this parameter to limit consent results, max limit is 20 | [optional] 
+ **userUuid** | **String**| userUuid | [default to null]
+ **filter[institution]** | **String**| Use this parameter to filter consent by institution, using the Yapily institution Id. This replaces the deprecated &#x60;institutionId&#x60; query param. | [optional] [default to null]
+ **limit** | **int**| Use this parameter to limit consent results, max limit is 20 | [optional] [default to null]
 
 ### Return type
 
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

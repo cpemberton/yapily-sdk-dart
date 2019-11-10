@@ -1,88 +1,63 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/overdraft_overdraft_fees_charges.dart';
+
+part 'overdraft_overdraft_tier_band.jser.dart';
 
 class OverdraftOverdraftTierBand {
   
-  bool bankGuaranteedIndicator = null;
+  @Alias('BankGuaranteedIndicator', isNullable: false,  )
+  final bool bankGuaranteedIndicator;
   
-
-  String EAR = null;
+  @Alias('EAR', isNullable: false,  )
+  final String EAR;
   
-
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
   
-
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
-
-  List<OverdraftOverdraftFeesCharges> overdraftFeesCharges = [];
+  @Alias('OverdraftFeesCharges', isNullable: false,  )
+  final List<OverdraftOverdraftFeesCharges> overdraftFeesCharges;
   
-
-  String overdraftInterestChargingCoverage = null;
+  @Alias('OverdraftInterestChargingCoverage', isNullable: false,
+          
+  )
+  final String overdraftInterestChargingCoverage;
   //enum overdraftInterestChargingCoverageEnum {  Tiered,  Whole,  };
-
-  String tierValueMax = null;
+  @Alias('TierValueMax', isNullable: false,  )
+  final String tierValueMax;
+  
+  @Alias('TierValueMin', isNullable: false,  )
+  final String tierValueMin;
   
 
-  String tierValueMin = null;
-  
-  OverdraftOverdraftTierBand();
+  OverdraftOverdraftTierBand(
+      
+
+{
+     this.bankGuaranteedIndicator = null,  
+     this.EAR = null,  
+     this.identification = null,  
+     this.notes = const [],  
+     this.overdraftFeesCharges = const [],  
+     this.overdraftInterestChargingCoverage = null,  
+     this.tierValueMax = null,  
+     this.tierValueMin = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OverdraftOverdraftTierBand[bankGuaranteedIndicator=$bankGuaranteedIndicator, EAR=$EAR, identification=$identification, notes=$notes, overdraftFeesCharges=$overdraftFeesCharges, overdraftInterestChargingCoverage=$overdraftInterestChargingCoverage, tierValueMax=$tierValueMax, tierValueMin=$tierValueMin, ]';
   }
+}
 
-  OverdraftOverdraftTierBand.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    bankGuaranteedIndicator =
-        json['bankGuaranteedIndicator']
-    ;
-    EAR =
-        json['EAR']
-    ;
-    identification =
-        json['identification']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    overdraftFeesCharges =
-      OverdraftOverdraftFeesCharges.listFromJson(json['overdraftFeesCharges'])
-;
-    overdraftInterestChargingCoverage =
-        json['overdraftInterestChargingCoverage']
-    ;
-    tierValueMax =
-        json['tierValueMax']
-    ;
-    tierValueMin =
-        json['tierValueMin']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OverdraftOverdraftTierBandSerializer extends Serializer<OverdraftOverdraftTierBand> with _$OverdraftOverdraftTierBandSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'bankGuaranteedIndicator': bankGuaranteedIndicator,
-      'EAR': EAR,
-      'identification': identification,
-      'notes': notes,
-      'overdraftFeesCharges': overdraftFeesCharges,
-      'overdraftInterestChargingCoverage': overdraftInterestChargingCoverage,
-      'tierValueMax': tierValueMax,
-      'tierValueMin': tierValueMin
-     };
-  }
-
-  static List<OverdraftOverdraftTierBand> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OverdraftOverdraftTierBand>() : json.map((value) => new OverdraftOverdraftTierBand.fromJson(value)).toList();
-  }
-
-  static Map<String, OverdraftOverdraftTierBand> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OverdraftOverdraftTierBand>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OverdraftOverdraftTierBand.fromJson(value));
-    }
-    return map;
-  }
 }
 

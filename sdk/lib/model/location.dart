@@ -1,73 +1,59 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/location_other_location_category.dart';
+
+import 'package:yapily_sdk/model/site.dart';
+
+import 'package:yapily_sdk/model/postal_address1.dart';
+
+import 'package:yapily_sdk/model/atm_map_service_links.dart';
+
+part 'location.jser.dart';
 
 class Location {
   
-  List<String> locationCategory = [];
+  @Alias('LocationCategory', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> locationCategory;
   //enum locationCategoryEnum {  BranchExternal,  BranchInternal,  BranchLobby,  Other,  RetailerOutlet,  RemoteUnit,  };
-
-  List<LocationOtherLocationCategory> otherLocationCategory = [];
+  @Alias('OtherLocationCategory', isNullable: false,  )
+  final List<LocationOtherLocationCategory> otherLocationCategory;
+  
+  @Alias('PostalAddress', isNullable: false,  )
+  final PostalAddress1 postalAddress;
+  
+  @Alias('Site', isNullable: false,  )
+  final Site site;
+  
+  @Alias('mapServiceLinks', isNullable: false,  )
+  final ATMMapServiceLinks mapServiceLinks;
   
 
-  PostalAddress1 postalAddress = null;
-  
+  Location(
+      
 
-  Site site = null;
-  
-
-  ATMMapServiceLinks mapServiceLinks = null;
-  
-  Location();
+{
+     this.locationCategory = const [],  
+     this.otherLocationCategory = const [],  
+     this.postalAddress = null,  
+     this.site = null,  
+     this.mapServiceLinks = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Location[locationCategory=$locationCategory, otherLocationCategory=$otherLocationCategory, postalAddress=$postalAddress, site=$site, mapServiceLinks=$mapServiceLinks, ]';
   }
+}
 
-  Location.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    locationCategory =
-        (json['locationCategory'] as List).map((item) => item as String).toList()
-    ;
-    otherLocationCategory =
-      LocationOtherLocationCategory.listFromJson(json['otherLocationCategory'])
-;
-    postalAddress =
-      
-      
-      new PostalAddress1.fromJson(json['postalAddress'])
-;
-    site =
-      
-      
-      new Site.fromJson(json['site'])
-;
-    mapServiceLinks =
-      
-      
-      new ATMMapServiceLinks.fromJson(json['mapServiceLinks'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class LocationSerializer extends Serializer<Location> with _$LocationSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'locationCategory': locationCategory,
-      'otherLocationCategory': otherLocationCategory,
-      'postalAddress': postalAddress,
-      'site': site,
-      'mapServiceLinks': mapServiceLinks
-     };
-  }
-
-  static List<Location> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Location>() : json.map((value) => new Location.fromJson(value)).toList();
-  }
-
-  static Map<String, Location> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Location>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Location.fromJson(value));
-    }
-    return map;
-  }
 }
 

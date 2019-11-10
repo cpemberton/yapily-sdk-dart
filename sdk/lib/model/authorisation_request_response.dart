@@ -1,155 +1,109 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'authorisation_request_response.jser.dart';
 
 class AuthorisationRequestResponse {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
   
-
-  String userUuid = null;
+  @Alias('userUuid', isNullable: false,  )
+  final String userUuid;
   
-
-  String applicationUserId = null;
+  @Alias('applicationUserId', isNullable: false,  )
+  final String applicationUserId;
   
-
-  String referenceId = null;
+  @Alias('referenceId', isNullable: false,  )
+  final String referenceId;
   
-
-  String institutionId = null;
+  @Alias('institutionId', isNullable: false,  )
+  final String institutionId;
   
-
-  String status = null;
+  @Alias('status', isNullable: false,
+          
+  )
+  final String status;
   //enum statusEnum {  AWAITING_AUTHORIZATION,  AWAITING_FURTHER_AUTHORIZATION,  AWAITING_RE_AUTHORIZATION,  AUTHORIZED,  CONSUMED,  REJECTED,  REVOKED,  FAILED,  EXPIRED,  UNKNOWN,  INVALID,  };
-
-  DateTime createdAt = null;
+  @Alias('createdAt', isNullable: false,  )
+  final DateTime createdAt;
   
-
-  DateTime transactionFrom = null;
+  @Alias('transactionFrom', isNullable: false,  )
+  final DateTime transactionFrom;
   
-
-  DateTime transactionTo = null;
+  @Alias('transactionTo', isNullable: false,  )
+  final DateTime transactionTo;
   
-
-  DateTime expiresAt = null;
+  @Alias('expiresAt', isNullable: false,  )
+  final DateTime expiresAt;
+   /* Deprecated. Use `timeToExpire` instead. */
+  @Alias('timeToExpireInMillis', isNullable: false,  )
+  final int timeToExpireInMillis;
+   /* ISO 8601 duration */
+  @Alias('timeToExpire', isNullable: false,  )
+  final String timeToExpire;
   
-/* Deprecated. Use `timeToExpire` instead. */
-  int timeToExpireInMillis = null;
-  
-/* ISO 8601 duration */
-  String timeToExpire = null;
-  
-
-  List<String> featureScope = [];
+  @Alias('featureScope', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> featureScope;
   //enum featureScopeEnum {  INITIATE_ACCOUNT_REQUEST,  ACCOUNT_REQUEST_DETAILS,  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_STATEMENTS,  ACCOUNT_STATEMENT,  ACCOUNT_STATEMENT_FILE,  ACCOUNT_SCHEDULED_PAYMENTS,  ACCOUNT_DIRECT_DEBITS,  ACCOUNT_PERIODIC_PAYMENTS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  INITIATE_PAYMENT,  CREATE_PAYMENT,  INITIATE_DOMESTIC_VARIABLE_RECURRING_PAYMENT,  CREATE_DOMESTIC_VARIABLE_RECURRING_PAYMENT,  INITIATE_DOMESTIC_SCHEDULED_PAYMENT,  CREATE_DOMESTIC_SCHEDULED_PAYMENT,  INITIATE_DOMESTIC_PERIODIC_PAYMENT,  CREATE_DOMESTIC_PERIODIC_PAYMENT,  PERIODIC_PAYMENT_FREQUENCY_EXTENDED,  INITIATE_INTERNATIONAL_VARIABLE_RECURRING_PAYMENT,  CREATE_INTERNATIONAL_VARIABLE_RECURRING_PAYMENT,  INITIATE_INTERNATIONAL_SCHEDULED_PAYMENT,  CREATE_INTERNATIONAL_SCHEDULED_PAYMENT,  INITIATE_INTERNATIONAL_PERIODIC_PAYMENT_ORDER,  CREATE_INTERNATIONAL_PERIODIC_PAYMENT_ORDER,  INITIATE_INTERNATIONAL_PAYMENT,  CREATE_INTERNATIONAL_PAYMENT,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
-
-  DateTime startsAt = null;
+  @Alias('startsAt', isNullable: false,  )
+  final DateTime startsAt;
+  
+  @Alias('totalMaxAmount', isNullable: false,  )
+  final num totalMaxAmount;
+  
+  @Alias('maxAmountPerRequest', isNullable: false,  )
+  final num maxAmountPerRequest;
+  
+  @Alias('allowOverdraft', isNullable: false,  )
+  final bool allowOverdraft;
+  
+  @Alias('consentToken', isNullable: false,  )
+  final String consentToken;
+  
+  @Alias('authorisationUrl', isNullable: false,  )
+  final String authorisationUrl;
   
 
-  num totalMaxAmount = null;
-  
+  AuthorisationRequestResponse(
+      
 
-  num maxAmountPerRequest = null;
-  
-
-  bool allowOverdraft = null;
-  
-
-  String consentToken = null;
-  
-
-  String authorisationUrl = null;
-  
-  AuthorisationRequestResponse();
+{
+     this.id = null,  
+     this.userUuid = null,  
+     this.applicationUserId = null,  
+     this.referenceId = null,  
+     this.institutionId = null,  
+     this.status = null,  
+     this.createdAt = null,  
+     this.transactionFrom = null,  
+     this.transactionTo = null,  
+     this.expiresAt = null,  
+     this.timeToExpireInMillis = null,  
+     this.timeToExpire = null,  
+     this.featureScope = const [],  
+     this.startsAt = null,  
+     this.totalMaxAmount = null,  
+     this.maxAmountPerRequest = null,  
+     this.allowOverdraft = null,  
+     this.consentToken = null,  
+     this.authorisationUrl = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'AuthorisationRequestResponse[id=$id, userUuid=$userUuid, applicationUserId=$applicationUserId, referenceId=$referenceId, institutionId=$institutionId, status=$status, createdAt=$createdAt, transactionFrom=$transactionFrom, transactionTo=$transactionTo, expiresAt=$expiresAt, timeToExpireInMillis=$timeToExpireInMillis, timeToExpire=$timeToExpire, featureScope=$featureScope, startsAt=$startsAt, totalMaxAmount=$totalMaxAmount, maxAmountPerRequest=$maxAmountPerRequest, allowOverdraft=$allowOverdraft, consentToken=$consentToken, authorisationUrl=$authorisationUrl, ]';
   }
+}
 
-  AuthorisationRequestResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    userUuid =
-        json['userUuid']
-    ;
-    applicationUserId =
-        json['applicationUserId']
-    ;
-    referenceId =
-        json['referenceId']
-    ;
-    institutionId =
-        json['institutionId']
-    ;
-    status =
-        json['status']
-    ;
-    createdAt = json['createdAt'] == null ? null : DateTime.parse(json['createdAt']);
-    transactionFrom = json['transactionFrom'] == null ? null : DateTime.parse(json['transactionFrom']);
-    transactionTo = json['transactionTo'] == null ? null : DateTime.parse(json['transactionTo']);
-    expiresAt = json['expiresAt'] == null ? null : DateTime.parse(json['expiresAt']);
-    timeToExpireInMillis =
-        json['timeToExpireInMillis']
-    ;
-    timeToExpire =
-        json['timeToExpire']
-    ;
-    featureScope =
-        (json['featureScope'] as List).map((item) => item as String).toList()
-    ;
-    startsAt = json['startsAt'] == null ? null : DateTime.parse(json['startsAt']);
-    totalMaxAmount =
-        json['totalMaxAmount']
-    ;
-    maxAmountPerRequest =
-        json['maxAmountPerRequest']
-    ;
-    allowOverdraft =
-        json['allowOverdraft']
-    ;
-    consentToken =
-        json['consentToken']
-    ;
-    authorisationUrl =
-        json['authorisationUrl']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class AuthorisationRequestResponseSerializer extends Serializer<AuthorisationRequestResponse> with _$AuthorisationRequestResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'userUuid': userUuid,
-      'applicationUserId': applicationUserId,
-      'referenceId': referenceId,
-      'institutionId': institutionId,
-      'status': status,
-      'createdAt': createdAt == null ? '' : createdAt.toUtc().toIso8601String(),
-      'transactionFrom': transactionFrom == null ? '' : transactionFrom.toUtc().toIso8601String(),
-      'transactionTo': transactionTo == null ? '' : transactionTo.toUtc().toIso8601String(),
-      'expiresAt': expiresAt == null ? '' : expiresAt.toUtc().toIso8601String(),
-      'timeToExpireInMillis': timeToExpireInMillis,
-      'timeToExpire': timeToExpire,
-      'featureScope': featureScope,
-      'startsAt': startsAt == null ? '' : startsAt.toUtc().toIso8601String(),
-      'totalMaxAmount': totalMaxAmount,
-      'maxAmountPerRequest': maxAmountPerRequest,
-      'allowOverdraft': allowOverdraft,
-      'consentToken': consentToken,
-      'authorisationUrl': authorisationUrl
-     };
-  }
-
-  static List<AuthorisationRequestResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<AuthorisationRequestResponse>() : json.map((value) => new AuthorisationRequestResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, AuthorisationRequestResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, AuthorisationRequestResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new AuthorisationRequestResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

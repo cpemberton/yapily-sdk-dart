@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/next.dart';
+
+import 'package:yapily_sdk/model/filter_and_sort.dart';
+
+part 'pagination.jser.dart';
 
 class Pagination {
   
-  Next next = null;
+  @Alias('next', isNullable: false,  )
+  final Next next;
+  
+  @Alias('self', isNullable: false,  )
+  final FilterAndSort self;
+  
+  @Alias('totalCount', isNullable: false,  )
+  final int totalCount;
   
 
-  FilterAndSort self = null;
-  
+  Pagination(
+      
 
-  int totalCount = null;
-  
-  Pagination();
+{
+     this.next = null,  
+     this.self = null,  
+     this.totalCount = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Pagination[next=$next, self=$self, totalCount=$totalCount, ]';
   }
+}
 
-  Pagination.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    next =
-      
-      
-      new Next.fromJson(json['next'])
-;
-    self =
-      
-      
-      new FilterAndSort.fromJson(json['self'])
-;
-    totalCount =
-        json['totalCount']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class PaginationSerializer extends Serializer<Pagination> with _$PaginationSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'next': next,
-      'self': self,
-      'totalCount': totalCount
-     };
-  }
-
-  static List<Pagination> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Pagination>() : json.map((value) => new Pagination.fromJson(value)).toList();
-  }
-
-  static Map<String, Pagination> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Pagination>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Pagination.fromJson(value));
-    }
-    return map;
-  }
 }
 

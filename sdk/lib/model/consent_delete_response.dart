@@ -1,65 +1,49 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'consent_delete_response.jser.dart';
 
 class ConsentDeleteResponse {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
   
-
-  String deleteStatus = null;
+  @Alias('deleteStatus', isNullable: false,
+          
+  )
+  final String deleteStatus;
   //enum deleteStatusEnum {  SUCCESS,  FAILED,  };
-
-  String institutionId = null;
+  @Alias('institutionId', isNullable: false,  )
+  final String institutionId;
+  
+  @Alias('institutionConsentId', isNullable: false,  )
+  final String institutionConsentId;
+  
+  @Alias('creationDate', isNullable: false,  )
+  final DateTime creationDate;
   
 
-  String institutionConsentId = null;
-  
+  ConsentDeleteResponse(
+      
 
-  DateTime creationDate = null;
-  
-  ConsentDeleteResponse();
+{
+     this.id = null,  
+     this.deleteStatus = null,  
+     this.institutionId = null,  
+     this.institutionConsentId = null,  
+     this.creationDate = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ConsentDeleteResponse[id=$id, deleteStatus=$deleteStatus, institutionId=$institutionId, institutionConsentId=$institutionConsentId, creationDate=$creationDate, ]';
   }
+}
 
-  ConsentDeleteResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    deleteStatus =
-        json['deleteStatus']
-    ;
-    institutionId =
-        json['institutionId']
-    ;
-    institutionConsentId =
-        json['institutionConsentId']
-    ;
-    creationDate = json['creationDate'] == null ? null : DateTime.parse(json['creationDate']);
-  }
+@GenSerializer(nullableFields: true)
+class ConsentDeleteResponseSerializer extends Serializer<ConsentDeleteResponse> with _$ConsentDeleteResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'deleteStatus': deleteStatus,
-      'institutionId': institutionId,
-      'institutionConsentId': institutionConsentId,
-      'creationDate': creationDate == null ? '' : creationDate.toUtc().toIso8601String()
-     };
-  }
-
-  static List<ConsentDeleteResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ConsentDeleteResponse>() : json.map((value) => new ConsentDeleteResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ConsentDeleteResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ConsentDeleteResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ConsentDeleteResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

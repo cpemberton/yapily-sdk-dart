@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+import 'package:yapily_sdk/model/user_delete_response.dart';
+
+part 'api_response_of_user_delete_response.jser.dart';
 
 class ApiResponseOfUserDeleteResponse {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final UserDeleteResponse data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  UserDeleteResponse data = null;
-  
+  ApiResponseOfUserDeleteResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfUserDeleteResponse();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfUserDeleteResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfUserDeleteResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new UserDeleteResponse.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfUserDeleteResponseSerializer extends Serializer<ApiResponseOfUserDeleteResponse> with _$ApiResponseOfUserDeleteResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfUserDeleteResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfUserDeleteResponse>() : json.map((value) => new ApiResponseOfUserDeleteResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfUserDeleteResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfUserDeleteResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfUserDeleteResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

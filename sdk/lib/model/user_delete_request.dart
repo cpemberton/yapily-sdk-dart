@@ -1,46 +1,35 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'user_delete_request.jser.dart';
 
 class UserDeleteRequest {
   
-  List<String> userUuids = [];
+  @Alias('userUuids', isNullable: false,  )
+  final List<String> userUuids;
+  
+  @Alias('applicationUserIds', isNullable: false,  )
+  final List<String> applicationUserIds;
   
 
-  List<String> applicationUserIds = [];
-  
-  UserDeleteRequest();
+  UserDeleteRequest(
+      
+
+{
+     this.userUuids = const [],  
+     this.applicationUserIds = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'UserDeleteRequest[userUuids=$userUuids, applicationUserIds=$applicationUserIds, ]';
   }
+}
 
-  UserDeleteRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    userUuids =
-        (json['userUuids'] as List).map((item) => item as String).toList()
-    ;
-    applicationUserIds =
-        (json['applicationUserIds'] as List).map((item) => item as String).toList()
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class UserDeleteRequestSerializer extends Serializer<UserDeleteRequest> with _$UserDeleteRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'userUuids': userUuids,
-      'applicationUserIds': applicationUserIds
-     };
-  }
-
-  static List<UserDeleteRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<UserDeleteRequest>() : json.map((value) => new UserDeleteRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, UserDeleteRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, UserDeleteRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new UserDeleteRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

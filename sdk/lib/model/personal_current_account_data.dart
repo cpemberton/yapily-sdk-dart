@@ -1,39 +1,33 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/personal_current_account_brand.dart';
+
+part 'personal_current_account_data.jser.dart';
 
 class PersonalCurrentAccountData {
   
-  List<PersonalCurrentAccountBrand> brand = [];
+  @Alias('Brand', isNullable: false,  )
+  final List<PersonalCurrentAccountBrand> brand;
   
-  PersonalCurrentAccountData();
+
+  PersonalCurrentAccountData(
+      
+
+{
+     this.brand = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PersonalCurrentAccountData[brand=$brand, ]';
   }
+}
 
-  PersonalCurrentAccountData.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    brand =
-      PersonalCurrentAccountBrand.listFromJson(json['brand'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class PersonalCurrentAccountDataSerializer extends Serializer<PersonalCurrentAccountData> with _$PersonalCurrentAccountDataSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'brand': brand
-     };
-  }
-
-  static List<PersonalCurrentAccountData> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PersonalCurrentAccountData>() : json.map((value) => new PersonalCurrentAccountData.fromJson(value)).toList();
-  }
-
-  static Map<String, PersonalCurrentAccountData> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PersonalCurrentAccountData>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PersonalCurrentAccountData.fromJson(value));
-    }
-    return map;
-  }
 }
 

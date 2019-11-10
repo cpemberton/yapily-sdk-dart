@@ -1,120 +1,91 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/inline_response2001_other_atm_services.dart';
+
+import 'package:yapily_sdk/model/inline_response2001_other_accessibility.dart';
+
+import 'package:yapily_sdk/model/location.dart';
+
+import 'package:yapily_sdk/model/branch.dart';
+
+part 'inline_response2001_atm.jser.dart';
 
 class InlineResponse2001ATM {
   
-  List<String> aTMServices = [];
+  @Alias('ATMServices', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> aTMServices;
   //enum aTMServicesEnum {  Balance,  BillPayments,  CashDeposits,  CharityDonation,  ChequeDeposits,  CashWithdrawal,  EnvelopeDeposit,  FastCash,  MobileBankingRegistration,  MobilePaymentRegistration,  MobilePhoneTopUp,  OrderStatement,  Other,  PINActivation,  PINChange,  PINUnblock,  MiniStatement,  };
-
-  bool access24HoursIndicator = null;
+  @Alias('Access24HoursIndicator', isNullable: false,  )
+  final bool access24HoursIndicator;
   
-
-  List<String> accessibility = [];
+  @Alias('Accessibility', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> accessibility;
   //enum accessibilityEnum {  AudioCashMachine,  AutomaticDoors,  ExternalRamp,  InductionLoop,  InternalRamp,  LevelAccess,  LowerLevelCounter,  Other,  WheelchairAccess,  };
-
-  Branch branch = null;
+  @Alias('Branch', isNullable: false,  )
+  final Branch branch;
+  
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
+  
+  @Alias('Location', isNullable: false,  )
+  final Location location;
+  
+  @Alias('MinimumPossibleAmount', isNullable: false,  )
+  final String minimumPossibleAmount;
+  
+  @Alias('Note', isNullable: false,  )
+  final List<String> note;
+  
+  @Alias('OtherATMServices', isNullable: false,  )
+  final List<InlineResponse2001OtherATMServices> otherATMServices;
+  
+  @Alias('OtherAccessibility', isNullable: false,  )
+  final List<InlineResponse2001OtherAccessibility> otherAccessibility;
+  
+  @Alias('SupportedCurrencies', isNullable: false,  )
+  final List<String> supportedCurrencies;
+  
+  @Alias('SupportedLanguages', isNullable: false,  )
+  final List<String> supportedLanguages;
   
 
-  String identification = null;
-  
+  InlineResponse2001ATM(
+      
 
-  Location location = null;
-  
-
-  String minimumPossibleAmount = null;
-  
-
-  List<String> note = [];
-  
-
-  List<InlineResponse2001OtherATMServices> otherATMServices = [];
-  
-
-  List<InlineResponse2001OtherAccessibility> otherAccessibility = [];
-  
-
-  List<String> supportedCurrencies = [];
-  
-
-  List<String> supportedLanguages = [];
-  
-  InlineResponse2001ATM();
+{
+     this.aTMServices = const [],  
+     this.access24HoursIndicator = null,  
+     this.accessibility = const [],  
+     this.branch = null,  
+     this.identification = null,  
+     this.location = null,  
+     this.minimumPossibleAmount = null,  
+     this.note = const [],  
+     this.otherATMServices = const [],  
+     this.otherAccessibility = const [],  
+     this.supportedCurrencies = const [],  
+     this.supportedLanguages = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'InlineResponse2001ATM[aTMServices=$aTMServices, access24HoursIndicator=$access24HoursIndicator, accessibility=$accessibility, branch=$branch, identification=$identification, location=$location, minimumPossibleAmount=$minimumPossibleAmount, note=$note, otherATMServices=$otherATMServices, otherAccessibility=$otherAccessibility, supportedCurrencies=$supportedCurrencies, supportedLanguages=$supportedLanguages, ]';
   }
+}
 
-  InlineResponse2001ATM.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    aTMServices =
-        (json['aTMServices'] as List).map((item) => item as String).toList()
-    ;
-    access24HoursIndicator =
-        json['access24HoursIndicator']
-    ;
-    accessibility =
-        (json['accessibility'] as List).map((item) => item as String).toList()
-    ;
-    branch =
-      
-      
-      new Branch.fromJson(json['branch'])
-;
-    identification =
-        json['identification']
-    ;
-    location =
-      
-      
-      new Location.fromJson(json['location'])
-;
-    minimumPossibleAmount =
-        json['minimumPossibleAmount']
-    ;
-    note =
-        (json['note'] as List).map((item) => item as String).toList()
-    ;
-    otherATMServices =
-      InlineResponse2001OtherATMServices.listFromJson(json['otherATMServices'])
-;
-    otherAccessibility =
-      InlineResponse2001OtherAccessibility.listFromJson(json['otherAccessibility'])
-;
-    supportedCurrencies =
-        (json['supportedCurrencies'] as List).map((item) => item as String).toList()
-    ;
-    supportedLanguages =
-        (json['supportedLanguages'] as List).map((item) => item as String).toList()
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class InlineResponse2001ATMSerializer extends Serializer<InlineResponse2001ATM> with _$InlineResponse2001ATMSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'aTMServices': aTMServices,
-      'access24HoursIndicator': access24HoursIndicator,
-      'accessibility': accessibility,
-      'branch': branch,
-      'identification': identification,
-      'location': location,
-      'minimumPossibleAmount': minimumPossibleAmount,
-      'note': note,
-      'otherATMServices': otherATMServices,
-      'otherAccessibility': otherAccessibility,
-      'supportedCurrencies': supportedCurrencies,
-      'supportedLanguages': supportedLanguages
-     };
-  }
-
-  static List<InlineResponse2001ATM> listFromJson(List<dynamic> json) {
-    return json == null ? new List<InlineResponse2001ATM>() : json.map((value) => new InlineResponse2001ATM.fromJson(value)).toList();
-  }
-
-  static Map<String, InlineResponse2001ATM> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, InlineResponse2001ATM>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new InlineResponse2001ATM.fromJson(value));
-    }
-    return map;
-  }
 }
 

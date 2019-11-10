@@ -1,59 +1,41 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/iso_code_details.dart';
+
+part 'iso_bank_transaction_code.jser.dart';
 
 class IsoBankTransactionCode {
   
-  IsoCodeDetails domainCode = null;
+  @Alias('domainCode', isNullable: false,  )
+  final IsoCodeDetails domainCode;
+  
+  @Alias('familyCode', isNullable: false,  )
+  final IsoCodeDetails familyCode;
+  
+  @Alias('subFamilyCode', isNullable: false,  )
+  final IsoCodeDetails subFamilyCode;
   
 
-  IsoCodeDetails familyCode = null;
-  
+  IsoBankTransactionCode(
+      
 
-  IsoCodeDetails subFamilyCode = null;
-  
-  IsoBankTransactionCode();
+{
+     this.domainCode = null,  
+     this.familyCode = null,  
+     this.subFamilyCode = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'IsoBankTransactionCode[domainCode=$domainCode, familyCode=$familyCode, subFamilyCode=$subFamilyCode, ]';
   }
+}
 
-  IsoBankTransactionCode.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    domainCode =
-      
-      
-      new IsoCodeDetails.fromJson(json['domainCode'])
-;
-    familyCode =
-      
-      
-      new IsoCodeDetails.fromJson(json['familyCode'])
-;
-    subFamilyCode =
-      
-      
-      new IsoCodeDetails.fromJson(json['subFamilyCode'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class IsoBankTransactionCodeSerializer extends Serializer<IsoBankTransactionCode> with _$IsoBankTransactionCodeSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'domainCode': domainCode,
-      'familyCode': familyCode,
-      'subFamilyCode': subFamilyCode
-     };
-  }
-
-  static List<IsoBankTransactionCode> listFromJson(List<dynamic> json) {
-    return json == null ? new List<IsoBankTransactionCode>() : json.map((value) => new IsoBankTransactionCode.fromJson(value)).toList();
-  }
-
-  static Map<String, IsoBankTransactionCode> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, IsoBankTransactionCode>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new IsoBankTransactionCode.fromJson(value));
-    }
-    return map;
-  }
 }
 

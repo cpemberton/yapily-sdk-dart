@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **meta** | [**ResponseMeta**](ResponseMeta.md) |  | [optional] [default to null]
 **data** | [**UserDeleteResponse**](UserDeleteResponse.md) |  | [optional] [default to null]
-**links** | **Map&lt;String, String&gt;** |  | [optional] [default to {}]
+**links** | **Map&lt;String, String&gt;** |  | [optional] [default to const {}]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

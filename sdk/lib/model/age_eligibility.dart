@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'age_eligibility.jser.dart';
 
 class AgeEligibility {
   
-  double maximumAge = null;
+  @Alias('MaximumAge', isNullable: false,  )
+  final double maximumAge;
+  
+  @Alias('MinimumAge', isNullable: false,  )
+  final double minimumAge;
+  
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
 
-  double minimumAge = null;
-  
+  AgeEligibility(
+      
 
-  List<String> notes = [];
-  
-  AgeEligibility();
+{
+     this.maximumAge = null,  
+     this.minimumAge = null,  
+     this.notes = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'AgeEligibility[maximumAge=$maximumAge, minimumAge=$minimumAge, notes=$notes, ]';
   }
+}
 
-  AgeEligibility.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    maximumAge =
-        json['maximumAge']
-    ;
-    minimumAge =
-        json['minimumAge']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class AgeEligibilitySerializer extends Serializer<AgeEligibility> with _$AgeEligibilitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'maximumAge': maximumAge,
-      'minimumAge': minimumAge,
-      'notes': notes
-     };
-  }
-
-  static List<AgeEligibility> listFromJson(List<dynamic> json) {
-    return json == null ? new List<AgeEligibility>() : json.map((value) => new AgeEligibility.fromJson(value)).toList();
-  }
-
-  static Map<String, AgeEligibility> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, AgeEligibility>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new AgeEligibility.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -1,136 +1,99 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/other_calculation_frequency.dart';
+
+import 'package:yapily_sdk/model/other_bank_interest_type.dart';
+
+import 'package:yapily_sdk/model/other_application_frequency.dart';
+
+part 'credit_interest_tier_band.jser.dart';
 
 class CreditInterestTierBand {
   
-  String AER = null;
+  @Alias('AER', isNullable: false,  )
+  final String AER;
   
-
-  String applicationFrequency = null;
+  @Alias('ApplicationFrequency', isNullable: false,
+          
+  )
+  final String applicationFrequency;
   //enum applicationFrequencyEnum {  PerAcademicTerm,  Daily,  HalfYearly,  Monthly,  Other,  Quarterly,  PerStatementDate,  Weekly,  Yearly,  };
-
-  String bankInterestRate = null;
+  @Alias('BankInterestRate', isNullable: false,  )
+  final String bankInterestRate;
   
-
-  String bankInterestRateType = null;
+  @Alias('BankInterestRateType', isNullable: false,
+          
+  )
+  final String bankInterestRateType;
   //enum bankInterestRateTypeEnum {  LinkedBaseRate,  Gross,  Net,  Other,  };
-
-  String calculationFrequency = null;
+  @Alias('CalculationFrequency', isNullable: false,
+          
+  )
+  final String calculationFrequency;
   //enum calculationFrequencyEnum {  PerAcademicTerm,  Daily,  HalfYearly,  Monthly,  Other,  Quarterly,  PerStatementDate,  Weekly,  Yearly,  };
-
-  String depositInterestAppliedCoverage = null;
+  @Alias('DepositInterestAppliedCoverage', isNullable: false,
+          
+  )
+  final String depositInterestAppliedCoverage;
   //enum depositInterestAppliedCoverageEnum {  Tiered,  Whole,  };
-
-  String fixedVariableInterestRateType = null;
+  @Alias('FixedVariableInterestRateType', isNullable: false,
+          
+  )
+  final String fixedVariableInterestRateType;
   //enum fixedVariableInterestRateTypeEnum {  Fixed,  Variable,  };
-
-  String identification = null;
+  @Alias('Identification', isNullable: false,  )
+  final String identification;
+  
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
+  
+  @Alias('OtherApplicationFrequency', isNullable: false,  )
+  final OtherApplicationFrequency otherApplicationFrequency;
+  
+  @Alias('OtherBankInterestType', isNullable: false,  )
+  final OtherBankInterestType otherBankInterestType;
+  
+  @Alias('OtherCalculationFrequency', isNullable: false,  )
+  final OtherCalculationFrequency otherCalculationFrequency;
+  
+  @Alias('TierValueMaximum', isNullable: false,  )
+  final String tierValueMaximum;
+  
+  @Alias('TierValueMinimum', isNullable: false,  )
+  final String tierValueMinimum;
   
 
-  List<String> notes = [];
-  
+  CreditInterestTierBand(
+      
 
-  OtherApplicationFrequency otherApplicationFrequency = null;
-  
-
-  OtherBankInterestType otherBankInterestType = null;
-  
-
-  OtherCalculationFrequency otherCalculationFrequency = null;
-  
-
-  String tierValueMaximum = null;
-  
-
-  String tierValueMinimum = null;
-  
-  CreditInterestTierBand();
+{
+     this.AER = null,  
+     this.applicationFrequency = null,  
+     this.bankInterestRate = null,  
+     this.bankInterestRateType = null,  
+     this.calculationFrequency = null,  
+     this.depositInterestAppliedCoverage = null,  
+     this.fixedVariableInterestRateType = null,  
+     this.identification = null,  
+     this.notes = const [],  
+     this.otherApplicationFrequency = null,  
+     this.otherBankInterestType = null,  
+     this.otherCalculationFrequency = null,  
+     this.tierValueMaximum = null,  
+     this.tierValueMinimum = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CreditInterestTierBand[AER=$AER, applicationFrequency=$applicationFrequency, bankInterestRate=$bankInterestRate, bankInterestRateType=$bankInterestRateType, calculationFrequency=$calculationFrequency, depositInterestAppliedCoverage=$depositInterestAppliedCoverage, fixedVariableInterestRateType=$fixedVariableInterestRateType, identification=$identification, notes=$notes, otherApplicationFrequency=$otherApplicationFrequency, otherBankInterestType=$otherBankInterestType, otherCalculationFrequency=$otherCalculationFrequency, tierValueMaximum=$tierValueMaximum, tierValueMinimum=$tierValueMinimum, ]';
   }
+}
 
-  CreditInterestTierBand.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    AER =
-        json['AER']
-    ;
-    applicationFrequency =
-        json['applicationFrequency']
-    ;
-    bankInterestRate =
-        json['bankInterestRate']
-    ;
-    bankInterestRateType =
-        json['bankInterestRateType']
-    ;
-    calculationFrequency =
-        json['calculationFrequency']
-    ;
-    depositInterestAppliedCoverage =
-        json['depositInterestAppliedCoverage']
-    ;
-    fixedVariableInterestRateType =
-        json['fixedVariableInterestRateType']
-    ;
-    identification =
-        json['identification']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    otherApplicationFrequency =
-      
-      
-      new OtherApplicationFrequency.fromJson(json['otherApplicationFrequency'])
-;
-    otherBankInterestType =
-      
-      
-      new OtherBankInterestType.fromJson(json['otherBankInterestType'])
-;
-    otherCalculationFrequency =
-      
-      
-      new OtherCalculationFrequency.fromJson(json['otherCalculationFrequency'])
-;
-    tierValueMaximum =
-        json['tierValueMaximum']
-    ;
-    tierValueMinimum =
-        json['tierValueMinimum']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CreditInterestTierBandSerializer extends Serializer<CreditInterestTierBand> with _$CreditInterestTierBandSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'AER': AER,
-      'applicationFrequency': applicationFrequency,
-      'bankInterestRate': bankInterestRate,
-      'bankInterestRateType': bankInterestRateType,
-      'calculationFrequency': calculationFrequency,
-      'depositInterestAppliedCoverage': depositInterestAppliedCoverage,
-      'fixedVariableInterestRateType': fixedVariableInterestRateType,
-      'identification': identification,
-      'notes': notes,
-      'otherApplicationFrequency': otherApplicationFrequency,
-      'otherBankInterestType': otherBankInterestType,
-      'otherCalculationFrequency': otherCalculationFrequency,
-      'tierValueMaximum': tierValueMaximum,
-      'tierValueMinimum': tierValueMinimum
-     };
-  }
-
-  static List<CreditInterestTierBand> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreditInterestTierBand>() : json.map((value) => new CreditInterestTierBand.fromJson(value)).toList();
-  }
-
-  static Map<String, CreditInterestTierBand> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreditInterestTierBand>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreditInterestTierBand.fromJson(value));
-    }
-    return map;
-  }
 }
 

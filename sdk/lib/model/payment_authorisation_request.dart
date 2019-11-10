@@ -1,121 +1,83 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/payment_request.dart';
+
+part 'payment_authorisation_request.jser.dart';
 
 class PaymentAuthorisationRequest {
   
-  String userUuid = null;
+  @Alias('userUuid', isNullable: false,  )
+  final String userUuid;
   
-
-  String applicationUserId = null;
+  @Alias('applicationUserId', isNullable: false,  )
+  final String applicationUserId;
   
-
-  List<String> forwardParameters = [];
+  @Alias('forwardParameters', isNullable: false,  )
+  final List<String> forwardParameters;
   
-
-  String institutionId = null;
+  @Alias('institutionId', isNullable: false,  )
+  final String institutionId;
   
-
-  String callback = null;
+  @Alias('callback', isNullable: false,  )
+  final String callback;
   
-
-  bool oneTimeToken = null;
+  @Alias('oneTimeToken', isNullable: false,  )
+  final bool oneTimeToken;
   
-
-  PaymentRequest paymentRequest = null;
+  @Alias('paymentRequest', isNullable: false,  )
+  final PaymentRequest paymentRequest;
   
-
-  num totalMaxAmount = null;
+  @Alias('totalMaxAmount', isNullable: false,  )
+  final num totalMaxAmount;
   
-
-  String totalMaxAmountFrequency = null;
+  @Alias('totalMaxAmountFrequency', isNullable: false,
+          
+  )
+  final String totalMaxAmountFrequency;
   //enum totalMaxAmountFrequencyEnum {  DAILY,  WEEKLY,  MONTHLY,  YEARLY,  };
-
-  num maxAmountPerRequest = null;
+  @Alias('maxAmountPerRequest', isNullable: false,  )
+  final num maxAmountPerRequest;
+  
+  @Alias('startsAt', isNullable: false,  )
+  final DateTime startsAt;
+  
+  @Alias('expiresAt', isNullable: false,  )
+  final DateTime expiresAt;
+  
+  @Alias('allowOverdraft', isNullable: false,  )
+  final bool allowOverdraft;
   
 
-  DateTime startsAt = null;
-  
+  PaymentAuthorisationRequest(
+      
 
-  DateTime expiresAt = null;
-  
-
-  bool allowOverdraft = null;
-  
-  PaymentAuthorisationRequest();
+{
+     this.userUuid = null,  
+     this.applicationUserId = null,  
+     this.forwardParameters = const [],  
+    
+     this.institutionId = null,  
+     this.callback = null,  
+     this.oneTimeToken = null,  
+     this.paymentRequest = null,   this.totalMaxAmount = null,  
+     this.totalMaxAmountFrequency = null,  
+     this.maxAmountPerRequest = null,  
+     this.startsAt = null,  
+     this.expiresAt = null,  
+     this.allowOverdraft = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PaymentAuthorisationRequest[userUuid=$userUuid, applicationUserId=$applicationUserId, forwardParameters=$forwardParameters, institutionId=$institutionId, callback=$callback, oneTimeToken=$oneTimeToken, paymentRequest=$paymentRequest, totalMaxAmount=$totalMaxAmount, totalMaxAmountFrequency=$totalMaxAmountFrequency, maxAmountPerRequest=$maxAmountPerRequest, startsAt=$startsAt, expiresAt=$expiresAt, allowOverdraft=$allowOverdraft, ]';
   }
+}
 
-  PaymentAuthorisationRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    userUuid =
-        json['userUuid']
-    ;
-    applicationUserId =
-        json['applicationUserId']
-    ;
-    forwardParameters =
-        (json['forwardParameters'] as List).map((item) => item as String).toList()
-    ;
-    institutionId =
-        json['institutionId']
-    ;
-    callback =
-        json['callback']
-    ;
-    oneTimeToken =
-        json['oneTimeToken']
-    ;
-    paymentRequest =
-      
-      
-      new PaymentRequest.fromJson(json['paymentRequest'])
-;
-    totalMaxAmount =
-        json['totalMaxAmount']
-    ;
-    totalMaxAmountFrequency =
-        json['totalMaxAmountFrequency']
-    ;
-    maxAmountPerRequest =
-        json['maxAmountPerRequest']
-    ;
-    startsAt = json['startsAt'] == null ? null : DateTime.parse(json['startsAt']);
-    expiresAt = json['expiresAt'] == null ? null : DateTime.parse(json['expiresAt']);
-    allowOverdraft =
-        json['allowOverdraft']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class PaymentAuthorisationRequestSerializer extends Serializer<PaymentAuthorisationRequest> with _$PaymentAuthorisationRequestSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'userUuid': userUuid,
-      'applicationUserId': applicationUserId,
-      'forwardParameters': forwardParameters,
-      'institutionId': institutionId,
-      'callback': callback,
-      'oneTimeToken': oneTimeToken,
-      'paymentRequest': paymentRequest,
-      'totalMaxAmount': totalMaxAmount,
-      'totalMaxAmountFrequency': totalMaxAmountFrequency,
-      'maxAmountPerRequest': maxAmountPerRequest,
-      'startsAt': startsAt == null ? '' : startsAt.toUtc().toIso8601String(),
-      'expiresAt': expiresAt == null ? '' : expiresAt.toUtc().toIso8601String(),
-      'allowOverdraft': allowOverdraft
-     };
-  }
-
-  static List<PaymentAuthorisationRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PaymentAuthorisationRequest>() : json.map((value) => new PaymentAuthorisationRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, PaymentAuthorisationRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PaymentAuthorisationRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PaymentAuthorisationRequest.fromJson(value));
-    }
-    return map;
-  }
 }
 

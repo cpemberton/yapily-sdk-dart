@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **userUuid** | **String** |  | [optional] [default to null]
 **applicationUserId** | **String** |  | [optional] [default to null]
-**forwardParameters** | **List&lt;String&gt;** |  | [optional] [default to []]
+**forwardParameters** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **institutionId** | **String** |  | [default to null]
 **callback** | **String** |  | [default to null]
 **oneTimeToken** | **bool** |  | [default to null]

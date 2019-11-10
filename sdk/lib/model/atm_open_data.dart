@@ -1,39 +1,33 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/atm_open_data_brand.dart';
+
+part 'atm_open_data.jser.dart';
 
 class ATMOpenData {
   
-  List<ATMOpenDataBrand> brand = [];
+  @Alias('Brand', isNullable: false,  )
+  final List<ATMOpenDataBrand> brand;
   
-  ATMOpenData();
+
+  ATMOpenData(
+      
+
+{
+     this.brand = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ATMOpenData[brand=$brand, ]';
   }
+}
 
-  ATMOpenData.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    brand =
-      ATMOpenDataBrand.listFromJson(json['brand'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class ATMOpenDataSerializer extends Serializer<ATMOpenData> with _$ATMOpenDataSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'brand': brand
-     };
-  }
-
-  static List<ATMOpenData> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ATMOpenData>() : json.map((value) => new ATMOpenData.fromJson(value)).toList();
-  }
-
-  static Map<String, ATMOpenData> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ATMOpenData>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ATMOpenData.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -1,57 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/identity.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_identity.jser.dart';
 
 class ApiResponseOfIdentity {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final Identity data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  Identity data = null;
-  
+  ApiResponseOfIdentity(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfIdentity();
+{
+     this.meta = null,  
+     this.data = null,  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfIdentity[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfIdentity.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      
-      
-      new Identity.fromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfIdentitySerializer extends Serializer<ApiResponseOfIdentity> with _$ApiResponseOfIdentitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfIdentity> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfIdentity>() : json.map((value) => new ApiResponseOfIdentity.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfIdentity> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfIdentity>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfIdentity.fromJson(value));
-    }
-    return map;
-  }
 }
 

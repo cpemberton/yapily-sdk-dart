@@ -1,157 +1,54 @@
-part of yapily_sdk.api;
+import 'package:jaguar_retrofit/annotations/annotations.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
+import 'dart:async';
 
+import 'package:yapily_sdk/model/application.dart';
+import 'package:yapily_sdk/model/response_entity.dart';
 
+part 'applications_api.jretro.dart';
 
-class ApplicationsApi {
-  final ApiClient apiClient;
+@GenApiClient()
+class ApplicationsApi extends ApiClient with _$ApplicationsApiClient {
+    final Route base;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-  ApplicationsApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+    ApplicationsApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
-  /// Returns the details of the application that owns the request credentials
-  ///
-  /// 
-  Future<Application> getApplicationMeUsingGET() async {
-    Object postBody = null;
+    /// Returns the details of the application that owns the request credentials
+    ///
+    /// 
+    @GetReq(path: "/me", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<Application> getApplicationMeUsingGET(
+        ) {
+        return super.getApplicationMeUsingGET(
 
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/me".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
+        ).timeout(timeout);
     }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    /// JSON Web Key Set (JWKS) for authenticated application
+    ///
+    /// 
+    @GetReq(path: "/jwks", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<Object> getJwksUsingGET(
+        ) {
+        return super.getJwksUsingGET(
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'Application') as Application ;
-    } else {
-      return null;
+        ).timeout(timeout);
     }
-  }
-  /// JSON Web Key Set (JWKS) for authenticated application
-  ///
-  /// 
-  Future<Object> getJwksUsingGET() async {
-    Object postBody = null;
 
-    // verify required params are set
+    /// Revoke existing access tokens for application, which will also generate a new public key discoverable via /jwks
+    ///
+    /// 
+    @PostReq(path: "/revoke-tokens", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ResponseEntity> revokeTokensUsingPOST(
+        ) {
+        return super.revokeTokensUsingPOST(
 
-    // create path and map variables
-    String path = "/jwks".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
+        ).timeout(timeout);
     }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'Object') as Object ;
-    } else {
-      return null;
-    }
-  }
-  /// Revoke existing access tokens for application, which will also generate a new public key discoverable via /jwks
-  ///
-  /// 
-  Future<ResponseEntity> revokeTokensUsingPOST() async {
-    Object postBody = null;
-
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/revoke-tokens".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ResponseEntity') as ResponseEntity ;
-    } else {
-      return null;
-    }
-  }
 }

@@ -1,74 +1,61 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/credit_interest_credit_interest_eligibility.dart';
+
+import 'package:yapily_sdk/model/credit_interest_tier_band.dart';
+
+part 'credit_interest_tier_band_set.jser.dart';
 
 class CreditInterestTierBandSet {
   
-  String calculationMethod = null;
+  @Alias('CalculationMethod', isNullable: false,
+          
+  )
+  final String calculationMethod;
   //enum calculationMethodEnum {  Compound,  SimpleInterest,  };
-
-  List<CreditInterestCreditInterestEligibility> creditInterestEligibility = [];
+  @Alias('CreditInterestEligibility', isNullable: false,  )
+  final List<CreditInterestCreditInterestEligibility> creditInterestEligibility;
   
-
-  String destination = null;
+  @Alias('Destination', isNullable: false,
+          
+  )
+  final String destination;
   //enum destinationEnum {  PayAway,  SelfCredit,  };
-
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
   
-
-  List<CreditInterestTierBand> tierBand = [];
+  @Alias('TierBand', isNullable: false,  )
+  final List<CreditInterestTierBand> tierBand;
   
-
-  String tierBandMethod = null;
+  @Alias('TierBandMethod', isNullable: false,
+          
+  )
+  final String tierBandMethod;
   //enum tierBandMethodEnum {  Tiered,  Whole,  };
-  CreditInterestTierBandSet();
+
+  CreditInterestTierBandSet(
+      
+
+{
+     this.calculationMethod = null,  
+     this.creditInterestEligibility = const [],  
+     this.destination = null,  
+     this.notes = const [],  
+     this.tierBand = const [],  
+     this.tierBandMethod = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'CreditInterestTierBandSet[calculationMethod=$calculationMethod, creditInterestEligibility=$creditInterestEligibility, destination=$destination, notes=$notes, tierBand=$tierBand, tierBandMethod=$tierBandMethod, ]';
   }
+}
 
-  CreditInterestTierBandSet.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    calculationMethod =
-        json['calculationMethod']
-    ;
-    creditInterestEligibility =
-      CreditInterestCreditInterestEligibility.listFromJson(json['creditInterestEligibility'])
-;
-    destination =
-        json['destination']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    tierBand =
-      CreditInterestTierBand.listFromJson(json['tierBand'])
-;
-    tierBandMethod =
-        json['tierBandMethod']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class CreditInterestTierBandSetSerializer extends Serializer<CreditInterestTierBandSet> with _$CreditInterestTierBandSetSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'calculationMethod': calculationMethod,
-      'creditInterestEligibility': creditInterestEligibility,
-      'destination': destination,
-      'notes': notes,
-      'tierBand': tierBand,
-      'tierBandMethod': tierBandMethod
-     };
-  }
-
-  static List<CreditInterestTierBandSet> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreditInterestTierBandSet>() : json.map((value) => new CreditInterestTierBandSet.fromJson(value)).toList();
-  }
-
-  static Map<String, CreditInterestTierBandSet> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreditInterestTierBandSet>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreditInterestTierBandSet.fromJson(value));
-    }
-    return map;
-  }
 }
 

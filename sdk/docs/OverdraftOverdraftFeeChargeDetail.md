@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **feeRateType** | **String** |  | [optional] [default to null]
 **feeType** | **String** |  | [optional] [default to null]
 **incrementalBorrowingAmount** | **String** |  | [optional] [default to null]
-**notes** | **List&lt;String&gt;** |  | [optional] [default to []]
+**notes** | **List&lt;String&gt;** |  | [optional] [default to const []]
 **otherApplicationFrequency** | [**OtherApplicationFrequency**](OtherApplicationFrequency.md) |  | [optional] [default to null]
 **otherCalculationFrequency** | [**OtherCalculationFrequency**](OtherCalculationFrequency.md) |  | [optional] [default to null]
 **otherFeeRateType** | [**OtherFeeRateType**](OtherFeeRateType.md) |  | [optional] [default to null]

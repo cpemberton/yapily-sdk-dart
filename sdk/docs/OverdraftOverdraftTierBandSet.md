@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **bufferAmount** | **String** |  | [optional] [default to null]
 **identification** | **String** |  | [optional] [default to null]
 **minimumArrangedOverdraftAmount** | **String** |  | [optional] [default to null]
-**notes** | **List&lt;String&gt;** |  | [optional] [default to []]
-**overdraftFeesCharges** | [**List&lt;OverdraftOverdraftFeesCharges1&gt;**](OverdraftOverdraftFeesCharges1.md) |  | [optional] [default to []]
-**overdraftTierBand** | [**List&lt;OverdraftOverdraftTierBand&gt;**](OverdraftOverdraftTierBand.md) |  | [optional] [default to []]
+**notes** | **List&lt;String&gt;** |  | [optional] [default to const []]
+**overdraftFeesCharges** | [**List&lt;OverdraftOverdraftFeesCharges1&gt;**](OverdraftOverdraftFeesCharges1.md) |  | [optional] [default to const []]
+**overdraftTierBand** | [**List&lt;OverdraftOverdraftTierBand&gt;**](OverdraftOverdraftTierBand.md) |  | [optional] [default to const []]
 **overdraftType** | **String** |  | [optional] [default to null]
 **tierBandMethod** | **String** |  | [optional] [default to null]
 

@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'inline_response2001_other_atm_services.jser.dart';
 
 class InlineResponse2001OtherATMServices {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  InlineResponse2001OtherATMServices(
+      
 
-  String name = null;
-  
-  InlineResponse2001OtherATMServices();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'InlineResponse2001OtherATMServices[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  InlineResponse2001OtherATMServices.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class InlineResponse2001OtherATMServicesSerializer extends Serializer<InlineResponse2001OtherATMServices> with _$InlineResponse2001OtherATMServicesSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<InlineResponse2001OtherATMServices> listFromJson(List<dynamic> json) {
-    return json == null ? new List<InlineResponse2001OtherATMServices>() : json.map((value) => new InlineResponse2001OtherATMServices.fromJson(value)).toList();
-  }
-
-  static Map<String, InlineResponse2001OtherATMServices> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, InlineResponse2001OtherATMServices>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new InlineResponse2001OtherATMServices.fromJson(value));
-    }
-    return map;
-  }
 }
 

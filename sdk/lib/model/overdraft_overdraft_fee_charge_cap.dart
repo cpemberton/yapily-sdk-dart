@@ -1,88 +1,69 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/overdraft_other_fee_type.dart';
+
+part 'overdraft_overdraft_fee_charge_cap.jser.dart';
 
 class OverdraftOverdraftFeeChargeCap {
   
-  String cappingPeriod = null;
+  @Alias('CappingPeriod', isNullable: false,
+          
+  )
+  final String cappingPeriod;
   //enum cappingPeriodEnum {  Day,  Half Year,  Month,  Quarter,  Week,  AcademicTerm,  Year,  };
-
-  String feeCapAmount = null;
+  @Alias('FeeCapAmount', isNullable: false,  )
+  final String feeCapAmount;
   
-
-  double feeCapOccurrence = null;
+  @Alias('FeeCapOccurrence', isNullable: false,  )
+  final double feeCapOccurrence;
   
-
-  List<String> feeType = [];
+  @Alias('FeeType', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> feeType;
   //enum feeTypeEnum {  ArrangedOverdraft,  EmergencyBorrowing,  BorrowingItem,  OverdraftRenewal,  AnnualReview,  OverdraftSetup,  Surcharge,  TempOverdraft,  UnauthorisedBorrowing,  UnauthorisedPaidTrans,  Other,  UnauthorisedUnpaidTrans,  };
-
-  String minMaxType = null;
+  @Alias('MinMaxType', isNullable: false,
+          
+  )
+  final String minMaxType;
   //enum minMaxTypeEnum {  Minimum,  Maximum,  };
-
-  List<String> notes = [];
+  @Alias('Notes', isNullable: false,  )
+  final List<String> notes;
+  
+  @Alias('OtherFeeType', isNullable: false,  )
+  final List<OverdraftOtherFeeType> otherFeeType;
+  
+  @Alias('OverdraftControlIndicator', isNullable: false,  )
+  final bool overdraftControlIndicator;
   
 
-  List<OverdraftOtherFeeType> otherFeeType = [];
-  
+  OverdraftOverdraftFeeChargeCap(
+      
 
-  bool overdraftControlIndicator = null;
-  
-  OverdraftOverdraftFeeChargeCap();
+{
+     this.cappingPeriod = null,  
+     this.feeCapAmount = null,  
+     this.feeCapOccurrence = null,  
+     this.feeType = const [],  
+     this.minMaxType = null,  
+     this.notes = const [],  
+     this.otherFeeType = const [],  
+     this.overdraftControlIndicator = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OverdraftOverdraftFeeChargeCap[cappingPeriod=$cappingPeriod, feeCapAmount=$feeCapAmount, feeCapOccurrence=$feeCapOccurrence, feeType=$feeType, minMaxType=$minMaxType, notes=$notes, otherFeeType=$otherFeeType, overdraftControlIndicator=$overdraftControlIndicator, ]';
   }
+}
 
-  OverdraftOverdraftFeeChargeCap.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    cappingPeriod =
-        json['cappingPeriod']
-    ;
-    feeCapAmount =
-        json['feeCapAmount']
-    ;
-    feeCapOccurrence =
-        json['feeCapOccurrence']
-    ;
-    feeType =
-        (json['feeType'] as List).map((item) => item as String).toList()
-    ;
-    minMaxType =
-        json['minMaxType']
-    ;
-    notes =
-        (json['notes'] as List).map((item) => item as String).toList()
-    ;
-    otherFeeType =
-      OverdraftOtherFeeType.listFromJson(json['otherFeeType'])
-;
-    overdraftControlIndicator =
-        json['overdraftControlIndicator']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OverdraftOverdraftFeeChargeCapSerializer extends Serializer<OverdraftOverdraftFeeChargeCap> with _$OverdraftOverdraftFeeChargeCapSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'cappingPeriod': cappingPeriod,
-      'feeCapAmount': feeCapAmount,
-      'feeCapOccurrence': feeCapOccurrence,
-      'feeType': feeType,
-      'minMaxType': minMaxType,
-      'notes': notes,
-      'otherFeeType': otherFeeType,
-      'overdraftControlIndicator': overdraftControlIndicator
-     };
-  }
-
-  static List<OverdraftOverdraftFeeChargeCap> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OverdraftOverdraftFeeChargeCap>() : json.map((value) => new OverdraftOverdraftFeeChargeCap.fromJson(value)).toList();
-  }
-
-  static Map<String, OverdraftOverdraftFeeChargeCap> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OverdraftOverdraftFeeChargeCap>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OverdraftOverdraftFeeChargeCap.fromJson(value));
-    }
-    return map;
-  }
 }
 

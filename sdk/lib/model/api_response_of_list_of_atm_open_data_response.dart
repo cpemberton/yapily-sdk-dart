@@ -1,55 +1,43 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/atm_open_data_response.dart';
+
+import 'package:yapily_sdk/model/response_meta.dart';
+
+part 'api_response_of_list_of_atm_open_data_response.jser.dart';
 
 class ApiResponseOfListOfATMOpenDataResponse {
   
-  ResponseMeta meta = null;
+  @Alias('meta', isNullable: false,  )
+  final ResponseMeta meta;
+  
+  @Alias('data', isNullable: false,  )
+  final List<ATMOpenDataResponse> data;
+  
+  @Alias('links', isNullable: false,  )
+  final Map<String, String> links;
   
 
-  List<ATMOpenDataResponse> data = [];
-  
+  ApiResponseOfListOfATMOpenDataResponse(
+      
 
-  Map<String, String> links = {};
-  
-  ApiResponseOfListOfATMOpenDataResponse();
+{
+     this.meta = null,  
+     this.data = const [],  
+     this.links = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ApiResponseOfListOfATMOpenDataResponse[meta=$meta, data=$data, links=$links, ]';
   }
+}
 
-  ApiResponseOfListOfATMOpenDataResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    meta =
-      
-      
-      new ResponseMeta.fromJson(json['meta'])
-;
-    data =
-      ATMOpenDataResponse.listFromJson(json['data'])
-;
-    links =
-        json['links']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ApiResponseOfListOfATMOpenDataResponseSerializer extends Serializer<ApiResponseOfListOfATMOpenDataResponse> with _$ApiResponseOfListOfATMOpenDataResponseSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'meta': meta,
-      'data': data,
-      'links': links
-     };
-  }
-
-  static List<ApiResponseOfListOfATMOpenDataResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ApiResponseOfListOfATMOpenDataResponse>() : json.map((value) => new ApiResponseOfListOfATMOpenDataResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, ApiResponseOfListOfATMOpenDataResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ApiResponseOfListOfATMOpenDataResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ApiResponseOfListOfATMOpenDataResponse.fromJson(value));
-    }
-    return map;
-  }
 }
 

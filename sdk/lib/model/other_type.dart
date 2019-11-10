@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'other_type.jser.dart';
 
 class OtherType {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  OtherType(
+      
 
-  String name = null;
-  
-  OtherType();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OtherType[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  OtherType.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class OtherTypeSerializer extends Serializer<OtherType> with _$OtherTypeSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<OtherType> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OtherType>() : json.map((value) => new OtherType.fromJson(value)).toList();
-  }
-
-  static Map<String, OtherType> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OtherType>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OtherType.fromJson(value));
-    }
-    return map;
-  }
 }
 

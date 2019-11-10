@@ -1,53 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'inline_response2001_other_accessibility.jser.dart';
 
 class InlineResponse2001OtherAccessibility {
   
-  String code = null;
+  @Alias('Code', isNullable: false,  )
+  final String code;
+  
+  @Alias('Description', isNullable: false,  )
+  final String description;
+  
+  @Alias('Name', isNullable: false,  )
+  final String name;
   
 
-  String description = null;
-  
+  InlineResponse2001OtherAccessibility(
+      
 
-  String name = null;
-  
-  InlineResponse2001OtherAccessibility();
+{
+     this.code = null,  
+     this.description = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'InlineResponse2001OtherAccessibility[code=$code, description=$description, name=$name, ]';
   }
+}
 
-  InlineResponse2001OtherAccessibility.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    code =
-        json['code']
-    ;
-    description =
-        json['description']
-    ;
-    name =
-        json['name']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class InlineResponse2001OtherAccessibilitySerializer extends Serializer<InlineResponse2001OtherAccessibility> with _$InlineResponse2001OtherAccessibilitySerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-      'description': description,
-      'name': name
-     };
-  }
-
-  static List<InlineResponse2001OtherAccessibility> listFromJson(List<dynamic> json) {
-    return json == null ? new List<InlineResponse2001OtherAccessibility>() : json.map((value) => new InlineResponse2001OtherAccessibility.fromJson(value)).toList();
-  }
-
-  static Map<String, InlineResponse2001OtherAccessibility> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, InlineResponse2001OtherAccessibility>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new InlineResponse2001OtherAccessibility.fromJson(value));
-    }
-    return map;
-  }
 }
 

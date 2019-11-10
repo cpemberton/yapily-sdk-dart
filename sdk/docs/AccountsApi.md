@@ -5,17 +5,17 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAccountDirectDebitsUsingGET**](AccountsApi.md#getAccountDirectDebitsUsingGET) | **GET** /accounts/{accountId}/direct-debits | Get account direct debits
-[**getAccountPeriodicPaymentsUsingGET**](AccountsApi.md#getAccountPeriodicPaymentsUsingGET) | **GET** /accounts/{accountId}/periodic-payments | Get account payments detail
-[**getAccountScheduledPaymentsUsingGET**](AccountsApi.md#getAccountScheduledPaymentsUsingGET) | **GET** /accounts/{accountId}/scheduled-payments | Get account scheduled payments
-[**getAccountUsingGET**](AccountsApi.md#getAccountUsingGET) | **GET** /accounts/{accountId} | Get account
-[**getAccountsUsingGET**](AccountsApi.md#getAccountsUsingGET) | **GET** /accounts | Get accounts
-[**initiateAccountRequestUsingPOST**](AccountsApi.md#initiateAccountRequestUsingPOST) | **POST** /account-auth-requests | Initiate a new account request for user to authorize
-[**reAuthoriseAccountUsingPATCH**](AccountsApi.md#reAuthoriseAccountUsingPATCH) | **PATCH** /account-auth-requests | Re-authorize account request
+[**getAccountDirectDebitsUsingGET**](AccountsApi.md#getAccountDirectDebitsUsingGET) | **Get** /accounts/:accountId/direct-debits | Get account direct debits
+[**getAccountPeriodicPaymentsUsingGET**](AccountsApi.md#getAccountPeriodicPaymentsUsingGET) | **Get** /accounts/:accountId/periodic-payments | Get account payments detail
+[**getAccountScheduledPaymentsUsingGET**](AccountsApi.md#getAccountScheduledPaymentsUsingGET) | **Get** /accounts/:accountId/scheduled-payments | Get account scheduled payments
+[**getAccountUsingGET**](AccountsApi.md#getAccountUsingGET) | **Get** /accounts/:accountId | Get account
+[**getAccountsUsingGET**](AccountsApi.md#getAccountsUsingGET) | **Get** /accounts | Get accounts
+[**initiateAccountRequestUsingPOST**](AccountsApi.md#initiateAccountRequestUsingPOST) | **Post** /account-auth-requests | Initiate a new account request for user to authorize
+[**reAuthoriseAccountUsingPATCH**](AccountsApi.md#reAuthoriseAccountUsingPATCH) | **Patch** /account-auth-requests | Re-authorize account request
 
 
 # **getAccountDirectDebitsUsingGET**
@@ -49,9 +49,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**| accountId | 
- **consent** | **String**| Consent Token | 
- **limit** | **int**| Use this parameter to limit account&#39;s direct debit results | [optional] 
+ **accountId** | **String**| accountId | [default to null]
+ **consent** | **String**| Consent Token | [default to null]
+ **limit** | **int**| Use this parameter to limit account&#39;s direct debit results | [optional] [default to null]
 
 ### Return type
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -99,9 +99,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**| accountId | 
- **consent** | **String**| Consent Token | 
- **limit** | **int**| Use this parameter to limit account&#39;s periodic payment order results | [optional] 
+ **accountId** | **String**| accountId | [default to null]
+ **consent** | **String**| Consent Token | [default to null]
+ **limit** | **int**| Use this parameter to limit account&#39;s periodic payment order results | [optional] [default to null]
 
 ### Return type
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -149,9 +149,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**| accountId | 
- **consent** | **String**| Consent Token | 
- **limit** | **int**| Use this parameter to limit account&#39;s scheduled payment results | [optional] 
+ **accountId** | **String**| accountId | [default to null]
+ **consent** | **String**| Consent Token | [default to null]
+ **limit** | **int**| Use this parameter to limit account&#39;s scheduled payment results | [optional] [default to null]
 
 ### Return type
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -198,8 +198,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
- **accountId** | **String**| accountId | 
+ **consent** | **String**| Consent Token | [default to null]
+ **accountId** | **String**| accountId | [default to null]
 
 ### Return type
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -245,7 +245,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
+ **consent** | **String**| Consent Token | [default to null]
 
 ### Return type
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -337,7 +337,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
+ **consent** | **String**| Consent Token | [default to null]
 
 ### Return type
 
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=UTF-8
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

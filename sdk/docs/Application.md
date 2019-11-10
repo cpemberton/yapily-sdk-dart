@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **uuid** | **String** | Application UUID | [optional] [default to null]
 **name** | **String** |  | [optional] [default to null]
 **active** | **bool** |  | [optional] [default to null]
-**authCallbacks** | **List&lt;String&gt;** |  | [optional] [default to []]
-**institutions** | [**List&lt;Institution&gt;**](Institution.md) |  | [optional] [default to []]
-**media** | [**List&lt;Media&gt;**](Media.md) |  | [optional] [default to []]
+**authCallbacks** | **List&lt;String&gt;** |  | [optional] [default to const []]
+**institutions** | [**List&lt;Institution&gt;**](Institution.md) |  | [optional] [default to const []]
+**media** | [**List&lt;Media&gt;**](Media.md) |  | [optional] [default to const []]
 **created** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **updated** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 

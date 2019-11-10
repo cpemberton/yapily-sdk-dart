@@ -1,46 +1,37 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/inline_response2001_atm.dart';
+
+part 'atm_open_data_brand.jser.dart';
 
 class ATMOpenDataBrand {
   
-  List<InlineResponse2001ATM> ATM = [];
+  @Alias('ATM', isNullable: false,  )
+  final List<InlineResponse2001ATM> ATM;
+  
+  @Alias('BrandName', isNullable: false,  )
+  final String brandName;
   
 
-  String brandName = null;
-  
-  ATMOpenDataBrand();
+  ATMOpenDataBrand(
+      
+
+{
+     this.ATM = const [],  
+     this.brandName = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'ATMOpenDataBrand[ATM=$ATM, brandName=$brandName, ]';
   }
+}
 
-  ATMOpenDataBrand.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    ATM =
-      InlineResponse2001ATM.listFromJson(json['ATM'])
-;
-    brandName =
-        json['brandName']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class ATMOpenDataBrandSerializer extends Serializer<ATMOpenDataBrand> with _$ATMOpenDataBrandSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'ATM': ATM,
-      'brandName': brandName
-     };
-  }
-
-  static List<ATMOpenDataBrand> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ATMOpenDataBrand>() : json.map((value) => new ATMOpenDataBrand.fromJson(value)).toList();
-  }
-
-  static Map<String, ATMOpenDataBrand> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ATMOpenDataBrand>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ATMOpenDataBrand.fromJson(value));
-    }
-    return map;
-  }
 }
 

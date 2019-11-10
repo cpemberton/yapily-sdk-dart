@@ -1,338 +1,129 @@
-part of yapily_sdk.api;
+import 'package:jaguar_retrofit/annotations/annotations.dart';
+import 'package:jaguar_retrofit/jaguar_retrofit.dart';
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
+import 'dart:async';
 
+import 'package:yapily_sdk/model/payment_authorisation_request.dart';
+import 'package:yapily_sdk/model/api_response_of_payment_response.dart';
+import 'package:yapily_sdk/model/payment_request.dart';
+import 'package:yapily_sdk/model/api_response_of_payment_authorisation_request_response.dart';
+import 'package:yapily_sdk/model/api_response_of_payment_responses.dart';
+import 'package:yapily_sdk/model/sort_code_payment_request.dart';
+import 'package:yapily_sdk/model/sort_code_payment_auth_request.dart';
+import 'package:yapily_sdk/model/api_response_of_authorisation_request_response.dart';
 
+part 'payments_api.jretro.dart';
 
-class PaymentsApi {
-  final ApiClient apiClient;
+@GenApiClient()
+class PaymentsApi extends ApiClient with _$PaymentsApiClient {
+    final Route base;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-  PaymentsApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+    PaymentsApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
-  /// Initiate a payment for user to authorise
-  ///
-  /// 
-  Future<ApiResponseOfPaymentAuthorisationRequestResponse> createPaymentAuthorisationUsingPOST(PaymentAuthorisationRequest paymentAuthRequest) async {
-    Object postBody = paymentAuthRequest;
+    /// Initiate a payment for user to authorise
+    ///
+    /// 
+    @PostReq(path: "/payment-auth-requests", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfPaymentAuthorisationRequestResponse> createPaymentAuthorisationUsingPOST(
+            
+            @AsBody() PaymentAuthorisationRequest paymentAuthRequest
+        ) {
+        return super.createPaymentAuthorisationUsingPOST(
 
-    // verify required params are set
-    if(paymentAuthRequest == null) {
-     throw new ApiException(400, "Missing required param: paymentAuthRequest");
+        
+        paymentAuthRequest
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payment-auth-requests".replaceAll("{format}","json");
+    /// Initiate a new single payment for user to authorise
+    ///
+    /// 
+    @PostReq(path: "/payment-sortcode-auth-requests", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfAuthorisationRequestResponse> createPaymentAuthorisationWithSortCodeUsingPOST(
+            
+            @AsBody() SortCodePaymentAuthRequest paymentAuthRequest
+        ) {
+        return super.createPaymentAuthorisationWithSortCodeUsingPOST(
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json;charset=UTF-8"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfPaymentAuthorisationRequestResponse') as ApiResponseOfPaymentAuthorisationRequestResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Initiate a new single payment for user to authorise
-  ///
-  /// 
-  Future<ApiResponseOfAuthorisationRequestResponse> createPaymentAuthorisationWithSortCodeUsingPOST(SortCodePaymentAuthRequest paymentAuthRequest) async {
-    Object postBody = paymentAuthRequest;
-
-    // verify required params are set
-    if(paymentAuthRequest == null) {
-     throw new ApiException(400, "Missing required param: paymentAuthRequest");
+        
+        paymentAuthRequest
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payment-sortcode-auth-requests".replaceAll("{format}","json");
+    /// Create a payment
+    ///
+    /// 
+    @PostReq(path: "/payments", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfPaymentResponse> createPaymentUsingPOST(
+        
+            @Header("consent") String consent
+            ,
+            @AsBody() PaymentRequest paymentRequest
+        ) {
+        return super.createPaymentUsingPOST(
+        
+        consent
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json;charset=UTF-8"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfAuthorisationRequestResponse') as ApiResponseOfAuthorisationRequestResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Create a payment
-  ///
-  /// 
-  Future<ApiResponseOfPaymentResponse> createPaymentUsingPOST(String consent, PaymentRequest paymentRequest) async {
-    Object postBody = paymentRequest;
-
-    // verify required params are set
-    if(consent == null) {
-     throw new ApiException(400, "Missing required param: consent");
-    }
-    if(paymentRequest == null) {
-     throw new ApiException(400, "Missing required param: paymentRequest");
+        ,
+        paymentRequest
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payments".replaceAll("{format}","json");
+    /// Create a new single payment
+    ///
+    /// 
+    @PostReq(path: "/payment-sortcode", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfPaymentResponse> createPaymentWithSortCodeUsingPOST(
+        
+            @Header("consent") String consent
+            ,
+            @AsBody() SortCodePaymentRequest paymentRequest
+        ) {
+        return super.createPaymentWithSortCodeUsingPOST(
+        
+        consent
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["consent"] = consent;
-
-    List<String> contentTypes = ["application/json;charset=UTF-8"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfPaymentResponse') as ApiResponseOfPaymentResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Create a new single payment
-  ///
-  /// 
-  Future<ApiResponseOfPaymentResponse> createPaymentWithSortCodeUsingPOST(String consent, SortCodePaymentRequest paymentRequest) async {
-    Object postBody = paymentRequest;
-
-    // verify required params are set
-    if(consent == null) {
-     throw new ApiException(400, "Missing required param: consent");
-    }
-    if(paymentRequest == null) {
-     throw new ApiException(400, "Missing required param: paymentRequest");
+        ,
+        paymentRequest
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payment-sortcode".replaceAll("{format}","json");
+    /// Get status of a payment
+    ///
+    /// 
+    @GetReq(path: "/payments/:paymentId", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfPaymentResponse> getPaymentStatusUsingGET(
+            @PathParam("paymentId") String paymentId
+        ,
+            @Header("consent") String consent
+        ) {
+        return super.getPaymentStatusUsingGET(
+        paymentId
+        ,
+        consent
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["consent"] = consent;
-
-    List<String> contentTypes = ["application/json;charset=UTF-8"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfPaymentResponse') as ApiResponseOfPaymentResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Get status of a payment
-  ///
-  /// 
-  Future<ApiResponseOfPaymentResponse> getPaymentStatusUsingGET(String paymentId, String consent) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(paymentId == null) {
-     throw new ApiException(400, "Missing required param: paymentId");
-    }
-    if(consent == null) {
-     throw new ApiException(400, "Missing required param: consent");
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payments/{paymentId}".replaceAll("{format}","json").replaceAll("{" + "paymentId" + "}", paymentId.toString());
+    /// Get payments detail
+    ///
+    /// 
+    @GetReq(path: "/payments/:paymentId/details", metadata: {"auth": [ {"type": "http", "name": "basicAuth" },  {"type": "oauth2", "name": "tokenAuth" }]})
+    Future<ApiResponseOfPaymentResponses> getPaymentsUsingGET(
+            @PathParam("paymentId") String paymentId
+        ,
+            @Header("consent") String consent
+        ) {
+        return super.getPaymentsUsingGET(
+        paymentId
+        ,
+        consent
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["consent"] = consent;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfPaymentResponse') as ApiResponseOfPaymentResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Get payments detail
-  ///
-  /// 
-  Future<ApiResponseOfPaymentResponses> getPaymentsUsingGET(String paymentId, String consent) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(paymentId == null) {
-     throw new ApiException(400, "Missing required param: paymentId");
-    }
-    if(consent == null) {
-     throw new ApiException(400, "Missing required param: consent");
+        ).timeout(timeout);
     }
 
-    // create path and map variables
-    String path = "/payments/{paymentId}/details".replaceAll("{format}","json").replaceAll("{" + "paymentId" + "}", paymentId.toString());
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["consent"] = consent;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["basicAuth", "tokenAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'ApiResponseOfPaymentResponses') as ApiResponseOfPaymentResponses ;
-    } else {
-      return null;
-    }
-  }
 }

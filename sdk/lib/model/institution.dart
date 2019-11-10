@@ -1,97 +1,77 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/country.dart';
+
+import 'package:yapily_sdk/model/monitoring_feature_status.dart';
+
+import 'package:yapily_sdk/model/media.dart';
+
+part 'institution.jser.dart';
 
 class Institution {
   
-  String id = null;
+  @Alias('id', isNullable: false,  )
+  final String id;
   
-
-  String name = null;
+  @Alias('name', isNullable: false,  )
+  final String name;
   
-
-  String fullName = null;
+  @Alias('fullName', isNullable: false,  )
+  final String fullName;
   
-
-  List<Country> countries = [];
+  @Alias('countries', isNullable: false,  )
+  final List<Country> countries;
   
-
-  String environmentType = null;
+  @Alias('environmentType', isNullable: false,
+          
+  )
+  final String environmentType;
   //enum environmentTypeEnum {  SANDBOX,  MOCK,  LIVE,  };
-
-  String credentialsType = null;
+  @Alias('credentialsType', isNullable: false,
+          
+  )
+  final String credentialsType;
   //enum credentialsTypeEnum {  OAUTH1,  OAUTH2,  OAUTH2_NOSECRET,  OAUTH2_SIGNATURE,  OPEN_BANKING,  OPEN_BANKING_UK_MANUAL,  OPEN_BANKING_UK_AUTO,  OPEN_BANKING_IBM,  OPEN_BANKING_AUTO,  OPEN_BANKING_MANUAL,  API_KEY,  };
-
-  List<Media> media = [];
+  @Alias('media', isNullable: false,  )
+  final List<Media> media;
   
-
-  List<String> features = [];
+  @Alias('features', isNullable: false,
+          
+             processor:  const List<String>FieldProcessor(),
+          
+  )
+  final List<String> features;
   //enum featuresEnum {  INITIATE_ACCOUNT_REQUEST,  ACCOUNT_REQUEST_DETAILS,  ACCOUNTS,  ACCOUNT,  ACCOUNT_TRANSACTIONS,  ACCOUNT_STATEMENTS,  ACCOUNT_STATEMENT,  ACCOUNT_STATEMENT_FILE,  ACCOUNT_SCHEDULED_PAYMENTS,  ACCOUNT_DIRECT_DEBITS,  ACCOUNT_PERIODIC_PAYMENTS,  ACCOUNT_TRANSACTIONS_WITH_MERCHANT,  IDENTITY,  INITIATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENT_INITIATION_DETAILS,  CREATE_SINGLE_PAYMENT_SORTCODE,  EXISTING_PAYMENTS_DETAILS,  INITIATE_PAYMENT,  CREATE_PAYMENT,  INITIATE_DOMESTIC_VARIABLE_RECURRING_PAYMENT,  CREATE_DOMESTIC_VARIABLE_RECURRING_PAYMENT,  INITIATE_DOMESTIC_SCHEDULED_PAYMENT,  CREATE_DOMESTIC_SCHEDULED_PAYMENT,  INITIATE_DOMESTIC_PERIODIC_PAYMENT,  CREATE_DOMESTIC_PERIODIC_PAYMENT,  PERIODIC_PAYMENT_FREQUENCY_EXTENDED,  INITIATE_INTERNATIONAL_VARIABLE_RECURRING_PAYMENT,  CREATE_INTERNATIONAL_VARIABLE_RECURRING_PAYMENT,  INITIATE_INTERNATIONAL_SCHEDULED_PAYMENT,  CREATE_INTERNATIONAL_SCHEDULED_PAYMENT,  INITIATE_INTERNATIONAL_PERIODIC_PAYMENT_ORDER,  CREATE_INTERNATIONAL_PERIODIC_PAYMENT_ORDER,  INITIATE_INTERNATIONAL_PAYMENT,  CREATE_INTERNATIONAL_PAYMENT,  TRANSFER,  OPEN_DATA_PERSONAL_CURRENT_ACCOUNTS,  OPEN_DATA_ATMS,  };
-
-  Map<String, MonitoringFeatureStatus> monitoring = {};
+  @Alias('monitoring', isNullable: false,  )
+  final Map<String, MonitoringFeatureStatus> monitoring;
   
-  Institution();
+
+  Institution(
+      
+
+{
+     this.id = null,  
+     this.name = null,  
+     this.fullName = null,  
+     this.countries = const [],  
+     this.environmentType = null,  
+     this.credentialsType = null,  
+     this.media = const [],  
+     this.features = const [],  
+     this.monitoring = const {} 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Institution[id=$id, name=$name, fullName=$fullName, countries=$countries, environmentType=$environmentType, credentialsType=$credentialsType, media=$media, features=$features, monitoring=$monitoring, ]';
   }
+}
 
-  Institution.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id =
-        json['id']
-    ;
-    name =
-        json['name']
-    ;
-    fullName =
-        json['fullName']
-    ;
-    countries =
-      Country.listFromJson(json['countries'])
-;
-    environmentType =
-        json['environmentType']
-    ;
-    credentialsType =
-        json['credentialsType']
-    ;
-    media =
-      Media.listFromJson(json['media'])
-;
-    features =
-        (json['features'] as List).map((item) => item as String).toList()
-    ;
-    monitoring =
-      
-      MonitoringFeatureStatus.mapFromJson(json['monitoring'])
-      
-;
-  }
+@GenSerializer(nullableFields: true)
+class InstitutionSerializer extends Serializer<Institution> with _$InstitutionSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'fullName': fullName,
-      'countries': countries,
-      'environmentType': environmentType,
-      'credentialsType': credentialsType,
-      'media': media,
-      'features': features,
-      'monitoring': monitoring
-     };
-  }
-
-  static List<Institution> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Institution>() : json.map((value) => new Institution.fromJson(value)).toList();
-  }
-
-  static Map<String, Institution> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Institution>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Institution.fromJson(value));
-    }
-    return map;
-  }
 }
 

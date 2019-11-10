@@ -1,46 +1,39 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/overdraft_overdraft_fee_charge_cap.dart';
+
+import 'package:yapily_sdk/model/overdraft_overdraft_fee_charge_detail.dart';
+
+part 'overdraft_overdraft_fees_charges.jser.dart';
 
 class OverdraftOverdraftFeesCharges {
   
-  List<OverdraftOverdraftFeeChargeCap> overdraftFeeChargeCap = [];
+  @Alias('OverdraftFeeChargeCap', isNullable: false,  )
+  final List<OverdraftOverdraftFeeChargeCap> overdraftFeeChargeCap;
+  
+  @Alias('OverdraftFeeChargeDetail', isNullable: false,  )
+  final List<OverdraftOverdraftFeeChargeDetail> overdraftFeeChargeDetail;
   
 
-  List<OverdraftOverdraftFeeChargeDetail> overdraftFeeChargeDetail = [];
-  
-  OverdraftOverdraftFeesCharges();
+  OverdraftOverdraftFeesCharges(
+      
+
+{
+     this.overdraftFeeChargeCap = const [],  
+     this.overdraftFeeChargeDetail = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'OverdraftOverdraftFeesCharges[overdraftFeeChargeCap=$overdraftFeeChargeCap, overdraftFeeChargeDetail=$overdraftFeeChargeDetail, ]';
   }
+}
 
-  OverdraftOverdraftFeesCharges.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    overdraftFeeChargeCap =
-      OverdraftOverdraftFeeChargeCap.listFromJson(json['overdraftFeeChargeCap'])
-;
-    overdraftFeeChargeDetail =
-      OverdraftOverdraftFeeChargeDetail.listFromJson(json['overdraftFeeChargeDetail'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class OverdraftOverdraftFeesChargesSerializer extends Serializer<OverdraftOverdraftFeesCharges> with _$OverdraftOverdraftFeesChargesSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'overdraftFeeChargeCap': overdraftFeeChargeCap,
-      'overdraftFeeChargeDetail': overdraftFeeChargeDetail
-     };
-  }
-
-  static List<OverdraftOverdraftFeesCharges> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OverdraftOverdraftFeesCharges>() : json.map((value) => new OverdraftOverdraftFeesCharges.fromJson(value)).toList();
-  }
-
-  static Map<String, OverdraftOverdraftFeesCharges> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OverdraftOverdraftFeesCharges>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OverdraftOverdraftFeesCharges.fromJson(value));
-    }
-    return map;
-  }
 }
 

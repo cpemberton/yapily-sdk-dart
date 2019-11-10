@@ -1,63 +1,47 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'multi_authorisation.jser.dart';
 
 class MultiAuthorisation {
   
-  String status = null;
+  @Alias('status', isNullable: false,  )
+  final String status;
+  
+  @Alias('numberOfAuthorisationRequired', isNullable: false,  )
+  final int numberOfAuthorisationRequired;
+  
+  @Alias('numberOfAuthorisationReceived', isNullable: false,  )
+  final int numberOfAuthorisationReceived;
+  
+  @Alias('lastUpdatedDateTime', isNullable: false,  )
+  final DateTime lastUpdatedDateTime;
+  
+  @Alias('expirationDateTime', isNullable: false,  )
+  final DateTime expirationDateTime;
   
 
-  int numberOfAuthorisationRequired = null;
-  
+  MultiAuthorisation(
+      
 
-  int numberOfAuthorisationReceived = null;
-  
-
-  DateTime lastUpdatedDateTime = null;
-  
-
-  DateTime expirationDateTime = null;
-  
-  MultiAuthorisation();
+{
+     this.status = null,  
+     this.numberOfAuthorisationRequired = null,  
+     this.numberOfAuthorisationReceived = null,  
+     this.lastUpdatedDateTime = null,  
+     this.expirationDateTime = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'MultiAuthorisation[status=$status, numberOfAuthorisationRequired=$numberOfAuthorisationRequired, numberOfAuthorisationReceived=$numberOfAuthorisationReceived, lastUpdatedDateTime=$lastUpdatedDateTime, expirationDateTime=$expirationDateTime, ]';
   }
+}
 
-  MultiAuthorisation.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    status =
-        json['status']
-    ;
-    numberOfAuthorisationRequired =
-        json['numberOfAuthorisationRequired']
-    ;
-    numberOfAuthorisationReceived =
-        json['numberOfAuthorisationReceived']
-    ;
-    lastUpdatedDateTime = json['lastUpdatedDateTime'] == null ? null : DateTime.parse(json['lastUpdatedDateTime']);
-    expirationDateTime = json['expirationDateTime'] == null ? null : DateTime.parse(json['expirationDateTime']);
-  }
+@GenSerializer(nullableFields: true)
+class MultiAuthorisationSerializer extends Serializer<MultiAuthorisation> with _$MultiAuthorisationSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'status': status,
-      'numberOfAuthorisationRequired': numberOfAuthorisationRequired,
-      'numberOfAuthorisationReceived': numberOfAuthorisationReceived,
-      'lastUpdatedDateTime': lastUpdatedDateTime == null ? '' : lastUpdatedDateTime.toUtc().toIso8601String(),
-      'expirationDateTime': expirationDateTime == null ? '' : expirationDateTime.toUtc().toIso8601String()
-     };
-  }
-
-  static List<MultiAuthorisation> listFromJson(List<dynamic> json) {
-    return json == null ? new List<MultiAuthorisation>() : json.map((value) => new MultiAuthorisation.fromJson(value)).toList();
-  }
-
-  static Map<String, MultiAuthorisation> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, MultiAuthorisation>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new MultiAuthorisation.fromJson(value));
-    }
-    return map;
-  }
 }
 

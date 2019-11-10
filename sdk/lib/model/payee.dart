@@ -1,69 +1,51 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/address.dart';
+
+import 'package:yapily_sdk/model/account_identification.dart';
+
+part 'payee.jser.dart';
 
 class Payee {
   
-  String name = null;
+  @Alias('name', isNullable: false,  )
+  final String name;
+  
+  @Alias('address', isNullable: false,  )
+  final Address address;
+  
+  @Alias('accountIdentifications', isNullable: false,  )
+  final List<AccountIdentification> accountIdentifications;
+  
+  @Alias('merchantCategoryCode', isNullable: false,  )
+  final String merchantCategoryCode;
+  
+  @Alias('merchantId', isNullable: false,  )
+  final String merchantId;
   
 
-  Address address = null;
-  
+  Payee(
+      
 
-  List<AccountIdentification> accountIdentifications = [];
-  
-
-  String merchantCategoryCode = null;
-  
-
-  String merchantId = null;
-  
-  Payee();
+{
+    
+     this.name = null,   this.address = null,  
+    
+     this.accountIdentifications = const [],   this.merchantCategoryCode = null,  
+     this.merchantId = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'Payee[name=$name, address=$address, accountIdentifications=$accountIdentifications, merchantCategoryCode=$merchantCategoryCode, merchantId=$merchantId, ]';
   }
+}
 
-  Payee.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    name =
-        json['name']
-    ;
-    address =
-      
-      
-      new Address.fromJson(json['address'])
-;
-    accountIdentifications =
-      AccountIdentification.listFromJson(json['accountIdentifications'])
-;
-    merchantCategoryCode =
-        json['merchantCategoryCode']
-    ;
-    merchantId =
-        json['merchantId']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class PayeeSerializer extends Serializer<Payee> with _$PayeeSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'address': address,
-      'accountIdentifications': accountIdentifications,
-      'merchantCategoryCode': merchantCategoryCode,
-      'merchantId': merchantId
-     };
-  }
-
-  static List<Payee> listFromJson(List<dynamic> json) {
-    return json == null ? new List<Payee>() : json.map((value) => new Payee.fromJson(value)).toList();
-  }
-
-  static Map<String, Payee> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, Payee>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new Payee.fromJson(value));
-    }
-    return map;
-  }
 }
 

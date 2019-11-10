@@ -1,67 +1,51 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/multi_authorisation.dart';
+
+part 'payment_status_details.jser.dart';
 
 class PaymentStatusDetails {
   
-  String status = null;
+  @Alias('status', isNullable: false,
+          
+  )
+  final String status;
   //enum statusEnum {  PENDING,  FAILED,  DECLINED,  COMPLETED,  EXPIRED,  UNKNOWN,  ACTIVE,  INACTIVE,  };
-
-  String statusReason = null;
+  @Alias('statusReason', isNullable: false,  )
+  final String statusReason;
+  
+  @Alias('statusReasonDescription', isNullable: false,  )
+  final String statusReasonDescription;
+  
+  @Alias('statusUpdateDate', isNullable: false,  )
+  final DateTime statusUpdateDate;
+  
+  @Alias('multiAuthorisationStatus', isNullable: false,  )
+  final MultiAuthorisation multiAuthorisationStatus;
   
 
-  String statusReasonDescription = null;
-  
+  PaymentStatusDetails(
+      
 
-  DateTime statusUpdateDate = null;
-  
-
-  MultiAuthorisation multiAuthorisationStatus = null;
-  
-  PaymentStatusDetails();
+{
+     this.status = null,  
+     this.statusReason = null,  
+     this.statusReasonDescription = null,  
+     this.statusUpdateDate = null,  
+     this.multiAuthorisationStatus = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'PaymentStatusDetails[status=$status, statusReason=$statusReason, statusReasonDescription=$statusReasonDescription, statusUpdateDate=$statusUpdateDate, multiAuthorisationStatus=$multiAuthorisationStatus, ]';
   }
+}
 
-  PaymentStatusDetails.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    status =
-        json['status']
-    ;
-    statusReason =
-        json['statusReason']
-    ;
-    statusReasonDescription =
-        json['statusReasonDescription']
-    ;
-    statusUpdateDate = json['statusUpdateDate'] == null ? null : DateTime.parse(json['statusUpdateDate']);
-    multiAuthorisationStatus =
-      
-      
-      new MultiAuthorisation.fromJson(json['multiAuthorisationStatus'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class PaymentStatusDetailsSerializer extends Serializer<PaymentStatusDetails> with _$PaymentStatusDetailsSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'status': status,
-      'statusReason': statusReason,
-      'statusReasonDescription': statusReasonDescription,
-      'statusUpdateDate': statusUpdateDate == null ? '' : statusUpdateDate.toUtc().toIso8601String(),
-      'multiAuthorisationStatus': multiAuthorisationStatus
-     };
-  }
-
-  static List<PaymentStatusDetails> listFromJson(List<dynamic> json) {
-    return json == null ? new List<PaymentStatusDetails>() : json.map((value) => new PaymentStatusDetails.fromJson(value)).toList();
-  }
-
-  static Map<String, PaymentStatusDetails> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, PaymentStatusDetails>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new PaymentStatusDetails.fromJson(value));
-    }
-    return map;
-  }
 }
 

@@ -1,67 +1,53 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+import 'package:yapily_sdk/model/amount.dart';
+
+import 'package:yapily_sdk/model/credit_line.dart';
+
+part 'account_balance.jser.dart';
 
 class AccountBalance {
   
-  String type = null;
-  //enum typeEnum {  CLOSING_AVAILABLE,  CLOSING_BOOKED,  CLOSING_CLEARED,  EXPECTED,  FORWARD_AVAILABLE,  INFORMATION,  INTERIM_AVAILABLE,  INTERIM_BOOKED,  INTERIM_CLEARED,  OPENING_AVAILABLE,  OPENING_BOOKED,  OPENING_CLEARED,  PREVIOUSLY_CLOSED_BOOKED,  AUTHORISED,  OTHER,  UNKNOWN,  };
-/* Timestamp of the last change of the balance amount */
-  DateTime dateTime = null;
+  @Alias('type', isNullable: false,
+          
+  )
+  final String type;
+  //enum typeEnum {  CLOSING_AVAILABLE,  CLOSING_BOOKED,  CLOSING_CLEARED,  EXPECTED,  FORWARD_AVAILABLE,  INFORMATION,  INTERIM_AVAILABLE,  INTERIM_BOOKED,  INTERIM_CLEARED,  OPENING_AVAILABLE,  OPENING_BOOKED,  OPENING_CLEARED,  PREVIOUSLY_CLOSED_BOOKED,  AUTHORISED,  OTHER,  UNKNOWN,  }; /* Timestamp of the last change of the balance amount */
+  @Alias('dateTime', isNullable: false,  )
+  final DateTime dateTime;
+  
+  @Alias('balanceAmount', isNullable: false,  )
+  final Amount balanceAmount;
+   /* Indicates whether or not the credit line is included in the balance */
+  @Alias('creditLineIncluded', isNullable: false,  )
+  final bool creditLineIncluded;
+  
+  @Alias('creditLines', isNullable: false,  )
+  final List<CreditLine> creditLines;
   
 
-  Amount balanceAmount = null;
-  
-/* Indicates whether or not the credit line is included in the balance */
-  bool creditLineIncluded = null;
-  
+  AccountBalance(
+      
 
-  List<CreditLine> creditLines = [];
-  
-  AccountBalance();
+{
+     this.type = null,  
+     this.dateTime = null,  
+     this.balanceAmount = null,  
+     this.creditLineIncluded = null,  
+     this.creditLines = const [] 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'AccountBalance[type=$type, dateTime=$dateTime, balanceAmount=$balanceAmount, creditLineIncluded=$creditLineIncluded, creditLines=$creditLines, ]';
   }
+}
 
-  AccountBalance.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    type =
-        json['type']
-    ;
-    dateTime = json['dateTime'] == null ? null : DateTime.parse(json['dateTime']);
-    balanceAmount =
-      
-      
-      new Amount.fromJson(json['balanceAmount'])
-;
-    creditLineIncluded =
-        json['creditLineIncluded']
-    ;
-    creditLines =
-      CreditLine.listFromJson(json['creditLines'])
-;
-  }
+@GenSerializer(nullableFields: true)
+class AccountBalanceSerializer extends Serializer<AccountBalance> with _$AccountBalanceSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'dateTime': dateTime == null ? '' : dateTime.toUtc().toIso8601String(),
-      'balanceAmount': balanceAmount,
-      'creditLineIncluded': creditLineIncluded,
-      'creditLines': creditLines
-     };
-  }
-
-  static List<AccountBalance> listFromJson(List<dynamic> json) {
-    return json == null ? new List<AccountBalance>() : json.map((value) => new AccountBalance.fromJson(value)).toList();
-  }
-
-  static Map<String, AccountBalance> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, AccountBalance>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new AccountBalance.fromJson(value));
-    }
-    return map;
-  }
 }
 

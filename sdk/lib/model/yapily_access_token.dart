@@ -1,67 +1,47 @@
-part of yapily_sdk.api;
+import 'package:jaguar_serializer/jaguar_serializer.dart';
+
+
+part 'yapily_access_token.jser.dart';
 
 class YapilyAccessToken {
   
-  String accessToken = null;
+  @Alias('access_token', isNullable: false,  )
+  final String accessToken;
+  
+  @Alias('expires_in', isNullable: false,  )
+  final int expiresIn;
+  
+  @Alias('jti', isNullable: false,  )
+  final String jti;
+  
+  @Alias('scope', isNullable: false,  )
+  final String scope;
+  
+  @Alias('token_type', isNullable: false,  )
+  final String tokenType;
   
 
-  int expiresIn = null;
-  
+  YapilyAccessToken(
+      
 
-  String jti = null;
-  
-
-  String scope = null;
-  
-
-  String tokenType = null;
-  
-  YapilyAccessToken();
+{
+     this.accessToken = null,  
+     this.expiresIn = null,  
+     this.jti = null,  
+     this.scope = null,  
+     this.tokenType = null 
+    
+    }
+  );
 
   @override
   String toString() {
     return 'YapilyAccessToken[accessToken=$accessToken, expiresIn=$expiresIn, jti=$jti, scope=$scope, tokenType=$tokenType, ]';
   }
+}
 
-  YapilyAccessToken.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    accessToken =
-        json['accessToken']
-    ;
-    expiresIn =
-        json['expiresIn']
-    ;
-    jti =
-        json['jti']
-    ;
-    scope =
-        json['scope']
-    ;
-    tokenType =
-        json['tokenType']
-    ;
-  }
+@GenSerializer(nullableFields: true)
+class YapilyAccessTokenSerializer extends Serializer<YapilyAccessToken> with _$YapilyAccessTokenSerializer {
 
-  Map<String, dynamic> toJson() {
-    return {
-      'accessToken': accessToken,
-      'expiresIn': expiresIn,
-      'jti': jti,
-      'scope': scope,
-      'tokenType': tokenType
-     };
-  }
-
-  static List<YapilyAccessToken> listFromJson(List<dynamic> json) {
-    return json == null ? new List<YapilyAccessToken>() : json.map((value) => new YapilyAccessToken.fromJson(value)).toList();
-  }
-
-  static Map<String, YapilyAccessToken> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, YapilyAccessToken>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new YapilyAccessToken.fromJson(value));
-    }
-    return map;
-  }
 }
 

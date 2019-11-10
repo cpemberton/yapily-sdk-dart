@@ -5,16 +5,16 @@
 import 'package:yapily_sdk/api.dart';
 ```
 
-All URIs are relative to *https://api.yapily.com*
+All URIs are relative to *http://api.yapily.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createPaymentAuthorisationUsingPOST**](PaymentsApi.md#createPaymentAuthorisationUsingPOST) | **POST** /payment-auth-requests | Initiate a payment for user to authorise
-[**createPaymentAuthorisationWithSortCodeUsingPOST**](PaymentsApi.md#createPaymentAuthorisationWithSortCodeUsingPOST) | **POST** /payment-sortcode-auth-requests | Initiate a new single payment for user to authorise
-[**createPaymentUsingPOST**](PaymentsApi.md#createPaymentUsingPOST) | **POST** /payments | Create a payment
-[**createPaymentWithSortCodeUsingPOST**](PaymentsApi.md#createPaymentWithSortCodeUsingPOST) | **POST** /payment-sortcode | Create a new single payment
-[**getPaymentStatusUsingGET**](PaymentsApi.md#getPaymentStatusUsingGET) | **GET** /payments/{paymentId} | Get status of a payment
-[**getPaymentsUsingGET**](PaymentsApi.md#getPaymentsUsingGET) | **GET** /payments/{paymentId}/details | Get payments detail
+[**createPaymentAuthorisationUsingPOST**](PaymentsApi.md#createPaymentAuthorisationUsingPOST) | **Post** /payment-auth-requests | Initiate a payment for user to authorise
+[**createPaymentAuthorisationWithSortCodeUsingPOST**](PaymentsApi.md#createPaymentAuthorisationWithSortCodeUsingPOST) | **Post** /payment-sortcode-auth-requests | Initiate a new single payment for user to authorise
+[**createPaymentUsingPOST**](PaymentsApi.md#createPaymentUsingPOST) | **Post** /payments | Create a payment
+[**createPaymentWithSortCodeUsingPOST**](PaymentsApi.md#createPaymentWithSortCodeUsingPOST) | **Post** /payment-sortcode | Create a new single payment
+[**getPaymentStatusUsingGET**](PaymentsApi.md#getPaymentStatusUsingGET) | **Get** /payments/:paymentId | Get status of a payment
+[**getPaymentsUsingGET**](PaymentsApi.md#getPaymentsUsingGET) | **Get** /payments/:paymentId/details | Get payments detail
 
 
 # **createPaymentAuthorisationUsingPOST**
@@ -139,7 +139,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
+ **consent** | **String**| Consent Token | [default to null]
  **paymentRequest** | [**PaymentRequest**](PaymentRequest.md)| paymentRequest | 
 
 ### Return type
@@ -187,7 +187,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent** | **String**| Consent Token | 
+ **consent** | **String**| Consent Token | [default to null]
  **paymentRequest** | [**SortCodePaymentRequest**](SortCodePaymentRequest.md)| paymentRequest | 
 
 ### Return type
@@ -235,8 +235,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **paymentId** | **String**| paymentId | 
- **consent** | **String**| Consent Token | 
+ **paymentId** | **String**| paymentId | [default to null]
+ **consent** | **String**| Consent Token | [default to null]
 
 ### Return type
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -283,8 +283,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **paymentId** | **String**| paymentId | 
- **consent** | **String**| Consent Token | 
+ **paymentId** | **String**| paymentId | [default to null]
+ **consent** | **String**| Consent Token | [default to null]
 
 ### Return type
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

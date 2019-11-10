@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **applicationUuid** | **String** |  | [optional] [default to null]
 **applicationUserId** | **String** |  | [optional] [default to null]
 **referenceId** | **String** |  | [optional] [default to null]
-**institutionConsents** | [**List&lt;InstitutionConsent&gt;**](InstitutionConsent.md) |  | [optional] [default to []]
+**institutionConsents** | [**List&lt;InstitutionConsent&gt;**](InstitutionConsent.md) |  | [optional] [default to const []]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
